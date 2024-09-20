@@ -169,7 +169,7 @@ export const Login = () => {
                 {/* <!-- End Navbar --> */}
                 <div className="wrapper">
                     <div className="page-header" 
-                    // style={{backgroundImage: url('../assets/img/sections/bruno-abatti.jpg')}}
+                    style={{backgroundImage: "url('../assets/img/sections/bruno-abatti.jpg')"}}
                     >
                         <div className="filter"></div>
                         <div className="container">
