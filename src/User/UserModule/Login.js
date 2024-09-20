@@ -173,7 +173,7 @@ export const Login = () => {
                     >
                         <div className="filter"></div>
                         <div className="container">
-                            <div className="row">
+                             <div className="row">
                                 <div className="col-lg-4 col-md-6 col-sm-6 ml-auto mr-auto">
                                     <div className="card card-register">
                                         <h3 className="card-title">Welcome</h3>
