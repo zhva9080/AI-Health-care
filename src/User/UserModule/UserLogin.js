@@ -1,5 +1,5 @@
 
-export const Login = () => {
+export const UserLogin = () => {
     return (
         <>
             <div className="login-page full-screen sidebar-collapse">
@@ -42,106 +42,24 @@ export const Login = () => {
                                             <i className="nc-icon nc-tile-56"></i>
                                             Headers
                                         </a>
-                                        <a className="dropdown-item" data-scroll="true" data-id="#features" href="../sections.html#features">
-                                            <i className="nc-icon nc-settings"></i>
-                                            Features
-                                        </a>
-                                        <a className="dropdown-item" data-scroll="true" data-id="#blogs" href="../sections.html#blogs">
-                                            <i className="nc-icon nc-bullet-list-67"></i>
-                                            Blogs
-                                        </a>
-                                        <a className="dropdown-item" data-scroll="true" data-id="#teams" href="../sections.html#teams">
-                                            <i className="nc-icon nc-single-02"></i>
-                                            Teams
-                                        </a>
-                                        <a className="dropdown-item" data-scroll="true" data-id="#projects" href="../sections.html#projects">
-                                            <i className="nc-icon nc-calendar-60"></i>
-                                            Projects
-                                        </a>
-                                        <a className="dropdown-item" data-scroll="true" data-id="#pricing" href="../sections.html#pricing">
-                                            <i className="nc-icon nc-money-coins"></i>
-                                            Pricing
-                                        </a>
-                                        <a className="dropdown-item" data-scroll="true" data-id="#testimonials" href="../sections.html#testimonials">
-                                            <i className="nc-icon nc-badge"></i>
-                                            Testimonials
-                                        </a>
-                                        <a className="dropdown-item" data-scroll="true" data-id="#contact-us" href="../sections.html#contactus">
-                                            <i className="nc-icon nc-mobile"></i>
-                                            Contact Us
-                                        </a>
+                        
                                     </div>
                                 </li>
                                 <li className="dropdown nav-item">
                                     <a href="#" className="dropdown-toggle nav-link" id="navbarDropdownMenuLink1" data-toggle="dropdown">
-                                        Examples
+                                        About us
                                     </a>
                                     <div className="dropdown-menu dropdown-menu-right dropdown-danger" aria-labelledby="navbarDropdownMenuLink1">
                                         <a className="dropdown-item" href="../examples/about-us.html">
                                             <i className="nc-icon nc-bank"></i>
                                             About-us
                                         </a>
-                                        <a className="dropdown-item" href="../examples/add-product.html">
-                                            <i className="nc-icon nc-basket"></i>
-                                            Add Product
-                                        </a>
-                                        <a className="dropdown-item" href="../examples/blog-post.html">
-                                            <i className="nc-icon nc-badge"></i>
-                                            Blog Post
-                                        </a>
-                                        <a className="dropdown-item" href="../examples/blog-posts.html">
-                                            <i className="nc-icon nc-bullet-list-67"></i>
-                                            Blog Posts
-                                        </a>
-                                        <a className="dropdown-item" href="../examples/contact-us.html">
-                                            <i className="nc-icon nc-mobile"></i>
-                                            Contact Us
-                                        </a>
-                                        <a className="dropdown-item" href="../examples/discover.html">
-                                            <i className="nc-icon nc-world-2"></i>
-                                            Discover
-                                        </a>
-                                        <a className="dropdown-item" href="../examples/ecommerce.html">
-                                            <i className="nc-icon nc-send"></i>
-                                            Ecommerce
-                                        </a>
-                                        <a className="dropdown-item" href="../examples/landing-page.html">
-                                            <i className="nc-icon nc-spaceship"></i>
-                                            Landing Page
-                                        </a>
-                                        <a className="dropdown-item" href="../examples/login-page.html">
-                                            <i className="nc-icon nc-lock-circle-open"></i>
-                                            Login Page
-                                        </a>
-                                        <a className="dropdown-item" href="../examples/product-page.html">
-                                            <i className="nc-icon nc-album-2"></i>
-                                            Product Page
-                                        </a>
-                                        <a className="dropdown-item" href="../examples/profile-page.html">
-                                            <i className="nc-icon nc-single-02"></i>
-                                            Profile Page
-                                        </a>
-                                        <a className="dropdown-item" href="../examples/register-page.html">
-                                            <i className="nc-icon nc-bookmark-2"></i>
-                                            Register Page
-                                        </a>
-                                        <a className="dropdown-item" href="../examples/search-with-sidebar.html">
-                                            <i className="nc-icon nc-zoom-split"></i>
-                                            Search Page
-                                        </a>
-                                        <a className="dropdown-item" href="../examples/settings.html">
-                                            <i className="nc-icon nc-settings-gear-65"></i>
-                                            Settings Page
-                                        </a>
-                                        <a className="dropdown-item" href="../examples/twitter-redesign.html">
-                                            <i className="nc-icon nc-tie-bow"></i>
-                                            Twitter
-                                        </a>
+        
                                     </div>
                                 </li>
                                 <li className="nav-item">
                                     <a className="btn btn-round btn-danger" href="https://www.creative-tim.com/product/paper-kit-2-pro" target="_blank">
-                                        <i className="nc-icon nc-cart-simple"></i> Buy Now
+                                        Register
                                     </a>
                                 </li>
                                 {/* <li className="nav-item">
@@ -182,7 +100,7 @@ export const Login = () => {
                                             <input type="email" className="form-control no-border" placeholder="Email"/>
                                                 <label>Password</label>
                                                 <input type="password" className="form-control no-border" placeholder="Password"/>
-                                                    <button className="btn btn-danger btn-block btn-round">Register</button>
+                                                    <button className="btn btn-danger btn-block btn-round">Login</button>
                                                 </form>
                                                 <div className="forgot">
                                                     <a href="#paper-kit" className="btn btn-link btn-danger">Forgot password?</a>

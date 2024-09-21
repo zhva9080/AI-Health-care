@@ -1,20 +1,19 @@
 import { createBrowserRouter, RouterProvider} from "react-router-dom";
 import './App.css';
-import { DoctorRegister } from "./Doctor/DoctorModule/DoctorRegister";
-import { DoctorLogin } from "./Doctor/DoctorModule/DoctorLogin";
-import { Login } from "./User/UserModule/Login";
+import { UserLogin } from "./User/UserModule/UserLogin";
+import { UserRegister } from "./User/UserModule/UserRegister";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div><Login/></div>,
+    element: <div><UserLogin/></div>,
   },
   {
-    path: "/doctorlogin",
-    element: <div><DoctorLogin/></div>,
+    path: "/userregister",
+    element: <div><UserRegister/></div>,
   },
   {
     path: "/doctorregister",
-    element: <div><DoctorRegister/></div>,
+    element: <div></div>,
   }
 ]);
 function App() {
