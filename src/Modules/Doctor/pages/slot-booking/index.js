@@ -1,11 +1,13 @@
-import { useState } from "react"
+import { useState, useEffect} from "react"
 import { Footer } from "../../Component/Footer"
 import { Header } from "../../Component/Header"
-import { useEffect } from "react"
+import { get_slot_data } from "../../slices/slotSlice"
+import { useSelector, useDispatch } from "react-redux"
+import { useNavigate } from "react-router-dom"
 
 export const DoctorSlot = () => {
 
-    let slotList = []
+    // let slotList = []
 
     const [getList, addList] = useState(
         {
@@ -15,20 +17,36 @@ export const DoctorSlot = () => {
         }
     )
 
-    // if(!localStorage.getItem,getListData){
-    //     localStorage.setItem(getListData,"[]")
-    // }
+    const [slotList, setSlotList] = useState([])
+
+    // useEffect (()=>{ slotList},[])
 
 
     const addSlotList = () => {
-
-        // slotList.push(getList)
-        let a = [...slotList, getList]
-        console.log(a)
-
+        setSlotList([...slotList, getList])
     }
 
 
+    const slotDelete=(index)=>{
+      
+       const data= slotList.filter((slotListvalues,slotListindex)=>{
+            if(index!=slotListindex){
+                return slotListvalues
+            }
+        })
+        setSlotList(data)
+
+    }
+    
+    const get_slot_state = useSelector((state)=>state.doctor_slot_state).doctorSlotSlice
+    const set_dispatch = useDispatch()
+    const navigate = useNavigate()
+
+
+    // navigate('/doctor_home')
+    // console.log(get_slot_state)
+
+    
     return (
         <>
             <Header />
@@ -61,11 +79,30 @@ export const DoctorSlot = () => {
                             <div className="col-md-4 col-sm-4">
                                 <h4>Select  Day</h4>
                                 <hr />
-                                <input type="text" className="form-control no-border bg-secondary text-white" placeholder="Enter Day (Ex: Sunday)" onKeyUp={(e) => addList({ ...getList, clinic_day: e.target.value })} />
+                                <select name="huge" className="form-select" data-style="btn btn-outline-default btn-block" data-menu-style="" onClick={(e) => addList({...getList,clinic_day: e.target.value})} >
+                                        <option disabled selected>Select Day</option>
+                                        <option value="Sunday">Sunday</option>
+                                        <option value="Monday">Monday</option>
+                                        <option value="Tuesday">Tuesday</option>
+                                        <option value="Wednesday">Wednesday</option>
+                                        <option value="Thursday">Thursday</option>
+                                        <option value="Friday">Friday</option>
+                                        <option value="Saturday">Saturday</option>
+                                </select>
+                                
+                                {/* <input type="text" className="form-control no-border bg-secondary text-white" placeholder="Enter Day (Ex: Sunday)" onKeyUp={(e) => addList({ ...getList, clinic_day: e.target.value })} /> */}
                             </div>
                             <div className="col-md-4 col-sm-4">
                                 <h4>Timing</h4>
                                 <hr />
+                                <select name="huge" className="form-select" data-style="btn btn-outline-default btn-block" onClick={(e)=>addList({...getList, clinic_timing: e.target.value})}>
+                                    <option value="select time">Select Time</option>
+                                    <option value="9am to 10am">9am to 10am</option>
+                                    <option value="10am to 12pm">10am to 12pm</option>
+                                    <option value="10am to 1pm">10am to 1pm</option>
+                                    <option value="2pm to 4pm">2pm to 4pm</option>
+                                    <option value="5pm to 7pm">5pm to 7pm</option>
+                                </select>
                                 {/* <div className="form-group">
                                         <select name="huge" className="selectpicker" data-style="btn btn-outline-default btn-block"
                                             data-menu-style="">
@@ -74,7 +111,8 @@ export const DoctorSlot = () => {
                                             <option value="2">2 PM to 4 PM </option>
                                             <option value="3">6 PM to 8 PM</option>
                                         </select> */}
-                                <input type="text" className="form-control no-border bg-secondary text-white" placeholder="Enter Day (Ex: 10 to 5)" onKeyUp={(e) => addList({ ...getList, clinic_timing: e.target.value })} />
+                                
+                                {/* <input type="text" className="form-control no-border bg-secondary text-white" placeholder="Enter Day (Ex: 10 to 5)" onKeyUp={(e) => addList({ ...getList, clinic_timing: e.target.value })} /> */}
                                 {/* </div> */}
                             </div>
                             <div className="col-md-4 col-sm-4">
@@ -83,7 +121,7 @@ export const DoctorSlot = () => {
                                 {/* <button className="btn btn-danger btn-block"><i className="fa fa-inr" aria-hidden="true"></i>100</button> */}
                                 <input type="number" className="form-control no-border bg-secondary text-white" placeholder="Enter Day (Ex: 100)" onKeyUp={(e) => addList({ ...getList, consulting_fee: e.target.value })} />
                             </div>
-                            <button className="btn btn-primary btn-block btn-round w-25 mt-5" onClick={addSlotList}>ADD</button>
+                            <button  className="btn btn-primary btn-block btn-round w-25 mt-5" type="button" onClick={addSlotList}>ADD</button>
                         </div>
 
                         <hr />
@@ -105,88 +143,44 @@ export const DoctorSlot = () => {
                                                 <th className="text-center"><strong>Day</strong></th>
                                                 <th className="text-center"><strong>Timing</strong></th>
                                                 <th className="text-center"><strong>amount</strong></th>
-                                                <th className="text-center"><strong>Edit</strong></th>
                                                 <th className="text-center"><strong>Delete</strong></th>
                                             </tr>
                                         </thead>
                                         <tbody>
 
                                             {
-                                                slotList.map((e) => {
-                                                        alert()
-                                                    return (
-                                                        <tr>
-                                                            <td className="text-center">
-                                                                <h6>{e.clinic_day}</h6>
-                                                            </td>
-                                                            <td className="td-number text-center">
-                                                                <h6>{e.clinic_timing}</h6>
-                                                            </td>
-                                                            <td className="td-number text-center">
-                                                                <h6>{e.consulting_fee}</h6>
-                                                            </td>
-                                                            <td className="td-number td-quantity text-center">
-                                                                <button type="button" className="btn btn-outline-info ">Edit</button>
-                                                            </td>
-                                                            <td className="td-number text-center">
-                                                                <button type="button" className="btn btn-outline-danger ">Delete</button>
-                                                            </td>
-                                                        </tr>
-                                                    )
-                                                })
+                                              slotList.map((e,index) =>{
+                                                return (
+                                                     // console.log(index)
+                                                <tr>
+                                                <td className="text-center">
+                                                    <h6>{e.clinic_day}</h6>
+                                                </td>
+                                                <td className="td-number text-center">
+                                                    <h6>{e.clinic_timing}</h6>
+                                                </td>
+                                                <td className="td-number text-center">
+                                                    <h6>{e.consulting_fee}</h6>
+                                                </td>
+                                                <td className="td-number text-center">
+                                                    <button  className="btn btn-outline-danger" type="button" onClick={()=>slotDelete(index)}>Delete</button>
+                                                </td>
+                                            </tr>
+                                                )
+                                              }
+                                               
+                                            )
                                             }
 
-
-
-                                            <tr>
-                                                <td className="text-center">
-                                                    <h6>Sunday</h6>
-                                                </td>
-                                                <td className="td-number text-center">
-                                                    <h6>10 AM to 12 AM</h6>
-                                                </td>
-                                                <td className="td-number td-quantity text-center">
-                                                    <button type="button" className="btn btn-outline-info ">Edit</button>
-                                                </td>
-                                                <td className="td-number text-center">
-                                                    <button type="button" className="btn btn-outline-danger ">Delete</button>
-                                                </td>
-                                            </tr>
-                                            {/* <tr>
-                                                <td className="text-center">
-                                                    <h6>Monday</h6>
-                                                </td>
-                                                <td className="td-number text-center">
-                                                    <h6>6 PM to 8 PM</h6>
-                                                </td>
-                                                <td className="td-number td-quantity text-center">
-                                                    <button type="button" className="btn btn-outline-info ">Edit</button>
-                                                </td>
-                                                <td className="td-number text-center">
-                                                    <button type="button" className="btn btn-outline-danger">Delete</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className="text-center">
-                                                    <h6>Tuesday</h6>
-                                                </td>
-                                                <td className="td-number text-center">
-                                                    <h6>2 PM to 5 PM</h6>
-                                                </td>
-                                                <td className="td-number td-quantity text-center">
-                                                    <button type="button" className="btn btn-outline-info ">Edit</button>
-                                                </td>
-                                                <td className="td-number text-center">
-                                                    <button type="button" className="btn btn-outline-danger">Delete</button>
-                                                </td>
-                                            </tr> */}
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-2 offset-md-5 col-sm-8 " >
-                            <button className="btn btn-success btn-block">Submit</button>
+                        <div className="col-md-2 offset-md-5 col-sm-8 " > 
+                            <button className="btn btn-success btn-block" type="button" onClick={()=>{set_dispatch(get_slot_data(slotList))
+                                                                                                        navigate("/doctor_home")
+                            }}>Submit</button>
                         </div>
                     </div>
                 </div>

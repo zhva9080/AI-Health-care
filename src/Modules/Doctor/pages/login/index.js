@@ -2,7 +2,7 @@ import axios from "axios"
 import { Link } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
-import { get_login_data } from "../../slices/LoginSlice"
+import { get_login_data } from "../../slices/loginSlice"
 
 
 export const Doctor_Login = () => {
@@ -10,6 +10,7 @@ export const Doctor_Login = () => {
     const doctorLoginSubmit = useSelector((state)=>state.doctor_login_state).doctorLogin
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    
     const submitDoctorLogin = ()=>{
 
         const formData = new FormData()     
