@@ -57,14 +57,14 @@ export const Header=()=>{
                                         <i className="nc-icon nc-bank"></i>
                                         Edit profile
                                     </Link>
-                                    <a className="dropdown-item" >
+                                    <Link className="dropdown-item" to="/user/history">
                                         <i className="nc-icon nc-bank"></i>
                                         History
-                                    </a>
-                                    <a className="dropdown-item" >
+                                    </Link>
+                                    <Link className="dropdown-item" to="/user/login" >
                                         <i className="nc-icon nc-bank"></i>
                                        logout
-                                    </a>
+                                    </Link>
                                 </div>
                             </li>
                         </ul>

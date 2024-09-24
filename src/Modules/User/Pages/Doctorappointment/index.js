@@ -98,41 +98,37 @@ export const Doctorapp = () => {
                                                             <button type="button" className="btn btn-danger btn-round" data-toggle="modal" data-target="#loginModal" onCl>
                                                                 Book Now
                                                             </button>
+                                                            
                                                         </div>
 
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div> 
-                                    <div className="modal fade" id="loginModal" tabindex="-1" role="dialog"  aria-hidden="false">
+                                    </div>
+                                    {/* <div className="modal fade" id="loginModal" tabindex="-1" role="dialog" style={{ display: "none" }} aria-hidden="true">
                                         <div className="modal-dialog modal-register">
-                                            <div className="modal-content">
+                                            <div className="modal-content">"none"
                                                 <div className="modal-header no-border-header text-center">
                                                     <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
-                                                    <h6 className="text-muted">Welcome</h6>
-                                                    <h3 className="modal-title text-center">Paper Kit</h3>
-                                                    <p>Log in to your account</p>
+
                                                 </div>
                                                 <div className="modal-body">
                                                     <div className="form-group">
-                                                        <label>Email</label>
-                                                        <input type="text" value="" placeholder="Email" className="form-control" />
+                                                        <label>Select Day</label>
+                                                        <input type="text" placeholder="Email" className="form-control" />
                                                     </div>
                                                     <div className="form-group">
-                                                        <label>Password</label>
-                                                        <input type="password" value="" placeholder="Password" className="form-control" />
-                                                    </div>
-                                                    <button className="btn btn-block btn-round"> Log in</button>
+                                                        <label>Time slot</label>
+                                                                                                            </div>
+                                                    <button className="btn btn-block btn-round">Pay now</button>
                                                 </div>
-                                                <div className="modal-footer no-border-footer">
-                                                    <span className="text-muted  text-center">Looking <a href="javascript:;">create an account</a> ?</span>
-                                                </div>
+
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> */}
 
                                 </div>
 

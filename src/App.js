@@ -6,6 +6,7 @@ import { Userhome } from "./Modules/User/Pages/Home";
 import { Userview } from "./Modules/User/Pages/View";
 import { Profile } from "./Modules/User/Pages/Home/Profile";
 import { Doctorapp } from "./Modules/User/Pages/Doctorappointment";
+import { Userhistory } from "./Modules/User/Pages/UserHistory";
 const router = createBrowserRouter([
   {
     path: "/user/login",
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
   {
     path: "/user/doctorapp",
     element: <div><Doctorapp/></div>,
+  },
+  {
+    path: "/user/history",
+    element: <div><Userhistory/></div>,
   },
 ]);
 function App() {

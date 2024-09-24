@@ -116,7 +116,7 @@ export const Userhome = () => {
                                     </div>
                                     <div className="form-check-radio">
                                         <label className="form-check-label">
-                                            <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="female" checked onClick={(e)=>dispatch(setPatient({...patientState,gender:e.target.value}))}/>
+                                            <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="female"  onClick={(e)=>dispatch(setPatient({...patientState,gender:e.target.value}))}/>
                                             Female
                                             <span className="form-check-sign"></span>
                                         </label>
@@ -131,13 +131,13 @@ export const Userhome = () => {
                                             <option value="1">B Negative</option>
                                             <option value="1">O Positive</option>
                                         </select> */}
-                                         <select className="form-select btn-danger p-2" data-style="btn-info btn-round" aria-label="Default select example" onClick={(e)=>dispatch(setPatient({...patientState,duration:e.target.value}))}>
+                                         <select className="form-select btn-danger p-2" data-style="btn-info btn-round" aria-label="Default select example" onClick={(e)=>dispatch(setPatient({...patientState,blood_group:e.target.value}))}>
                                             <option disabled selected> Blood Group </option>
-                                            <option value="1">A Positive</option>
-                                            <option value="1">A Negative</option>
-                                            <option value="1">B Positive</option>
-                                            <option value="1">B Negative</option>
-                                            <option value="1">O Positive</option>
+                                            <option value="A Positive">A Positive</option>
+                                            <option value="A Negative">A Negative</option>
+                                            <option value="B Positive">B Positive</option>
+                                            <option value="B Negative">B Negative</option>
+                                            <option value="O Positive">O Positive</option>
                                         </select>   
                                     </div>
                                     <div className="form-group my-5">
@@ -149,13 +149,13 @@ export const Userhome = () => {
                                             <option value="1">11-15</option>
                                             <option value="1">16-20</option>
                                         </select> */}
-                                         <select  className="form-select btn-success p-2" data-style="btn-info btn-round" aria-label="Default select example" onClick={(e)=>dispatch(setPatient({...patientState,duration:e.target.value}))}>
+                                         <select  className="form-select btn-success p-2" data-style="btn-info btn-round" aria-label="Default select example" onClick={(e)=>dispatch(setPatient({...patientState,age:e.target.value}))}>
                                             <option disabled selected> Choose Age</option>
-                                            <option value="1">0-3</option>
-                                            <option value="1">4-5</option>
-                                            <option value="1">6-10</option>
-                                            <option value="1">11-15</option>
-                                            <option value="1">16-20</option>
+                                            <option value="0-3">0-3</option>
+                                            <option value="4-5">4-5</option>
+                                            <option value="6-10">6-10</option>
+                                            <option value="11-15">11-15</option>
+                                            <option value="16-20">16-20</option>
                                         </select>  
 
                                     </div>

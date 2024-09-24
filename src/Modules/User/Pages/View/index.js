@@ -1,8 +1,16 @@
 import { Header } from "../../component/Header"
 import { Footer } from "../../component/Footer"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { setpatientHisory } from "../../slices/HistorySlice"
+import { useState } from "react"
 export const Userview = () => {
+    const HistoryState=useSelector((state)=>state.userhistory).patienthistory
     const patientState=useSelector((state)=>state.patientdetails).patientDetails
+    const dispatch=useDispatch()
+   const save=()=>{
+        dispatch(setpatientHisory([...HistoryState,patientState]))
+   }
+   
     return (<>
         <div className="add-product sidebar-collapse">
             <Header />
@@ -92,9 +100,13 @@ export const Userview = () => {
                                 </div>
                             </div>
                         </div>
+                        <div> <button type="button" className="btn btn-danger btn-block mb-5 mx-auto" style={{width:"6%"}} onClick={()=>save()}>Save</button></div>
                     </div>
+                    
                 </div>
             </div>
+            
+
             <Footer/>
         </div>
     </>)
