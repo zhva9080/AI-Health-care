@@ -6,7 +6,7 @@ export const Header = () => {
     return (
         <>
             <header>
-                <nav className="navbar navbar-expand-lg fixed-top bg-danger nav-down" color-on-scroll="500">
+                <nav className="navbar navbar-expand-lg fixed-top bg-danger nav-down" >
                     <div className="container">
                         <div className="navbar-translate">
                             <Link className="navbar-brand" to="https://demos.creative-tim.com/paper-kit-2-pro/index.html" rel="tooltip" title="Paper Kit 2 PRO" data-placement="bottom" target="_blank">

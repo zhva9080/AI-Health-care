@@ -28,7 +28,7 @@ const router = createBrowserRouter([
     element : <Doctor_Home/>
   },
   {
-    path :"/patient_list",
+    path :"/patient_list/:id",
     element : <PatientsList />
   },
   {

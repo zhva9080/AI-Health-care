@@ -19,8 +19,6 @@ export const DoctorSlot = () => {
 
     const [slotList, setSlotList] = useState([])
 
-    // useEffect (()=>{ slotList},[])
-
 
     const addSlotList = () => {
         setSlotList([...slotList, getList])

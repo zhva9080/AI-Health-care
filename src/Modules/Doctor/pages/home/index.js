@@ -1,8 +1,10 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { Footer } from "../../Component/Footer"
 import { Header } from "../../Component/Header"
-import { get_slot_data } from "../../slices/slotSlice"
 import { useSelector } from "react-redux"
+import axios from "axios"
+import { useState } from "react"
+import { useEffect } from "react"
 
 
 
@@ -10,9 +12,17 @@ export const Doctor_Home = () => {
 
 
     const get_slot_state = useSelector((state) => state.doctor_slot_state).doctorSlotSlice
+    const navigate = useNavigate()
 
-    console.log(get_slot_state)
+    const [uniqueDay_all_patients, get_patients_data] = useState([])
 
+    useEffect(() => {
+            axios.get(`http://agaram.academy/api/action.php?request=getAllMembers`).then((day_all_patient_data) => {
+                get_patients_data(day_all_patient_data.data.data)
+        })
+    },[]
+    )
+    
     return (
         <>
             <Header />
@@ -23,7 +33,8 @@ export const Doctor_Home = () => {
                             <h4 className="title"><small></small></h4>
                             <div className="row">
                                 {
-                                    get_slot_state.map((e,i) => {
+
+                                    get_slot_state.map((e, i) => {
                                         return (
                                             <div className="col-md-4">
                                                 <div className="card card-pricing" data-color="orange">
@@ -33,21 +44,13 @@ export const Doctor_Home = () => {
                                                         </div>
                                                         <h3 className="card-title">{e.clinic_day}</h3>
                                                         <p className="card-description">
-                                                          {e.clinic_timing}
+                                                            {e.clinic_timing}
                                                         </p>
                                                         <h3 className="card-description">
-                                                          Rs. {e.consulting_fee}
+                                                            Rs. {e.consulting_fee}
                                                         </h3>
                                                         <div className="card-footer">
-
-                                                            { get_slot_state.length > 0? <Link to="/patient_list" className="btn btn-neutral btn-round"> {get_slot_state.length} Patient</Link> : null }
-                                                            
-                                                            {/* {
-
-                                                                if(get_slot_state.length > 0){
-                                                                    <Link to="#" className="btn btn-neutral btn-round"> {get_slot_state.length} Patient</Link>
-                                                                }else
-                                                            } */}
+                                                            {get_slot_state.length > 0 ? <button className="btn btn-neutral btn-round" onClick={() => navigate(`/patient_list/${i}`)}> {uniqueDay_all_patients.length} Patient</button> : <button className="btn btn-warning btn-round">No Patients</button>}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -56,7 +59,7 @@ export const Doctor_Home = () => {
                                     }
                                     )
                                 }
-                                
+
                                 {/* <div className="col-md-3">
                                     <div className="card card-pricing" data-color="orange">
                                         <div className="card-body">

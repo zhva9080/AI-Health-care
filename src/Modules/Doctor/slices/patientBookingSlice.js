@@ -16,4 +16,4 @@ export const patientBookingSlice = createSlice(
 )
 
 export const { get_patient_data } = patientBookingSlice.actions
-export default patientBookingSlice.
+export default patientBookingSlice.reducer

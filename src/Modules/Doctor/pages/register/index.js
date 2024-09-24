@@ -126,7 +126,7 @@ export const Doctor_Register = () => {
                                             {/* <input type="text" className="form-control" placeholder="Hospital Name" />
                                             <input type="text" className="form-control" placeholder="Specialist" />
                                             <input type="text" className="form-control" data-color="success" value="Oncologist, Neurologist, Anesthesiologist" data-role="tagsinput" placeholder="Specialist" /> */}
-                                            <button className="btn btn-block btn-round" type="button" onClick={submit_Doct_Register}>Register</button>
+                                            <button className="btn btn-block btn-round" type="submit" onClick={submit_Doct_Register}>Register</button>
 
 
                                             {/* <input type="text" className="form-control" placeholder="Dr. Name" />
