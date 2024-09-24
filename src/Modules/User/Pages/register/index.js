@@ -4,7 +4,7 @@ import { register_details } from "../../slices/RegisterSlice"
 import { useEffect } from "react"
 import { Link } from "react-router-dom"
 export const UserRegister=()=>{
-    const userStatevalue=useSelector((state)=>state.register).registerData
+    const userStatevalue=useSelector((state)=>state.userRegister).registerData
     const dispatch=useDispatch()
     // console.log(userStatevalue)
     const register=()=>{

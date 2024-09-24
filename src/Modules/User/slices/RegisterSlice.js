@@ -14,7 +14,7 @@ const initialState={
 }}
 
 export const userRegisterSlice=createSlice({
-    name:"register",
+    name:"userRegister",
     initialState:initialState,
     reducers:{
         register_details:(state,action)=>{

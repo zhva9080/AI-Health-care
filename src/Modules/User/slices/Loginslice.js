@@ -8,7 +8,7 @@ const initialState={
 }        
 
 export const Userloginslice=createSlice({
-    name:"login",
+    name:"userlogin",
     initialState:initialState,  
     reducers:{
         setloginUser:(state,action)=>{
