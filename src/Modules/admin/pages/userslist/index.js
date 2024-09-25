@@ -42,8 +42,8 @@ export const Adminusers = () => {
                             <h2 class="text-center title">Users  Details</h2>
                             <div class="col-md-15 ml-auto mr-auto">
                                 <div class="table-responsive">
-                                    <table class="table table-shopping">
-                                        <thead>
+                                    <table class="table">
+                                        <thead class="table-secondary">
                                             <tr>
                                                 <th class="text-center" ><b>Name</b></th>
                                                 <th class="text-center"><b>Mail</b></th>
@@ -56,10 +56,10 @@ export const Adminusers = () => {
                                                     <td class="text-center">
                                                         <h6>{eachh.name}</h6>
                                                     </td>
-                                                    <td class="td-product text-center">
+                                                    <td class=" text-center">
                                                         <h6>{eachh.email}</h6>
                                                     </td>
-                                                    <td class="td-price text-center">
+                                                    <td class=" text-center">
                                                         <h6>{eachh.password}</h6>
                                                     </td>
                                                 </tr>

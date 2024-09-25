@@ -86,8 +86,7 @@ export const Adminhomepage = () => {
 
                 {/* <!-- Navbar --> */}
 
-                <Header />
-
+                <Header/>
 
                 <div className="col-md-12 ml-auto mr-auto my-5">
                     <div className="card card-raised card-form-horizontal no-transition">
@@ -141,8 +140,8 @@ export const Adminhomepage = () => {
 
                             <div className="col-md-15 ml-auto mr-auto">
                                 <div className="table-responsive">
-                                    <table className="table table-shopping">
-                                        <thead>
+                                    <table className="table">
+                                        <thead className="table-info">
                                             <tr>
                                                 <th className="text-center"><strong>Doctor's Name</strong></th>
                                                 <th className="text-center"><strong>Hospital</strong></th>
