@@ -26,9 +26,9 @@ export const Header = () => {
                                 <a href="#" className="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
                                     Components </a>
                                 <div className="dropdown-menu dropdown-menu-right dropdown-info">
-                                    <Link className="dropdown-item" to={"/admin_homepage"}>Doctors List</Link>
+                                    <Link className="dropdown-item" to={"/admin/homepage"}>Doctors List</Link>
 
-                                    <Link className="dropdown-item" to={"/admin_userlist"}>Users list</Link>
+                                    <Link className="dropdown-item" to={"/admin/userlist"}>Users list</Link>
 
                                 </div>
                             </li>
@@ -39,9 +39,9 @@ export const Header = () => {
 
                                 </a>
                                 <div className="dropdown-menu dropdown-menu-right dropdown-danger">
-                                    <Link className="dropdown-item" to={"/admin_about"}>About <i class="nc-icon nc-bank" aria-hidden="true"></i>
+                                    <Link className="dropdown-item" to={"/admin/about"}>About <i class="nc-icon nc-bank" aria-hidden="true"></i>
                                     </Link>
-                                    <Link className="dropdown-item" to={"/admin_login"}>Logout <i class="fa fa-sign-out" aria-hidden="true"></i>
+                                    <Link className="dropdown-item" to={"/admin/login"}>Logout <i class="fa fa-sign-out" aria-hidden="true"></i>
                                     </Link>
                                 </div>
                             </li>

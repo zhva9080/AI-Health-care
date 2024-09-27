@@ -108,7 +108,7 @@ export const Admindoctordetails = () => {
                 </div>
                 <div className="col-md-4 offset-md-4 my-5 mx-6">
                        
-                       <Link to={"/admin_homepage"}  className="btn btn-move-left btn-secondary btn-lg btn-round"><i class="nc-icon nc-minimal-left"></i>Back to home</Link>
+                       <Link to={"/admin/homepage"}  className="btn btn-move-left btn-secondary btn-lg btn-round"><i class="nc-icon nc-minimal-left"></i>Back to home</Link>
                    </div>
             </div>
             <Footer />

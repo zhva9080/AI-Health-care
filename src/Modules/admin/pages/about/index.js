@@ -7,17 +7,53 @@ export const About = () => {
         <>
 
 
-<div class="page-header page-header-small" style={{ backgroundImage: "url('../../assets/img/sections/pexels-fauxels-3183150.jpg')" }}> 
-    <div class="filter filter-primary"></div>
-    <div class="content-center">
-      <div class="container">
-        <h1> We are AI-Health-Care</h1>
-      </div>
-    </div>
-  </div>
+            <div class="page-header page-header-small" style={{ backgroundImage: "url('../../assets/img/sections/pexels-fauxels-3183150.jpg')" }}>
+                <div class="filter filter-primary"></div>
+                <div class="content-center">
+                    <div class="container">
+                        <h1> We are AI-Health-Care</h1>
+                    </div>
+                </div>
+            </div>
+
 
 
             <div className="container">
+
+                <h2 class="title-uppercase text-dark my-5"><i className="fa fa-file-text-o mr-4  " aria-hidden="true"></i>
+                Terms and conditions for admins can include
+                </h2>
+
+                <h3 className="text-danger"><i className="fa fa-check-circle-o mr-3" aria-hidden="true"></i>
+                    <strong >Confidentiality</strong></h3>
+                <h4> The parties agree to keep all information provided to each other confidential. </h4>
+                <br />
+                <h3 className="text-danger"><i class="fa fa-check-circle-o mr-3" aria-hidden="true"></i>
+                    <strong>Liability</strong></h3>
+                <h4>The administrator is indemnified by the company for actions taken in good faith, but is not obligated to seek instructions or act on advice.</h4>
+
+
+                <br />
+
+                <h3 className="text-danger"><i class="fa fa-check-circle-o mr-3" aria-hidden="true"></i>
+                    <strong>Authority</strong></h3>
+                <h4>The administrator has the authority to interpret, apply, and amend the terms of a plan.
+                </h4>
+                <br />
+                <h3 className="text-danger"><i class="fa fa-check-circle-o mr-3" aria-hidden="true"></i>
+                    <strong>Data protection</strong></h3>
+                <h4>The administrator is responsible for managing and protecting stored data.
+                </h4>
+
+                <br />
+                <h3 className="text-danger"><i class="fa fa-check-circle-o mr-3" aria-hidden="true"></i>
+                    <strong> Use of name and logo</strong></h3>
+                <h4>The administrator may have a royalty-free license to use a application's name and logo for marketing purposes.
+                </h4>
+                <hr/>
+
+
+
 
                 <h2 className="text-center creators">Creators</h2>
 
@@ -50,7 +86,7 @@ export const About = () => {
                             <div className="card-body">
                                 <div className="card-avatar">
                                     <a href="#avatar">
-                                    <img src="../assets/img/faces/admin.png" alt="..." />
+                                        <img src="../assets/img/faces/admin.png" alt="..." />
                                     </a>
                                 </div>
                                 <br></br>
@@ -73,7 +109,7 @@ export const About = () => {
                             <div className="card-body">
                                 <div className="card-avatar">
                                     <a href="#avatar">
-                                    <img src="../assets/img/faces/admin.png" alt="..." />
+                                        <img src="../assets/img/faces/admin.png" alt="..." />
                                     </a>
                                 </div>
                                 <br></br>

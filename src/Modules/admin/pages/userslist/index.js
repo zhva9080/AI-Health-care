@@ -1,6 +1,9 @@
 
 import { Header } from "../../component/Header"
 import { Footer } from "../../component/Footer"
+import './index.css'
+
+
 
 import { useState } from "react"
 import axios from "axios"
@@ -37,8 +40,7 @@ export const Adminusers = () => {
                 
                 {/* <!-- End Navbar --> */}
                 <div class="main">
-                    <div class="section ">
-                        <div class="container">
+                    <div class="section">
                             <h2 class="text-center title">Users  Details</h2>
                             <div class="col-md-15 ml-auto mr-auto">
                                 <div class="table-responsive">
@@ -46,7 +48,7 @@ export const Adminusers = () => {
                                         <thead class="table-secondary">
                                             <tr>
                                                 <th class="text-center" ><b>Name</b></th>
-                                                <th class="text-center"><b>Mail</b></th>
+                                                <th class="text-center"><b>Mail Address</b></th>
                                                 <th class="text-center"><b>Contact</b></th>
                                             </tr>
                                         </thead>
@@ -62,14 +64,16 @@ export const Adminusers = () => {
                                                     <td class=" text-center">
                                                         <h6>{eachh.password}</h6>
                                                     </td>
+                                                    
                                                 </tr>
+                                                
                                             )}
 
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
-                        </div>
+                    
                     </div>
                 </div>
             </div>

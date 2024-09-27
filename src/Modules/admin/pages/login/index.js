@@ -36,7 +36,7 @@ export const Adminlogin = () => {
             if (status == "success") {
                 alert("Successfully login")
                 dispatch(login(log.data.data))
-                navigate("/admin_homepage")
+                navigate("/admin/homepage")
             
             }
 
@@ -77,7 +77,7 @@ export const Adminlogin = () => {
                 {/* <!-- End Navbar --> */}
 
                 <div className="wrapper">
-                    <div className="page-header" style={{ backgroundImage: "url('../../assets/img/sections/markus-spiske-187777.jpg')" }}>
+                    <div className="page-header" style={{ backgroundImage: "url('../../assets/img/sections/pexels-mediocrememories-2225618.jpg')" }}>
                         <div className="filter"></div>
                         <div className="container">
                             <div className="row">

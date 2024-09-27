@@ -16,22 +16,22 @@ const router = createBrowserRouter([
     element: <div><Userlogin/></div>,
   },
   {
-    path:"/admin_login",
+    path:"/admin/login",
     element:<Adminlogin/>
   },
   {
-    path:"/admin_homepage",
+    path:"/admin/homepage",
     element:<Adminhomepage/>
   },
   {
-    path:"/admin_userlist",
+    path:"/admin/userlist",
     element:<Adminusers/>
   },
   {
-    path:"/admin_doctordetails/:id",
+    path:"/admin/doctordetails/:id",
     element:<Admindoctordetails/>
   },
-  {path:"/admin_about",
+  {path:"/admin/about",
     element:<About/>
   }
 ]);

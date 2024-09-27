@@ -21,7 +21,7 @@ export const Adminhomepage = () => {
 
     // }, [])
 
-   
+
 
     // ----- doctor & users details -----
 
@@ -36,7 +36,7 @@ export const Adminhomepage = () => {
         getdetails()
     }, [])
 
- // ------ search bar doctors and city-----
+    // ------ search bar doctors and city-----
 
     const Filter = () => {
 
@@ -51,7 +51,7 @@ export const Adminhomepage = () => {
     }
 
 
-// ---- Approving registered doctors----
+    // ---- Approving registered doctors----
 
     const approvedoctor = () => {
 
@@ -60,7 +60,7 @@ export const Adminhomepage = () => {
 
     }
 
-// -----deleting doctor ------
+    // -----deleting doctor ------
 
     const deletedoctor = (eachh) => {
 
@@ -72,23 +72,23 @@ export const Adminhomepage = () => {
         )
     }
 
-// ---- view doctors personal details-----
+    // ---- view doctors personal details-----
 
     const doctordetails = (idvalue) => {
-        navigate(`/admin_doctordetails/${idvalue}`)
+        navigate(`/admin/doctordetails/${idvalue}`)
 
     }
 
-    
+
     return (
         <>
             <div className="add-product sidebar-collapse">
 
                 {/* <!-- Navbar --> */}
 
-                <Header/>
+                <Header />
 
-                <div className="col-md-12 ml-auto mr-auto my-5">
+                <div className="col-md-11 ml-auto mr-auto my-5">
                     <div className="card card-raised card-form-horizontal no-transition">
                         <div className="card-body">
                             <form method="" action="">
@@ -135,51 +135,50 @@ export const Adminhomepage = () => {
 
                 <div className="main">
                     <div className="section ">
-                        <div className="container">
-                            <h2 className="text-center title"> Registered Doctors</h2>
+                        <h2 className="text-center title"> Registered Doctors</h2>
 
-                            <div className="col-md-15 ml-auto mr-auto">
-                                <div className="table-responsive">
-                                    <table className="table">
-                                        <thead className="table-info">
+                        <div className="col-md-15 ml-auto mr-auto">
+                            <div className="table-responsive">
+                                <table className="table">
+                                    <thead className="table-info">
+                                        <tr>
+                                            <th className="text-center"><strong>Doctor's Name</strong></th>
+                                            <th className="text-center"><strong>Hospital</strong></th>
+                                            <th className="text-center"><strong>City</strong></th>
+                                            <th className="text-center"><strong>Approve</strong></th>
+                                            <th className="text-center"><strong>Reject</strong></th>
+                                            <th className="text-center"><strong>Details</strong></th>
+
+                                        </tr>
+
+                                    </thead>
+                                    <tbody>
+                                        {search.map((eachh) =>
                                             <tr>
-                                                <th className="text-center"><strong>Doctor's Name</strong></th>
-                                                <th className="text-center"><strong>Hospital</strong></th>
-                                                <th className="text-center"><strong>City</strong></th>
-                                                <th className="text-center"><strong>Approve</strong></th>
-                                                <th className="text-center"><strong>Reject</strong></th>
-                                                <th className="text-center"><strong>Details</strong></th>
-                                                
-                                            </tr>
+                                                <td className="text-center">
+                                                    <h6>{eachh.name}</h6>
+                                                </td>
+                                                <td className=" text-center">
+                                                    <h6>{eachh.email}</h6>
+                                                </td>
+                                                <td className="td-number td-quantity text-center">
+                                                    <h6>{eachh.city}</h6>
+                                                </td>
+                                                <td className=" text-center">
+                                                    <button type="button" className="btn btn-success btn-link btn-lg" onClick={() => approvedoctor(eachh.id)}><i className="fa fa-check fa-2x " aria-hidden="true"></i>
+                                                    </button>
+                                                </td>
 
-                                        </thead>
-                                        <tbody>
-                                            {search.map((eachh) =>
-                                                <tr>
-                                                    <td className="text-center">
-                                                        <h6>{eachh.name}</h6>
-                                                    </td>
-                                                    <td className=" text-center">
-                                                        <h6>{eachh.email}</h6>
-                                                    </td>
-                                                    <td className="td-number td-quantity text-center">
-                                                        <h6>{eachh.city}</h6>
-                                                    </td>
-                                                    <td className=" text-center">
-                                                        <button type="button" className="btn btn-success btn-link btn-lg" onClick={() => approvedoctor(eachh.id)}><i className="fa fa-check fa-2x " aria-hidden="true"></i>
-                                                        </button>
-                                                    </td>
-
-                                                    <td className=" text-center">
+                                                <td className=" text-center">
 
 
-                                                        <button type="button" className="btn btn-danger btn-link btn-lg" data-toggle="modal" data-target="#smallNoticeModal"onClick={() => deletedoctor(eachh.id)}>
-                                                            <i className="fa fa-times fa-2x" aria-hidden="true"></i>
-                                                        </button>
+                                                    <button type="button" className="btn btn-danger btn-link btn-lg" data-toggle="modal" data-target="#smallNoticeModal" onClick={() => deletedoctor(eachh.id)}>
+                                                        <i className="fa fa-times fa-2x" aria-hidden="true"></i>
+                                                    </button>
 
-                                                        {/* <!-- small notice modal --> */}
+                                                    {/* <!-- small notice modal --> */}
 
-                                                        {/* <div className="modal" id="smallNoticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                    {/* <div className="modal" id="smallNoticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                                             <div className="modal-dialog modal-sm modal-notice">
                                                                 <div className="modal-content">
                                                                     <div className="modal-header no-border-header">
@@ -198,23 +197,23 @@ export const Adminhomepage = () => {
 
 
 
-                                                    </td>
+                                                </td>
 
-                                                    <td className=" text-center">
-                                                        <button type="button" className="btn btn-info btn-link btn-lg" onClick={() => doctordetails(eachh.id)}><i className="fa fa-user fa-2x" aria-hidden="true"></i>
-                                                        </button>
-                                                    </td>
-
-
-                                                </tr>
-                                            )}
+                                                <td className=" text-center">
+                                                    <button type="button" className="btn btn-info btn-link btn-lg" onClick={() => doctordetails(eachh.id)}><i className="fa fa-user fa-2x" aria-hidden="true"></i>
+                                                    </button>
+                                                </td>
 
 
-                                        </tbody>
-                                    </table>
-                                </div>
+                                            </tr>
+                                        )}
+
+
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
+
 
 
                     </div>
