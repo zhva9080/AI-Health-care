@@ -10,7 +10,9 @@ export const patientHistorySlice=createSlice({
         setpatientHisory:(state,action)=>{
             state.patienthistory=action.payload
         },
-    }
+        
+    },
+   
 }
 )
 export const {setpatientHisory} =patientHistorySlice.actions

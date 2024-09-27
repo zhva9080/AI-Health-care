@@ -2,11 +2,13 @@ import { Header } from "../../component/Header"
 import { Footer } from "../../component/Footer"
 import { useSelector,useDispatch } from "react-redux"
 import { setpatientHisory } from "../../slices/HistorySlice"
+import { useNavigate } from "react-router-dom"
 export const Userhistory = () => {
     const patientState=useSelector((state)=>state.patientdetails).patientDetails
     const HistoryState=useSelector((state)=>state.userhistory).patienthistory
+    const navigate=useNavigate()          
     const dispatch=useDispatch()
-    console.log(HistoryState)
+    console.log(HistoryState)             
     const deleteHistory=(index)=>{
         console.log(index)
        let DeleteHistory=HistoryState.filter((each,historyindex)=>{
@@ -18,9 +20,7 @@ export const Userhistory = () => {
         console.log(DeleteHistory)
         dispatch(setpatientHisory(DeleteHistory))
     }
-    const patientview=(index)=>{
-
-    }
+    
     return (<>
         <div className="add-product sidebar-collapse">
         <Header/>
@@ -53,7 +53,7 @@ export const Userhistory = () => {
                                                 <h6>20-09-2024</h6>
                                             </td>
                                             <td className="td-number td-quantity text-center">
-                                                <button type="button" className="btn btn-outline-info btn-round"onClick={()=>patientview(i)}>View</button>
+                                                <button type="button" className="btn btn-outline-info btn-round"onClick={()=>navigate(`/user/viewdetails/${i}`)}>View</button>
                                             </td>
                                             <td className="td-number text-center">
                                                 <button type="button" className="btn btn-outline-danger btn-round" onClick={()=>deleteHistory(i)}>Delete</button>

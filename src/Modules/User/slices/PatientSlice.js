@@ -10,6 +10,10 @@ const initialState = {
     diseases: [],
     duration: "",
     existing_diseases: []
+  },
+  bookingDetails:{
+    day:"",
+    slot:""
   }
 }
 
@@ -19,10 +23,13 @@ export const patientSlice = createSlice({
     reducers: {
       setPatient:(state,action)=>{
         state.patientDetails=action.payload
-      }
+      },
+      setBooking:(state,action)=>{
+        state.bookingDetails=action.payload
+      },
     },
   })
   
-  export const {setPatient} = patientSlice.actions
-  
+  export const {setPatient,setBooking} = patientSlice.actions
+
   export default patientSlice.reducer

@@ -7,6 +7,8 @@ import { Userview } from "./Modules/User/Pages/View";
 import { Profile } from "./Modules/User/Pages/Home/Profile";
 import { Doctorapp } from "./Modules/User/Pages/Doctorappointment";
 import { Userhistory } from "./Modules/User/Pages/UserHistory";
+import { Viewdetails } from "./Modules/User/Pages/View/Viewdetails";
+import { UserBooking } from "./Modules/User/Pages/Booking";
 const router = createBrowserRouter([
   {
     path: "/user/login",
@@ -35,6 +37,14 @@ const router = createBrowserRouter([
   {
     path: "/user/history",
     element: <div><Userhistory/></div>,
+  },
+  {
+    path: "/user/viewdetails/:index",
+    element: <div><Viewdetails/></div>,
+  },
+  {
+    path: "/user/booking",
+    element: <div><UserBooking/></div>,
   },
 ]);
 function App() {

@@ -18,23 +18,14 @@ export const Header=()=>{
                     <div className="collapse navbar-collapse" data-nav-image="../../assets/img/blurred-image-1.jpg" data-color="orange">
                         <ul className="navbar-nav ml-auto">
                             <li className="dropdown nav-item">
-                                <a href="#" className="nav-link" data-toggle="dropdown" aria-expanded="false">Home</a>
-                                <div className="dropdown-menu dropdown-menu-right dropdown-danger">
-                                    <a href="../index.html" className="dropdown-item">
-                                        All Components
-                                    </a>
-                                </div>
+                                <Link to="/user/home" className="nav-link" data-toggle="dropdown" aria-expanded="false">Home</Link>
+                                
                             </li>
                             <li className="dropdown nav-item">
-                                <a href="#" className="nav-link" id="navbarDropdownMenuLink" data-toggle="dropdown">
+                                <Link to="/user/doctorapp" className="nav-link" id="navbarDropdownMenuLink">
                                     Doctor Booking
-                                </a>
-                                <div className="dropdown-menu dropdown-menu-right dropdown-danger" aria-labelledby="navbarDropdownMenuLink">
-                                    <a className="dropdown-item" data-scroll="true" data-id="#headers" href="../sections.html#headers">
-                                        <i className="nc-icon nc-tile-56"></i>
-                                        Headers
-                                    </a>
-                                </div>
+                                </Link>
+                                
                             </li>
                             <li className="dropdown nav-item">
                                 <a href="#" className="nav-link" id="navbarDropdownMenuLink1" data-toggle="dropdown">

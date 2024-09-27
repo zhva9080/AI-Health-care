@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { useState } from "react"
 import axios from "axios"
 import { useEffect } from "react"
+import { Link } from "react-router-dom"
 export const Doctorapp = () => {
     // const patientState=useSelector((state)=>state.patientdetails).patientDetails
     // console.log(patientState)
@@ -95,9 +96,9 @@ export const Doctorapp = () => {
                                                             <button type="button" className="btn btn-info btn-wd">100</button>
                                                         </div>
                                                         <div className="my-3">
-                                                            <button type="button" className="btn btn-danger btn-round" data-toggle="modal" data-target="#loginModal" onCl>
+                                                            <Link to="/user/booking"><button type="button" className="btn btn-danger btn-round" data-toggle="modal" data-target="#loginModal" onCl>
                                                                 Book Now
-                                                            </button>
+                                                            </button></Link>
                                                             
                                                         </div>
 

@@ -1,17 +1,15 @@
 import { Header } from "../../component/Header"
 import { Footer } from "../../component/Footer"
 import { useDispatch, useSelector } from "react-redux"
+import { useParams } from "react-router-dom"
 import { setpatientHisory } from "../../slices/HistorySlice"
-import { useState } from "react"
-import { Link } from "react-router-dom"
-export const Userview = () => {
-    const HistoryState = useSelector((state) => state.userhistory).patienthistory
-    const patientState = useSelector((state) => state.patientdetails).patientDetails
-    const dispatch = useDispatch()
-    const save = () => {
-        dispatch(setpatientHisory([...HistoryState, patientState]))
-    }
-
+export const Viewdetails = () => {
+    const HistoryState=useSelector((state)=>state.userhistory).patienthistory
+    const patientState=useSelector((state)=>state.patientdetails).patientDetails
+    const dispatch=useDispatch()
+    let{index}=useParams()
+    console.log(index)
+   
     return (<>
         <div className="add-product sidebar-collapse">
             <Header />
@@ -21,19 +19,19 @@ export const Userview = () => {
                         <div className="container">
                             <div className="row">
                                 <div className="col-md-11 mx-auto">
-                                    <div className="card card-blog" style={{ backgroundColor: "#6489b117" }}>
+                                    <div className="card card-blog" style={{backgroundColor: "#6489b117"}}>
                                         <div className="card-body w-75 mx-auto">
                                             <label className="badge badge-pill badge-warning p-3">Self Treatment</label>
                                             <div className="row">
                                                 <div className="col-6">
-                                                    <h3 className="text-info" style={{ fontWeight: "600" }}>{patientState.patient_name ? patientState.patient_name : "name"}</h3>
-                                                    <h4 className=" text-info" style={{ fontWeight: "500" }}>{patientState.blood_group ? patientState.blood_group : "0-positive"}</h4>
-                                                    <h4 className=" text-info" style={{ fontWeight: "500" }}>{patientState.duration ? patientState.duration : "2 days"}</h4>
+                                                    <h3 className="text-info" style={{fontWeight: "600"}}>{HistoryState[index].patient_name?HistoryState[index].patient_name:"name"}</h3>
+                                                    <h4 className=" text-info" style={{fontWeight: "500"}}>{HistoryState[index].blood_group?HistoryState[index].blood_group:"0-positive"}</h4>
+                                                    <h4 className=" text-info" style={{fontWeight: "500"}}>{HistoryState[index].duration?HistoryState[index].duration:"2 days"}</h4>
                                                 </div>
                                                 <div className="col-6">
-                                                    <h4 className=" text-info" style={{ fontWeight: "500" }}>19-09-2024</h4>
-                                                    <h4 className="text-info" style={{ fontWeight: "500" }}>{patientState.gender ? patientState.gender : ""}</h4>
-                                                    <h4 className=" text-info" style={{ fontWight: "500" }}>{patientState.age ? patientState.age : ""}</h4>
+                                                    <h4 className=" text-info" style={{fontWeight: "500"}}>19-09-2024</h4>
+                                                    <h4 className="text-info" style={{fontWeight: "500"}}>{HistoryState[index].gender?HistoryState[index].gender:""}</h4>
+                                                    <h4 className=" text-info" style={{fontWight: "500"}}>{HistoryState[index].age?HistoryState[index].age:""}</h4>
                                                 </div>
                                             </div>
 
@@ -42,7 +40,7 @@ export const Userview = () => {
                                                     <div className="card card-blog">
                                                         <div className="card-image">
                                                             <a href="javascript:;">
-                                                            </a>
+                                                                                                                            </a>
                                                         </div>
                                                         <div className="card-body text-center">
                                                             <h4 className="card-title">Take Food</h4>
@@ -61,7 +59,7 @@ export const Userview = () => {
                                                     <div className="card card-blog">
                                                         <div className="card-image">
                                                             <a href="javascript:;">
-
+                                                                
                                                             </a>
                                                         </div>
                                                         <div className="card-body text-center">
@@ -79,7 +77,7 @@ export const Userview = () => {
                                                     <div className="card card-blog">
                                                         <div className="card-image">
                                                             <a href="javascript:;">
-
+                                                                
                                                             </a>
                                                         </div>
                                                         <div className="card-body text-center">
@@ -94,28 +92,21 @@ export const Userview = () => {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="row buttons-row">
-                                                {/* <div className="col-md-6 col-sm-4">
-                                                    <button className="btn btn-outline-danger btn-block btn-round" type="reset">Self Treatment</button>
-                                                </div> */}
-                                                <div className="col-md-6 col-sm-4">
-                                                    <Link to="/user/doctorapp"><button className="btn btn-outline-primary btn-block btn-round" type="submit">Doctor Appointment</button></Link>
-                                                </div>
-                                            </div>
+
                                             {/* <hr> */}
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div> <button type="button" className="btn btn-danger btn-block mb-5 mx-auto" style={{ width: "6%" }} onClick={() => save()}>Save</button></div>
+                
                     </div>
-
+                    
                 </div>
             </div>
+            
 
-
-            <Footer />
+            <Footer/>
         </div>
     </>)
 }
