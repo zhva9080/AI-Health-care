@@ -42,35 +42,39 @@ export const Userlogin = () => {
               <span className="navbar-toggler-bar bar3"></span>
             </button>
           </div>
-          <div className="collapse navbar-collapse" data-nav-image="../../assets/img/blurred-image-1.jpg" data-color="orange">
+          {/* <div className="collapse navbar-collapse" data-nav-image="../../assets/img/blurred-image-1.jpg" data-color="orange">
             <ul className="navbar-nav mx-auto">
 
               <li className="nav-item">
-                <Link className="btn btn-round btn-danger" to="/user/register">
+                <Link className="btn btn-block btn-info" to="/user/register">
                   Register
                 </Link>
               </li>
             </ul>
-          </div>
+          </div> */}
         </div>
       </nav>
       <div className="wrapper">
-        <div className="page-header" style={{ backgroundImage: "url('../assets/img/sections/bruno-abatti.jpg')" }}>
+        <div className="page-header" style={{ backgroundImage: "url('../assets/img/sections/pexels-negativespace-48604.jpg')" }}>
           <div className="filter"></div>
           <div className="container">
             <div className="row">
               <div className="col-lg-4 col-md-6 col-sm-6 ml-auto mr-auto">
-                <div className="card card-register">
+                <div className="card card-register " style={{backgroundColor:"lightskyblue"}}>
                   <h3 className="card-title">Welcome</h3>
                   <div className="register-form">
                     <label>Email</label>
-                    <input type="email" className="form-control no-border" placeholder="`Email" onKeyUp={(e) => dispatch(setloginUser({ ...userLoginvalue, email: e.target.value }))} />
+                    <input type="email" className="form-control no-border" placeholder="Email" onKeyUp={(e) => dispatch(setloginUser({ ...userLoginvalue, email: e.target.value }))} />
                     <label>Password</label>
                     <input type="password" className="form-control no-border" placeholder="Password" onKeyUp={(e) => dispatch(setloginUser({ ...userLoginvalue, password: e.target.value }))} />
                     <button className="btn btn-danger btn-block btn-round" onClick={() => login()}>login</button>
                   </div>
                   <div className="forgot">
                     <a href="#paper-kit" className="btn btn-link btn-danger">Forgot password?</a>
+                  </div>
+                  <div className="register text-center my-2">
+                    <strong>New User : <Link className="btn-link" to="/user/register">
+                      Register.</Link></strong>
                   </div>
                 </div>
               </div>
