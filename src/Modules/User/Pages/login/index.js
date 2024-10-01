@@ -18,7 +18,7 @@ export const Userlogin = () => {
       console.log(res)
       if (res.data.status == "success") {
         dispatch(setloginUser(res.data.data))
-        navigate("/user/home")
+        // navigate("/user/home")
       }
       else {
         alert("failed")

@@ -3,12 +3,20 @@ import { Footer } from "../../component/Footer"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { setpatientHisory } from "../../slices/HistorySlice"
+import { useEffect } from "react"
+import axios from "axios"
 export const Viewdetails = () => {
     const HistoryState=useSelector((state)=>state.userhistory).patienthistory
     const patientState=useSelector((state)=>state.patientdetails).patientDetails
     const dispatch=useDispatch()
-    let{index}=useParams()
-    console.log(index)
+    let{id}=useParams()
+    // console.log(index)
+    useEffect(()=>{
+        axios.get(`http://agaram.academy/api/action.php?request=ai_health_getDetailsForEnquiry&id=${id}`).then((res) => {
+          console.log(res)
+        //   dispatch(setPatient(res.data))
+        })
+    })
    
     return (<>
         <div className="add-product sidebar-collapse">
@@ -23,8 +31,8 @@ export const Viewdetails = () => {
                                         <div className="card-body w-75 mx-auto">
                                             <label className="badge badge-pill badge-warning p-3">Self Treatment</label>
                                             <div className="row">
-                                                <div className="col-6">
-                                                    <h3 className="text-info" style={{fontWeight: "600"}}>{HistoryState[index].patient_name?HistoryState[index].patient_name:"name"}</h3>
+                                                {/* <div className="col-6">
+                                                    <h3 className="text-info" style={{fontWeight: "600"}}>{.patient_name?HistoryState[index].patient_name:"name"}</h3>
                                                     <h4 className=" text-info" style={{fontWeight: "500"}}>{HistoryState[index].blood_group?HistoryState[index].blood_group:"0-positive"}</h4>
                                                     <h4 className=" text-info" style={{fontWeight: "500"}}>{HistoryState[index].duration?HistoryState[index].duration:"2 days"}</h4>
                                                 </div>
@@ -32,7 +40,7 @@ export const Viewdetails = () => {
                                                     <h4 className=" text-info" style={{fontWeight: "500"}}>19-09-2024</h4>
                                                     <h4 className="text-info" style={{fontWeight: "500"}}>{HistoryState[index].gender?HistoryState[index].gender:""}</h4>
                                                     <h4 className=" text-info" style={{fontWight: "500"}}>{HistoryState[index].age?HistoryState[index].age:""}</h4>
-                                                </div>
+                                                </div> */}
                                             </div>
 
                                             <div className="row mt-5">

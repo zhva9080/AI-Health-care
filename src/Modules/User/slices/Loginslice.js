@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 const initialState={
     logindetails:{
-        request : "candidate_login",
+        request : "ai_health_user_login",
         email :"",
         password :""
     }

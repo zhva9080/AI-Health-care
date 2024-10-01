@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { setPatient } from "../../slices/PatientSlice"
 import { useNavigate, Link } from "react-router-dom"
 import { useState } from "react"
+import axios from "axios"
 export const Userhome = () => {
     const navigate = useNavigate()
     const patientState = useSelector((state) => state.patientdetails).patientDetails
@@ -14,8 +15,22 @@ export const Userhome = () => {
         dispatch(setPatient({ ...patientState, diseases: [...diseases] }))
     }
     const dispatch = useDispatch()
+    const formdata = new FormData();
+    formdata.append("request", patientState.request)
+    formdata.append("name", patientState.name)
+    formdata.append("gender", patientState.gender)
+    formdata.append("blood_group", patientState.blood_group)
+    formdata.append("age", patientState.age)
+    formdata.append("diseases",JSON.stringify(patientState.diseases)),
+    formdata.append("duration", patientState.duration)
+    formdata.append("existing_diseases", patientState.existing_diseases)
     const selftreatment = () => {
-        navigate("/user/view")
+        // navigate("/user/view")
+        axios.post(`http://agaram.academy/api/action.php?request=${patientState.request}`, formdata).then((res) => {
+            console.log(res)
+          })
+      
+        
     }
     const removeItem=(index)=>{
         let diseasesList=patientState.diseases.filter((each,diseasesIndex)=>{
@@ -38,7 +53,7 @@ export const Userhome = () => {
                                 <div className="col-md-7 col-sm-7">
                                     <div className="form-group">
                                         <h6>Patient Name <span className="icon-danger">*</span></h6>
-                                        <input type="text" className="form-control border-input" placeholder="Enter the name" onKeyUp={(e) => dispatch(setPatient({ ...patientState, patient_name: e.target.value }))} />
+                                        <input type="text" className="form-control border-input" placeholder="Enter the name" onKeyUp={(e) => dispatch(setPatient({ ...patientState,name: e.target.value }))} />
                                     </div>
                                     <div className="col-md-12 col-sm-12 form-group my-5 ml-0 pl-0">
                                         <div className="card-big-shadow" style={{ maxWidth: "100%" }} >
@@ -106,11 +121,11 @@ export const Userhome = () => {
                                                                 <option value="1">11-15</option>
                                                                 <option value="1">16-20</option>
                                                             </select> */}
-                                                            <select className="form-select" data-style="btn-info btn-round" aria-label="Default select example" onClick={(e) => dispatch(setPatient({ ...patientState, duration: e.target.value }))}>
+                                                            <select className="form-select form-control" data-style="btn-info btn-round" aria-label="Default select example" onClick={(e) => dispatch(setPatient({ ...patientState, duration: e.target.value }))}>
                                                                 <option disabled selected>Duration of illness</option>
-                                                                <option value="0-3">0-3</option>
-                                                                <option value="4-5">4-5</option>
-                                                                <option value="6-10">6-10</option>
+                                                                <option value="0-3">0-3 days</option>
+                                                                <option value="4-5">4-5 days</option>
+                                                                <option value="6-10">6-10 days</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -187,14 +202,8 @@ export const Userhome = () => {
                                             <option value="1">11-15</option>
                                             <option value="1">16-20</option>
                                         </select> */}
-                                        <select className="form-select btn-success p-2" data-style="btn-info btn-round" aria-label="Default select example" onClick={(e) => dispatch(setPatient({ ...patientState, age: e.target.value }))}>
-                                            <option disabled selected> Choose Age</option>
-                                            <option value="0-3">0-3</option>
-                                            <option value="4-5">4-5</option>
-                                            <option value="6-10">6-10</option>
-                                            <option value="11-15">11-15</option>
-                                            <option value="16-20">16-20</option>
-                                        </select>
+                                        <input className=""  placeholder="Enter age" onKeyUp={(e) => dispatch(setPatient({ ...patientState, age: e.target.value }))}>   
+                                        </input>
 
                                     </div>
 
@@ -203,7 +212,7 @@ export const Userhome = () => {
                             </div>
                             <div className="row buttons-row">
                                 <div className="col-md-6 col-sm-4">
-                                    <button className="btn btn-outline-danger btn-block btn-round" type="reset" onClick={selftreatment}>Self Treatment</button>
+                                    <button className="btn btn-outline-danger btn-block btn-round" type="button" onClick={selftreatment}>Self Treatment</button>
                                 </div>
                                 <div className="col-md-6 col-sm-4">
                                     <Link to="/user/doctorapp"><button className="btn btn-outline-primary btn-block btn-round" type="submit">Doctor Appointment</button></Link>

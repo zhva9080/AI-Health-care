@@ -14,12 +14,7 @@ export const UserRegister = () => {
     formdata.append("name", userStatevalue.name)
     formdata.append("email", userStatevalue.email)
     formdata.append("password", userStatevalue.password)
-    formdata.append("aadhar", userStatevalue.aadhar)
-    formdata.append("address", userStatevalue.address)
     formdata.append("phone", userStatevalue.phone)
-    formdata.append("city", userStatevalue.city)
-    formdata.append("area", userStatevalue.area)
-    formdata.append("pin", userStatevalue.pin)
     axios.post(`http://agaram.academy/api/action.php?request=${userStatevalue.request}`, formdata).then((res) => {
 
       console.log(res)

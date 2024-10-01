@@ -3,6 +3,8 @@ import { Footer } from "../../component/Footer"
 import { useSelector,useDispatch } from "react-redux"
 import { setpatientHisory } from "../../slices/HistorySlice"
 import { useNavigate } from "react-router-dom"
+import axios from "axios"
+import { useEffect } from "react"
 export const Userhistory = () => {
     const patientState=useSelector((state)=>state.patientdetails).patientDetails
     const HistoryState=useSelector((state)=>state.userhistory).patienthistory
@@ -11,15 +13,23 @@ export const Userhistory = () => {
     console.log(HistoryState)             
     const deleteHistory=(index)=>{
         console.log(index)
-       let DeleteHistory=HistoryState.filter((each,historyindex)=>{
-            if(index!=historyindex){
-                return(each)
-            }
-        }
-        )
-        console.log(DeleteHistory)
-        dispatch(setpatientHisory(DeleteHistory))
-    }
+        // let DeleteHistory=HistoryState.filter((each,historyindex)=>{
+        //     if(index!=historyindex){
+        //         return(each)
+        //     }
+        // }
+        // )
+        // console.log(DeleteHistory)
+        // dispatch(setpatientHisory(DeleteHistory))
+        axios.delete("http://agaram.academy/api/action.php?request=ai_health_remove_patient").then((res) => {
+            console.log(res)
+          })
+    }   
+    useEffect(()=>{
+        axios.get("http://agaram.academy/api/action.php?request=ai_health_getDetailsForEnquiry").then((res) => {
+            console.log(res)
+          })
+    })
     
     return (<>
         <div className="add-product sidebar-collapse">

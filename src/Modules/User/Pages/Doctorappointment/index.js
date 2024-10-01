@@ -12,7 +12,7 @@ export const Doctorapp = () => {
     const [searchdoctor, setSearch] = useState(doctorlist)
     const [searchinput, setsearchinput] = useState({ city: "", specialist: "" })
     const display = () => {
-        axios.get("http://agaram.academy/api/action.php?request=getAllMembers").then((res) => {
+        axios.get("http://agaram.academy/api/action.php?request=ai_health_getalldoctorsdetails").then((res) => {
             setDoctorlist(res.data.data)
             setSearch(res.data.data)
         })

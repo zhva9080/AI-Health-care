@@ -2,14 +2,14 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   patientDetails:{
-    request: "create_patient_details",
-    patient_name: "",
+    request: "ai_health_create_patient",
+    name: "",
     gender: "",
-    blood_group: "",
+    blood_group:"",
     age: "",
-    diseases: [],
+    diseases:[],
     duration: "",
-    existing_diseases: []
+    existing_diseases: ""
   },
   bookingDetails:{
     day:"",

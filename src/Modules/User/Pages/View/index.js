@@ -2,8 +2,9 @@ import { Header } from "../../component/Header"
 import { Footer } from "../../component/Footer"
 import { useDispatch, useSelector } from "react-redux"
 import { setpatientHisory } from "../../slices/HistorySlice"
-import { useState } from "react"
+import { useState,useEffect } from "react"
 import { Link } from "react-router-dom"
+import axios from "axios"
 export const Userview = () => {
     const HistoryState = useSelector((state) => state.userhistory).patienthistory
     const patientState = useSelector((state) => state.patientdetails).patientDetails
@@ -11,7 +12,12 @@ export const Userview = () => {
     const save = () => {
         dispatch(setpatientHisory([...HistoryState, patientState]))
     }
-
+    useEffect(()=>{
+        axios.get(`http://agaram.academy/api/action.php?request=ai_health_getDetailsForEnquiry&{id}`).then((res) => {
+          console.log(res)
+          
+        })
+    })
     return (<>
         <div className="add-product sidebar-collapse">
             <Header />
