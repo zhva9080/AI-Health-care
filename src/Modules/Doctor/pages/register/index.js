@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { submit_Register } from "../../slices/registerSlice"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
+import { useState } from "react"
 
 
 
@@ -13,26 +14,36 @@ export const Doctor_Register = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
+    const  [specialists, addSpecialist] = useState([])
+    const setSpecialList = ()=>{
+        dispatch(submit_Register({...doctorRegisterSubmit,specialist:[...specialists]}))
+    }
 
     const submit_Doct_Register=()=>{
 
         let formData = new FormData()
 
+        // formData.append("name",doctorRegisterSubmit.name)
+        // formData.append("email",doctorRegisterSubmit.email)
+        // formData.append("password",doctorRegisterSubmit.password)
+        // formData.append("aadhar",doctorRegisterSubmit.aadhar)
+        // formData.append("address",doctorRegisterSubmit.address)
+        // formData.append("phone",doctorRegisterSubmit.phone)
+        // formData.append("city",doctorRegisterSubmit.city)
+        // formData.append("area",doctorRegisterSubmit.area)
+        // formData.append("pin",doctorRegisterSubmit.pin)
+
         formData.append("name",doctorRegisterSubmit.name)
         formData.append("email",doctorRegisterSubmit.email)
         formData.append("password",doctorRegisterSubmit.password)
-        formData.append("aadhar",doctorRegisterSubmit.aadhar)
-        formData.append("address",doctorRegisterSubmit.address)
+        formData.append("doctor_id",doctorRegisterSubmit.doctor_id)
+        formData.append("specialist",JSON.stringify(doctorRegisterSubmit.specialist))
         formData.append("phone",doctorRegisterSubmit.phone)
         formData.append("city",doctorRegisterSubmit.city)
-        formData.append("area",doctorRegisterSubmit.area)
-        formData.append("pin",doctorRegisterSubmit.pin)
 
-        console.log(formData)
+        axios.post("http://agaram.academy/api/action.php?request=ai_health_doctor_register",formData) 
 
-        axios.post("http://agaram.academy/api/action.php?request=create_candidate",formData) 
-
-        navigate("/doctor_login")
+        navigate("/doctor/login")
         
     }
 
@@ -113,36 +124,44 @@ export const Doctor_Register = () => {
                                             <div className="line r"></div>
                                         </div>
                                         <form className="register-form">
-                                            <input type="text" className="form-control" placeholder="Dr. Name" onKeyUp={(e)=>dispatch(submit_Register({...doctorRegisterSubmit,name:e.target.value}))}/>                                            
+                                            {/* <input type="text" className="form-control" placeholder="Dr. Name" onKeyUp={(e)=>dispatch(submit_Register({...doctorRegisterSubmit,name:e.target.value}))}/>                                            
                                             <input type="email" className="form-control" placeholder="Email" onKeyUp={(e)=>dispatch(submit_Register({...doctorRegisterSubmit,email:e.target.value}))} />
                                             <input type="password" className="form-control" placeholder="Create Password" onKeyUp={(e)=>dispatch(submit_Register({...doctorRegisterSubmit,password:e.target.value}))} />
-                                            <input type="text" className="form-control" placeholder="Aadhaar No" onKeyUp={(e)=>dispatch(submit_Register({...doctorRegisterSubmit,aadhar:e.target.value}))}/>
+                                            <input type="text" className="form-control" p   laceholder="Aadhaar No" onKeyUp={(e)=>dispatch(submit_Register({...doctorRegisterSubmit,aadhar:e.target.value}))}/>
                                             <input type="text" className="form-control" placeholder="Address" onKeyUp={(e)=>dispatch(submit_Register({...doctorRegisterSubmit,address:e.target.value}))}/>
                                             <input type="text" className="form-control" placeholder="Contact No" onKeyUp={(e)=>dispatch(submit_Register({...doctorRegisterSubmit,phone:e.target.value}))}/>
                                             <input type="text" className="form-control" placeholder="City" onKeyUp={(e)=>dispatch(submit_Register({...doctorRegisterSubmit,city:e.target.value}))} />
                                             <input type="text" className="form-control" placeholder="Area" onKeyUp={(e)=>dispatch(submit_Register({...doctorRegisterSubmit,area:e.target.value}))}/>
                                             <input type="number" className="form-control" placeholder="Pincode" onKeyUp={(e)=>dispatch(submit_Register({...doctorRegisterSubmit,pin:e.target.value}))}/>
+                                            <button className="btn btn-block btn-round" type="submit" onClick={submit_Doct_Register}>Register</button> */}
 
                                             {/* <input type="text" className="form-control" placeholder="Hospital Name" />
                                             <input type="text" className="form-control" placeholder="Specialist" />
                                             <input type="text" className="form-control" data-color="success" value="Oncologist, Neurologist, Anesthesiologist" data-role="tagsinput" placeholder="Specialist" /> */}
-                                            <button className="btn btn-block btn-round" type="submit" onClick={submit_Doct_Register}>Register</button>
 
 
-                                            {/* <input type="text" className="form-control" placeholder="Dr. Name" />
-                                            <input type="text" className="form-control" placeholder="Doctor Id" />
-                                            <input type="text" className="form-control" placeholder="Hospital Name" />
-                                            <input type="text" className="form-control" placeholder="Hospital Location" />
-                                            <input type="text" className="form-control" placeholder="Specialist" />
-                                            <input type="text" className="form-control" data-color="success" value="Oncologist, Neurologist, Anesthesiologist" data-role="tagsinput" placeholder="Specialist" />
-                                            <input type="text" className="form-control" placeholder="Email" />
-                                            <input type="password" className="form-control" placeholder="City" />
-                                            <input type="password" className="form-control" placeholder="Contact No" />
-                                            <input type="password" className="form-control" placeholder="Create Password" />
-                                            <button className="btn btn-block btn-round">Register</button> */}
+                                            <input type="text" className="form-control" placeholder="Dr. Name" onKeyUp={(e)=>dispatch(submit_Register({...doctorRegisterSubmit,name:e.target.value}))}/>
+                                            <input type="text" className="form-control" placeholder="Email" onKeyUp={(e)=>dispatch(submit_Register({...doctorRegisterSubmit,email:e.target.value}))}/>
+                                            <input type="password" className="form-control" placeholder="Create Password" onKeyUp={(e)=>dispatch(submit_Register({...doctorRegisterSubmit,password:e.target.value}))}/>
+                                            <input type="text" className="form-control" placeholder="Doctor Id" onKeyUp={(e)=>dispatch(submit_Register({...doctorRegisterSubmit,doctor_id:e.target.value}))}/>
+                                            {/* <input type="text" className="form-control" placeholder="Specialist" onKeyUp={(e)=>dispatch(submit_Register({...doctorRegisterSubmit,specialist:e.target.value}))}/> */}
+
+                                            <input type="text" className="form-control" placeholder="Specialist" onKeyUp={(e)=>(addSpecialist([...doctorRegisterSubmit.specialist,e.target.value]))}/>
+                                            <button className="btn btn-info btn-round my-3" type="button" onClick={setSpecialList}>Add</button>
+
+                                            <ul>
+                                                {doctorRegisterSubmit.specialist.map((s)=>
+                                                        <li className="text-dark">{s}</li>  
+                                                )}
+                                            </ul>
+
+                                            <input type="text" className="form-control" placeholder="Contact No" onKeyUp={(e)=>dispatch(submit_Register({...doctorRegisterSubmit,phone:e.target.value}))}/>
+                                            <input type="text" className="form-control" placeholder="City" onKeyUp={(e)=>dispatch(submit_Register({...doctorRegisterSubmit,city:e.target.value}))}/>
+                                            {/* <input type="text" className="form-control" data-color="success" value="Oncologist, Neurologist, Anesthesiologist" data-role="tagsinput" placeholder="Specialist" /> */}
+                                            <button className="btn btn-info btn-block btn-round" type="button" onClick={submit_Doct_Register}>Register</button>
                                         </form>
                                         <div className="login">
-                                            <p>Already have an account? <Link to="/doctor_login">Log in</Link>.</p>
+                                            <p>Already have an account? <Link to="/doctor/login">Log in</Link></p>
                                         </div>
                                     </div>
                                 </div>

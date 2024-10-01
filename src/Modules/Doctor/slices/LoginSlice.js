@@ -5,7 +5,7 @@ export const doctorLoginSlice = createSlice(
         name: "doctor_login_state",
         initialState :{
             doctorLogin :{
-                request : "candidate_login",
+                request : "ai_health_doctor_login",
                 email : "",
                 password : ""
             }},

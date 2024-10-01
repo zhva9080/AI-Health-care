@@ -10,11 +10,8 @@ import { deleteSlot } from "../../slices/removeSlotSlice"
 
 
 
-export const Doctor_Home = () => {
+export const Slot_List = () => {
 
-    axios.get("http://agaram.academy/api/action.php?request=ai_health_get_all_booked_patients").then((get_all_patients)=>{
-        console.log(get_all_patients)
-    })
 
     const get_slot_state = useSelector((state) => state.doctor_slot_state).doctorSlotSlice
     const navigate = useNavigate()

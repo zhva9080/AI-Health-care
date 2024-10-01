@@ -15,6 +15,7 @@ export const PatientsList = () => {
 
     // const {id} = useParams()
     const get_patients_booking = useSelector((state)=>state.doctor_slot_state).doctorSlotSlice
+        
 
     const [uniqueDay_all_patients, get_patients_data] = useState([])
 
@@ -29,7 +30,7 @@ export const PatientsList = () => {
     return (
         <>
             <Header />
-            <div class="add-product sidebar-collapse">
+            <div className="add-product sidebar-collapse">
                 <div className="main">
                     <div className="section ">
                         <div className="container">

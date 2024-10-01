@@ -1,7 +1,15 @@
 import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 
 export const Header = () => {
+
+    const navigate = useNavigate()
+
+    // const logOut = () =>{
+    //     localStorage.removeItem("isLogged")
+    //     navigate = ("/doctor/login")
+    // };
 
     return (
         <>
@@ -21,27 +29,35 @@ export const Header = () => {
                         <div className="collapse navbar-collapse" data-nav-image="../../assets/img/blurred-image-1.jpg" data-color="orange">
                             <ul className="navbar-nav ml-auto">
                                 <li className="dropdown nav-item">
-                                    <Link to="/doctor_home" className="nav-link" data-toggle="dropdown" aria-expanded="false">Home</Link>
+                                    <Link to="/doctor/home" className="nav-link" data-toggle="dropdown" aria-expanded="false">Home</Link>
                                 </li>
                                 {/* <li className="dropdown nav-item">
                                     <Link to="#" className="nav-link" id="navbarDropdownMenuLink" data-toggle="dropdown">About</Link>
                                 </li> */}
-                                <li className="dropdown nav-item">
-                                    <Link to="/doctor_slot" className="nav-link" id="navbarDropdownMenuLink" data-toggle="dropdown">Slot Entry</Link>
-                                </li>
+                                {/* <li className="dropdown nav-item">
+                                    <Link to="/doctor/slot" className="nav-link" id="navbarDropdownMenuLink" data-toggle="dropdown">Slot Entry</Link>
+                                </li> */}
                                 {/* <li className="dropdown nav-item">
                                     <Link to="#" className="nav-link" id="navbarDropdownMenuLink" data-toggle="dropdown">Contact</Link>
                                 </li> */}
                                 <li className="dropdown nav-item">
+                                    <Link to="#" className="nav-link" id="navbarDropdownMenuLink1" data-toggle="dropdown">Slot</Link>
+                                    <div className="dropdown-menu dropdown-menu-right dropdown-danger" aria-labelledby="navbarDropdownMenuLink1">
+                                        <Link className="dropdown-item" to="/doctor/slot"><i className="nc-icon nc-bank"></i>Slot Entry</Link>
+                                        <Link className="dropdown-item" to="/doctor/slot_list"><i className="nc-icon nc-basket"></i>Slot List</Link>
+                                    </div>
+                                </li>
+                                <li className="dropdown nav-item">
                                     <Link to="#" className="nav-link" id="navbarDropdownMenuLink1" data-toggle="dropdown">Dashboard</Link>
                                     <div className="dropdown-menu dropdown-menu-right dropdown-danger" aria-labelledby="navbarDropdownMenuLink1">
-                                        <Link className="dropdown-item" to="/patients_history"><i className="nc-icon nc-bank"></i>History</Link>
+                                        <Link className="dropdown-item" to="/doctor/patients_history"><i className="nc-icon nc-bank"></i>History</Link>
                                         <Link className="dropdown-item" to="#"><i className="nc-icon nc-basket"></i>Profile</Link>
                                     </div>
                                 </li>
                                 <li className="nav-item">
-                                    <Link className="btn btn-round btn-danger" to="https://www.creative-tim.com/product/paper-kit-2-pro" target="_blank">
-                                        {/* <!-- <i className="nc-icon nc-cart-simple"></i> --> */}Logout</Link>
+                                    <button className="btn btn-round btn-danger"  target="_blank" >
+                                      <i className="fa fa-sign-out" style={{fontSize:"18px"}}></i>
+                                      Logout</button>
                                 </li>
                             </ul>
                         </div>

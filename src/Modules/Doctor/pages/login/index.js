@@ -17,12 +17,13 @@ export const Doctor_Login = () => {
         formData.append("email",doctorLoginSubmit.email)
         formData.append("password",doctorLoginSubmit.password)
 
-            axios.post("http://agaram.academy/api/action.php?request=candidate_login",formData).then((log)=>{
+            axios.post("http://agaram.academy/api/action.php?request=ai_health_doctor_login",formData).then((log)=>{
                 let status = log.data.status
 
                 if (status == "success"){
+                    localStorage.setItem("isLogged", "true")
                     alert("Login Successfully")
-                    navigate("/doctor_home")
+                    navigate("/doctor/home")
                 }else{
                     alert("Please Check the UserId and password")
                 }

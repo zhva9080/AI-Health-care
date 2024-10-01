@@ -6,7 +6,8 @@ import { Doctor_Register } from "./Modules/Doctor/pages/register";
 import { Doctor_Home } from "./Modules/Doctor/pages/home";
 import { DoctorSlot } from "./Modules/Doctor/pages/slot-booking";
 import { PatientsList } from "./Modules/Doctor/pages/patient-booking-list";
-import { Patient_History } from "./Modules/Doctor/pages/patient-history";
+import { Patient_History } from "./Modules/Doctor/pages/patient-payment-history";
+import { Slot_List } from "./Modules/Doctor/pages/slot_list";
 
 
 
@@ -16,15 +17,15 @@ const router = createBrowserRouter([
     element: <div><Userlogin/></div>,
   },
   {
-    path : "/doctor_login",
+    path : "/doctor/login",
     element : <Doctor_Login/>
   },
   {
-    path : "/doctor_register",
+    path : "/doctor/register",
     element : <Doctor_Register/>
   },
   {
-    path : "/doctor_home",
+    path : "/doctor/home",
     element : <Doctor_Home/>
   },
   {
@@ -32,13 +33,16 @@ const router = createBrowserRouter([
     element : <PatientsList />
   },
   {
-    path : "/doctor_slot",
+    path : "/doctor/slot",
     element : <DoctorSlot/>
   },
   {
-    path:"/patients_history",
+    path:"/doctor/patients_history",
     element : <Patient_History/>
-
+  },
+  {
+    path :"/doctor/slot_list",
+    element: <Slot_List/>
   }
 
 

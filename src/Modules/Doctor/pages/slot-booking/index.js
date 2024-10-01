@@ -1,54 +1,72 @@
-import { useState, useEffect} from "react"
+import { useState, useEffect } from "react"
 import { Footer } from "../../Component/Footer"
 import { Header } from "../../Component/Header"
-import { get_slot_data } from "../../slices/slotSlice"
 import { useSelector, useDispatch } from "react-redux"
-import { useNavigate } from "react-router-dom"
+import { json, useNavigate } from "react-router-dom"
+import { set_slot_data } from "../../slices/slotSlice"
+import axios from "axios"
 
 export const DoctorSlot = () => {
 
-    // let slotList = []
+    const get_slot_state = useSelector((state) => state.doctor_slot_state).doctorSlotSlice
+    const set_dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const [getList, addList] = useState(
         {
-            clinic_day: "",
-            clinic_timing: "",
-            consulting_fee: null
+            consulting_fee: "",
+            clinic_details: [
+                {
+                    clinic_day: "",
+                    clinic_timing: ""
+                }
+            ]
         }
     )
 
-    const [slotList, setSlotList] = useState([])
+    const handledSumbit = () => {
 
+        set_dispatch(set_slot_data(slotList))
+        navigate("/doctor/home")
+
+        const slot_data = new FormData()
+
+        slot_data.append("doctor_id", get_slot_state.doctor_id)
+        slot_data.append("consulting_fee", get_slot_state.consulting_fee)
+        slot_data.append("clinic_details",JSON.stringify(get_slot_state.clinic_details))
+
+
+        axios.post("http://agaram.academy/api/action.php?request=ai_health_create_doctor_slot", slot_data).then((response) => {
+            console.log(response.data)
+
+        })
+
+    }
+
+    const [slotList, setSlotList] = useState([])
 
     const addSlotList = () => {
         setSlotList([...slotList, getList])
     }
 
 
-    const slotDelete=(index)=>{
-      
-       const data= slotList.filter((slotListvalues,slotListindex)=>{
-            if(index!=slotListindex){
+    const slotDelete = (index) => {
+
+        const data = slotList.filter((slotListvalues, slotListindex) => {
+            if (index != slotListindex) {
                 return slotListvalues
             }
         })
         setSlotList(data)
 
     }
-    
-    const get_slot_state = useSelector((state)=>state.doctor_slot_state).doctorSlotSlice
-    const set_dispatch = useDispatch()
-    const navigate = useNavigate()
 
 
-    // navigate('/doctor_home')
-    // console.log(get_slot_state)
 
-    
     return (
         <>
             <Header />
-            <div class="add-product sidebar-collapse">
+            <div className="add-product sidebar-collapse">
                 <div className="row">
                     <div className="col-md-6 col-sm-6 mx-auto ">
                         <h2>Add Visiting Time Slot</h2>
@@ -75,25 +93,25 @@ export const DoctorSlot = () => {
                         <div className="row">
 
                             <div className="col-md-4 col-sm-4">
-                                <h4>Select  Day</h4>
+                                <h6>Select  Day</h6>
                                 <hr />
-                                <select name="huge" className="form-select" data-style="btn btn-outline-default btn-block" data-menu-style="" onClick={(e) => addList({...getList,clinic_day: e.target.value})} >
-                                        <option disabled selected>Select Day</option>
-                                        <option value="Sunday">Sunday</option>
-                                        <option value="Monday">Monday</option>
-                                        <option value="Tuesday">Tuesday</option>
-                                        <option value="Wednesday">Wednesday</option>
-                                        <option value="Thursday">Thursday</option>
-                                        <option value="Friday">Friday</option>
-                                        <option value="Saturday">Saturday</option>
+                                <select name="huge" className="form-select" data-style="btn btn-outline-default btn-block" style={{ height: "40px" }} data-menu-style="" onClick={(e) => addList({ ...getList, clinic_day: e.target.value })} >
+                                    <option disabled selected>Select Day</option>
+                                    <option value="Sunday">Sunday</option>
+                                    <option value="Monday">Monday</option>
+                                    <option value="Tuesday">Tuesday</option>
+                                    <option value="Wednesday">Wednesday</option>
+                                    <option value="Thursday">Thursday</option>
+                                    <option value="Friday">Friday</option>
+                                    <option value="Saturday">Saturday</option>
                                 </select>
-                                
+
                                 {/* <input type="text" className="form-control no-border bg-secondary text-white" placeholder="Enter Day (Ex: Sunday)" onKeyUp={(e) => addList({ ...getList, clinic_day: e.target.value })} /> */}
                             </div>
                             <div className="col-md-4 col-sm-4">
-                                <h4>Timing</h4>
+                                <h6>Timing</h6>
                                 <hr />
-                                <select name="huge" className="form-select" data-style="btn btn-outline-default btn-block" onClick={(e)=>addList({...getList, clinic_timing: e.target.value})}>
+                                <select name="huge" className="form-select" data-style="btn btn-outline-default btn-block" style={{ height: "40px" }} onClick={(e) => addList({ ...getList, clinic_timing: e.target.value })}>
                                     <option value="select time">Select Time</option>
                                     <option value="9am to 10am">9am to 10am</option>
                                     <option value="10am to 12pm">10am to 12pm</option>
@@ -109,26 +127,42 @@ export const DoctorSlot = () => {
                                             <option value="2">2 PM to 4 PM </option>
                                             <option value="3">6 PM to 8 PM</option>
                                         </select> */}
-                                
+
                                 {/* <input type="text" className="form-control no-border bg-secondary text-white" placeholder="Enter Day (Ex: 10 to 5)" onKeyUp={(e) => addList({ ...getList, clinic_timing: e.target.value })} /> */}
                                 {/* </div> */}
                             </div>
+                            {/* <div className="col-md-3 col-sm-4">
+                                <h6>Patient Limit</h6>
+                                <hr />
+                                <select name="huge" className="form-select" data-style="btn btn-outline-default btn-block" style={{height:"40px"}} onClick={(e)=>addList({...getList, patients_limit: e.target.value})}>
+                                    <option value="Select Patient Limit">Select Patient Limit</option>
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
+                                    <option value="15">15</option>
+                                    <option value="20">20</option>
+                                    <option value="25">25</option>
+                                    <option value="30">30</option>
+                                    <option value="35">35</option>
+                                    <option value="40">40</option>
+                                    <option value="50">50</option>
+                                </select>
+                            </div> */}
                             <div className="col-md-4 col-sm-4">
-                                <h4> Consultation Fee</h4>
+                                <h6> Consultation Fee</h6>
                                 <hr />
                                 {/* <button className="btn btn-danger btn-block"><i className="fa fa-inr" aria-hidden="true"></i>100</button> */}
-                                <input type="number" className="form-control no-border bg-secondary text-white" placeholder="Enter Day (Ex: 100)" onKeyUp={(e) => addList({ ...getList, consulting_fee: e.target.value })} />
+                                <input type="number" className="form-control border-secondary p-0 text-center" placeholder="₹ 100" onKeyUp={(e) => addList({ ...getList, consulting_fee: e.target.value })} />
                             </div>
-                            <button  className="btn btn-primary btn-block btn-round w-25 mt-5" type="button" onClick={addSlotList}>ADD</button>
+                            <button className="btn btn-primary btn-block btn-round w-25 mt-5 mx-auto" type="button" onClick={addSlotList}>ADD</button>
                         </div>
 
-                        <hr />
+                        {/* <hr /> */}
 
                     </div>
                 </div>
-                <hr />
+                {/* <hr /> */}
                 <div className="main">
-                    <div className="section ">
+                    <div className="section pt-3">
                         <div className="container">
                             <h3 className="text-center title">  Added Visit Time List</h3>
                             <div className="col-md-10 ml-auto mr-auto">
@@ -147,27 +181,27 @@ export const DoctorSlot = () => {
                                         <tbody>
 
                                             {
-                                              slotList.map((e,index) =>{
-                                                return (
-                                                     // console.log(index)
-                                                <tr>
-                                                <td className="text-center">
-                                                    <h6>{e.clinic_day}</h6>
-                                                </td>
-                                                <td className="td-number text-center">
-                                                    <h6>{e.clinic_timing}</h6>
-                                                </td>
-                                                <td className="td-number text-center">
-                                                    <h6>{e.consulting_fee}</h6>
-                                                </td>
-                                                <td className="td-number text-center">
-                                                    <button  className="btn btn-outline-danger" type="button" onClick={()=>slotDelete(index)}>Delete</button>
-                                                </td>
-                                            </tr>
+                                                slotList.map((e, index) => {
+                                                    return (
+                                                        // console.log(index)
+                                                        <tr>
+                                                            <td className="text-center">
+                                                                <h6>{e.clinic_day}</h6>
+                                                            </td>
+                                                            <td className="td-number text-center">
+                                                                <h6>{e.clinic_timing}</h6>
+                                                            </td>
+                                                            <td className="td-number text-center">
+                                                                <h6>{e.consulting_fee}</h6>
+                                                            </td>
+                                                            <td className="td-number text-center">
+                                                                <button className="btn btn-outline-danger" type="button" onClick={() => slotDelete(index)}>Delete</button>
+                                                            </td>
+                                                        </tr>
+                                                    )
+                                                }
+
                                                 )
-                                              }
-                                               
-                                            )
                                             }
 
                                         </tbody>
@@ -175,10 +209,8 @@ export const DoctorSlot = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-2 offset-md-5 col-sm-8 " > 
-                            <button className="btn btn-success btn-block" type="button" onClick={()=>{set_dispatch(get_slot_data(slotList))
-                                                                                                        navigate("/doctor_home")
-                            }}>Submit</button>
+                        <div className="col-md-2 offset-md-5 col-sm-8 " >
+                            <button className="btn btn-success btn-block" type="button" onClick={handledSumbit}>Submit</button>
                         </div>
                     </div>
                 </div>

@@ -5,17 +5,28 @@ export const doctorRegisterSlice = createSlice(
         name: 'doctor_register',
         initialState: {
             doctor_register_data: {
-                request: "create_candidate",
+                request: "ai_health_doctor_register",
+                status: "processing",
                 name: "",
                 email: "",
                 password: "",
-                aadhar: null,
-                address: "",
+                doctor_id: "",
+                specialist: [],
                 phone: "",
-                city: "",
-                area: "",
-                pin: null
-            }
+                city: ""
+              }
+            // doctor_register_data: {
+            //     request: "ai_health_doctor_register",
+            //     name: "",
+            //     email: "",
+            //     password: "",
+            //     aadhar: null,
+            //     address: "",
+            //     phone: "",
+            //     city: "",
+            //     area: "",
+            //     pin: null
+            // }
         },
         reducers: {
             submit_Register: (state, action) => {

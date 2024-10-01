@@ -1,10 +1,16 @@
 import { Footer } from "../../Component/Footer"
 import { Header } from "../../Component/Header"
+import { useSelector, useDispatch } from "react-redux"
 
 export const Patient_History = () => {
+
+    const get_booked_patientData = useSelector((state) => state.patient_booking_state).patientBooking
+
+    console.log(get_booked_patientData.length)
+
     return (
         <>
-            <Header/>
+            <Header />
             <div className="add-product sidebar-collapse">
                 <div className="main">
                     <div className="section ">
@@ -16,12 +22,32 @@ export const Patient_History = () => {
                                         <tr>
                                             <th className="text-center">S.No</th>
                                             <th></th>
-                                            <th>Day</th>
-                                            <th>Addent Count</th>
+                                            <th>Date</th>
+                                            <th>Patient Name</th>
                                             <th className="text-right">Amount</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        {
+                                            get_booked_patientData.map((v,i) => {
+                                                return (
+                                                    <tr>
+                                                        <td className="text-center">1</td>
+                                                        <td>
+                                                            <div className="form-check">
+                                                                <label className="form-check-label">
+                                                                    <input className="form-check-input" type="checkbox" value="" />
+                                                                    <span className="form-check-sign"></span>
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                        <td>{v.name}</td>
+                                                        <td>25</td>
+                                                        <td className="text-right">&euro; 1,225</td>
+                                                    </tr>
+                                                )
+                                            })
+                                        }
                                         <tr>
                                             <td className="text-center">1</td>
                                             <td>
@@ -32,11 +58,11 @@ export const Patient_History = () => {
                                                     </label>
                                                 </div>
                                             </td>
-                                            <td>Monday</td>
-                                            <td>25</td>
+                                            <td>30-09-2024</td>
+                                            <td>Narahah</td>
                                             <td className="text-right">&euro; 1,225</td>
                                         </tr>
-                                        <tr>
+                                        {/* <tr>
                                             <td className="text-center">2</td>
                                             <td>
                                                 <div className="form-check">
@@ -55,15 +81,15 @@ export const Patient_History = () => {
                                             <td>
                                                 <div className="form-check">
                                                     <label className="form-check-label">
-                                                        <input className="form-check-input" type="checkbox" value=""/>
-                                                            <span className="form-check-sign"></span>
+                                                        <input className="form-check-input" type="checkbox" value="" />
+                                                        <span className="form-check-sign"></span>
                                                     </label>
                                                 </div>
                                             </td>
                                             <td>Wednesday</td>
                                             <td>25</td>
                                             <td className="text-right">&euro; 1,225</td>
-                                        </tr>
+                                        </tr> */}
                                         <tr>
                                             <td colspan="3"></td>
                                             <td className="td-total">
@@ -80,7 +106,7 @@ export const Patient_History = () => {
                     </div>
                 </div>
             </div >
-            <Footer/>
+            <Footer />
         </>
     )
 }

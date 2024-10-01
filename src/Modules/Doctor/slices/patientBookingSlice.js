@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 
-export const patientBookingSlice = createSlice(
+const patientBookingSlice = createSlice(
     {
         name : 'patient_booking_state',
         initialState :{

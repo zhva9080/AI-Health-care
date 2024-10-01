@@ -4,10 +4,11 @@ export const slotSlice = createSlice(
     {
         name : "doctor_slot_state",
         initialState :{
+        
             doctorSlotSlice:[]
         },
         reducers:{
-            get_slot_data :(state,action)=>{
+            set_slot_data :(state,action)=>{
                 state.doctorSlotSlice = action.payload
             }
         }
@@ -16,5 +17,5 @@ export const slotSlice = createSlice(
 )
 
 export default slotSlice.reducer
-export  const {get_slot_data} = slotSlice.actions
+export  const {set_slot_data} = slotSlice.actions
 
