@@ -8,6 +8,7 @@ import { get_login_data } from "../../slices/loginSlice"
 export const Doctor_Login = () => {
 
     const doctorLoginSubmit = useSelector((state)=>state.doctor_login_state).doctorLogin
+    console.log(doctorLoginSubmit)
     const dispatch = useDispatch()
     const navigate = useNavigate()
     
@@ -24,6 +25,7 @@ export const Doctor_Login = () => {
                     localStorage.setItem("isLogged", "true")
                     alert("Login Successfully")
                     navigate("/doctor/home")
+                    dispatch(get_login_data(log.data))
                 }else{
                     alert("Please Check the UserId and password")
                 }

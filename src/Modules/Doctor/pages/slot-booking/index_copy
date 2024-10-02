@@ -1,76 +1,76 @@
-import { useState, useEffect, useCallback } from "react"
+import { useState, useEffect } from "react"
 import { Footer } from "../../Component/Footer"
 import { Header } from "../../Component/Header"
 import { useSelector, useDispatch } from "react-redux"
-import { useNavigate } from "react-router-dom"
+import { json, useNavigate } from "react-router-dom"
 import { set_slot_data } from "../../slices/slotSlice"
 import axios from "axios"
 
 export const DoctorSlot = () => {
 
     const get_slot_state = useSelector((state) => state.doctor_slot_state).doctorSlotSlice
-    const doctorLoginSubmit = useSelector((state)=>state.doctor_login_state).doctorLogin
+
+    console.log(get_slot_state)
+
     const set_dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const [detail, setDetail] = useState({
-        clinic_day: "",
-        clinic_timing: ""
-    })
 
-    const [getList, addList] = useState({
-        consulting_fee: "",
-        clinic_details: []
-})
-
-const [slotList, setSlotList] = useState([])
-   
-
-    const handledChange = (e) => {
-        setDetail({ ...detail, [e.target.name]: e.target.value })
-    }
-
-
+    const [getList, addList] = useState(
+        {
+            consulting_fee: "",
+            clinic_details: [
+                {
+                    clinic_day: "",
+                    clinic_timing: ""
+                }
+            ]
+        }
+    )
+    
+    const [slotList, setSlotList] = useState([])
     const addSlotList = () => {
-        const list_data = { ...getList, clinic_details: [...getList.clinic_details, detail] }
-        addList(list_data)
-
+        setSlotList([...slotList, getList])
     }
+
+    // console.log(slotList)
+
+    // get_slot_state.map((e,i)=>
+    //     console.log(e)
+    // )
 
 
     const handledSumbit = () => {
 
-        // set_dispatch(set_slot_data(slotList))
-        navigate("/doctor/home")
+    
+        set_dispatch(set_slot_data(slotList))
+        // navigate("/doctor/home")
+
 
         const slot_data = new FormData()
-
-        slot_data.append("doctor_id",doctorLoginSubmit.data.id)
-        // slot_data.append("doctor_id", getList.doctor_id)
+        slot_data.append("doctor_id", getList.doctor_id)
         slot_data.append("consulting_fee", getList.consulting_fee)
         slot_data.append("clinic_details", JSON.stringify(getList.clinic_details))
-
-
+        // console.log(slot_data)
         axios.post("http://agaram.academy/api/action.php?request=ai_health_create_doctor_slot", slot_data).then((response) => {
-            console.log(response.data)
-            alert(response.data)
-
+             console.log(slot_data)
         })
 
     }
 
 
 
-    const slotDelete = (index) => {
 
+    const slotDelete = (index) => {
         const data = slotList.filter((slotListvalues, slotListindex) => {
             if (index != slotListindex) {
                 return slotListvalues
             }
         })
         setSlotList(data)
-
     }
+
+
 
     return (
         <>
@@ -104,8 +104,7 @@ const [slotList, setSlotList] = useState([])
                             <div className="col-md-4 col-sm-4">
                                 <h6>Select  Day</h6>
                                 <hr />
-                                {/* <select name="huge" className="form-select" data-style="btn btn-outline-default btn-block" style={{ height: "40px" }} data-menu-style="" onKeyUp={(e) => addList({ ...getList,clinic_details [{clinic_day: e.target.value}] })} > */}
-                                <select type='dropdown' name="clinic_day" className="form-select" data-style="btn btn-outline-default btn-block" style={{ height: "40px" }} data-menu-style="" onClick={handledChange} >
+                                <select name="huge" className="form-select" data-style="btn btn-outline-default btn-block" style={{ height: "40px" }} data-menu-style="" onClick={(e) => addList({ ...getList, clinic_day: e.target.value })} >
                                     <option disabled selected>Select Day</option>
                                     <option value="Sunday">Sunday</option>
                                     <option value="Monday">Monday</option>
@@ -121,7 +120,7 @@ const [slotList, setSlotList] = useState([])
                             <div className="col-md-4 col-sm-4">
                                 <h6>Timing</h6>
                                 <hr />
-                                <select name="clinic_timing" className="form-select" data-style="btn btn-outline-default btn-block" style={{ height: "40px" }} onClick={handledChange}>
+                                <select name="huge" className="form-select" data-style="btn btn-outline-default btn-block" style={{ height: "40px" }} onClick={(e) => addList({ ...getList, clinic_timing: e.target.value })}>
                                     <option value="select time">Select Time</option>
                                     <option value="9am to 10am">9am to 10am</option>
                                     <option value="10am to 12pm">10am to 12pm</option>
@@ -191,10 +190,10 @@ const [slotList, setSlotList] = useState([])
                                         <tbody>
 
                                             {
-                                                getList.clinic_details.map((e, index) => {
+                                                slotList.map((e, index) => {
                                                     return (
                                                         // console.log(index)
-                                                        <tr key={index}>
+                                                        <tr>
                                                             <td className="text-center">
                                                                 <h6>{e.clinic_day}</h6>
                                                             </td>
@@ -202,7 +201,7 @@ const [slotList, setSlotList] = useState([])
                                                                 <h6>{e.clinic_timing}</h6>
                                                             </td>
                                                             <td className="td-number text-center">
-                                                                <h6>{getList.consulting_fee}</h6>
+                                                                <h6>{e.consulting_fee}</h6>
                                                             </td>
                                                             <td className="td-number text-center">
                                                                 <button className="btn btn-outline-danger" type="button" onClick={() => slotDelete(index)}>Delete</button>
@@ -213,7 +212,6 @@ const [slotList, setSlotList] = useState([])
 
                                                 )
                                             }
-                                             
 
                                         </tbody>
                                     </table>

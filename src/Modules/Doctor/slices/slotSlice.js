@@ -4,7 +4,6 @@ export const slotSlice = createSlice(
     {
         name : "doctor_slot_state",
         initialState :{
-        
             doctorSlotSlice:[]
         },
         reducers:{

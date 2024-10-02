@@ -29,7 +29,7 @@ export const Slot_List = () => {
     useEffect(() => { }, [date]
     )
 
-    console.log(date)
+    // console.log(date)
 
     var now = new Date();
     var daysOfYear = [];
@@ -37,7 +37,7 @@ export const Slot_List = () => {
         daysOfYear.push(new Date(d));
     }
 
-    console.log(daysOfYear)
+    // console.log(daysOfYear)
 
 
 

@@ -13,7 +13,7 @@ import { deleteSlot } from "../../slices/removeSlotSlice"
 export const Doctor_Home = () => {
 
     axios.get("http://agaram.academy/api/action.php?request=ai_health_get_all_booked_patients").then((get_all_patients)=>{
-        console.log(get_all_patients)
+        // console.log(get_all_patients)
     })
 
     const get_slot_state = useSelector((state) => state.doctor_slot_state).doctorSlotSlice
@@ -32,7 +32,7 @@ export const Doctor_Home = () => {
     useEffect(() => { }, [date]
     )
 
-    console.log(date)
+    // console.log(date)
 
     var now = new Date();
     var daysOfYear = [];
@@ -40,7 +40,7 @@ export const Doctor_Home = () => {
         daysOfYear.push(new Date(d));
     }
 
-    console.log(daysOfYear)
+    // console.log(daysOfYear)
 
 
 

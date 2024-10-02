@@ -32,7 +32,7 @@ export const Doctor_Register = () => {
         // formData.append("city",doctorRegisterSubmit.city)
         // formData.append("area",doctorRegisterSubmit.area)
         // formData.append("pin",doctorRegisterSubmit.pin)
-
+        formData.append("status",doctorRegisterSubmit.status)
         formData.append("name",doctorRegisterSubmit.name)
         formData.append("email",doctorRegisterSubmit.email)
         formData.append("password",doctorRegisterSubmit.password)
