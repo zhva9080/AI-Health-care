@@ -15,6 +15,7 @@ export const Doctorapp = () => {
         axios.get("http://agaram.academy/api/action.php?request=ai_health_getalldoctorsdetails").then((res) => {
             setDoctorlist(res.data.data)
             setSearch(res.data.data)
+            console.log(res.data.data)
         })
     }
     useEffect(() => {
@@ -72,24 +73,28 @@ export const Doctorapp = () => {
 
                                                             <div className="col-8">
                                                                 <span>
-                                                                    <h4 className="card-title"><a href="#">St.Johns Hospital</a></h4>
+                                                                    <h4 className="card-title"><a href="#">{ }</a></h4>
                                                                 </span>
                                                                 <h6 className="card-category">{each.name}</h6>
                                                                 <p className="card-description">{each.address}</p>
                                                                 <p className="card-description my-0">{each.city}</p>
                                                             </div>
                                                             <div className="row">
+                                                                
                                                                 <ul >
-                                                                    <li><h6 className="card-category">Ortho</h6></li>
-                                                                    <li><h6 className="card-category">Neouro</h6></li>
+                                        
+                                                                <li><h6 className="card-category">{JSON.parse(each.specialist)}</h6></li>
+
                                                                 </ul>
+
+
                                                             </div>
                                                         </div>
 
                                                     </div>
                                                     <div className="col-4">
                                                         <div className="media-footer">
-                                                            <a href="tel:+917896586325" className="btn btn-warning btn-wd">Call Now</a>
+                                                            <a href="tel:+917896586325" className="btn btn-warning btn-wd">{each.phone}</a>
                                                         </div>
                                                         <div className="my-3">
                                                             <label for=""></label>
@@ -99,7 +104,7 @@ export const Doctorapp = () => {
                                                             <Link to="/user/booking"><button type="button" className="btn btn-danger btn-round" data-toggle="modal" data-target="#loginModal" onCl>
                                                                 Book Now
                                                             </button></Link>
-                                                            
+
                                                         </div>
 
                                                     </div>

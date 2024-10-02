@@ -17,8 +17,8 @@ export const Userlogin = () => {
     axios.post(`http://agaram.academy/api/action.php?request=${userLoginvalue.request}`, formdata).then((res) => {
       console.log(res)
       if (res.data.status == "success") {
-        dispatch(setloginUser(res.data.data))
-        // navigate("/user/home")
+        dispatch(setloginUser(res.data))
+        navigate("/user/home")
       }
       else {
         alert("failed")

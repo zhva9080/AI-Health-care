@@ -1,15 +1,35 @@
 import { Header } from "../../component/Header"
 import { Footer } from "../../component/Footer"
-import { useSelector,useDispatch } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import { setBooking } from "../../slices/PatientSlice"
+import moment from "moment"
+import { useEffect, useState } from "react"
 export const UserBooking = () => {
-    const BookingState=useSelector((state)=>state.patientdetails).bookingDetails
-    const dispatch=useDispatch()
-    const paynow=()=>{
+    const BookingState = useSelector((state) => state.patientdetails).bookingDetails
+    const dispatch = useDispatch()
+
+
+    const [mindate, setmindate] = useState("")
+    const [maxdate, setmaxdate] = useState("")
+    const [selectedDay, setSelectedDay] = useState('');
+    // console.log(selectedDay)
+    useEffect(() => {
+        const today = moment()
+
+        const tomorrow = moment(today).add(1, "days");
+
+        setmindate(tomorrow.format('YYYY-MM-DD'))
+
+        const max = moment(tomorrow).add(6, 'days')
+        setmaxdate(max.format('YYYY-MM-DD'))
+
+    })
+
+    const paynow = () => {
         console.log(BookingState)
     }
     return (<>
-        <Header/>
+        <Header />
         <div className="container mt-5">
             <div className="container tim-container mt-5">
                 <div className="row ">
@@ -21,34 +41,26 @@ export const UserBooking = () => {
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                <div class="form-group">
-                                    <div  class="form-control">Select Day</div>
-                                </div>
+                                    <div class="form-group">
+                                        <div class="form-control">{selectedDay}</div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
-                            
-                            <select className="form-select form-control" data-style="btn-info btn-round" aria-label="Default select example" onClick={(e)=>dispatch(setBooking({...BookingState,day:e.target.value}))}>
-                                        <option value="Monday">Monday</option>
-                                        <option value="Tuesday">Tuesday</option>
-                                        <option value="wednesday">wednesday</option>
-                                        <option value="Thursday">Thursday</option>
-                                        <option value="Friday">Friday</option>
-                                        <option value="Saturday">Saturday</option>
-                                        <option value="Sunday">Sunday</option>
-                                    </select>   
+                                <input className="form-control" placeholder="date" type="date" min={mindate} max={maxdate}
+                                    onChange={(e)=> setSelectedDay(moment(e.target.value).format('dddd'))} />
                             </div>
                         </div>
-                       <div>
+                        <div>
                             <div className="form-control border-input">Time slot</div>
                             <div className="row">
-                                <button className="col-5 form-control btn btn-success my-4 mx-3" value="10am-12pm" onClick={(e)=>dispatch(setBooking({...BookingState,slot:e.target.value}))}>10am-12pm</button>
-                                <button className="col-5 form-control btn btn-success my-4 mx-3" value="5pm-7pm" onClick={(e)=>dispatch(setBooking({...BookingState,slot:e.target.value}))}>5pm-7pm</button>
+                                <button className="col-5 form-control btn btn-success my-4 mx-3" value="10am-12pm" onClick={(e) => dispatch(setBooking({ ...BookingState, slot: e.target.value }))}>10am-12pm</button>
+                                <button className="col-5 form-control btn btn-success my-4 mx-3" value="5pm-7pm" onClick={(e) => dispatch(setBooking({ ...BookingState, slot: e.target.value }))}>5pm-7pm</button>
                             </div>
                             <div>
                                 <div><button className="btn btn-danger" onClick={paynow}>Pay now</button></div>
                             </div>
-                       </div>
+                        </div>
                     </div>
                 </div>
 

@@ -8,8 +8,7 @@ import axios from "axios"
 export const Userhome = () => {
     const navigate = useNavigate()
     const patientState = useSelector((state) => state.patientdetails).patientDetails
-
-    // console.log(patientState)
+    //  console.log(patientState)
     const [diseases, setdiseases] = useState([])
     const add = () => {
         dispatch(setPatient({ ...patientState, diseases: [...diseases] }))
@@ -21,7 +20,7 @@ export const Userhome = () => {
     formdata.append("gender", patientState.gender)
     formdata.append("blood_group", patientState.blood_group)
     formdata.append("age", patientState.age)
-    formdata.append("diseases",JSON.stringify(patientState.diseases)),
+    formdata.append("diseases",JSON.stringify(patientState.diseases))
     formdata.append("duration", patientState.duration)
     formdata.append("existing_diseases", patientState.existing_diseases)
     const selftreatment = () => {
@@ -122,7 +121,7 @@ export const Userhome = () => {
                                                                 <option value="1">16-20</option>
                                                             </select> */}
                                                             <select className="form-select form-control" data-style="btn-info btn-round" aria-label="Default select example" onClick={(e) => dispatch(setPatient({ ...patientState, duration: e.target.value }))}>
-                                                                <option disabled selected>Duration of illness</option>
+                                                                <option disabled selected>Days of infection</option>
                                                                 <option value="0-3">0-3 days</option>
                                                                 <option value="4-5">4-5 days</option>
                                                                 <option value="6-10">6-10 days</option>
