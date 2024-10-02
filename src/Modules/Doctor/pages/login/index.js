@@ -2,7 +2,7 @@ import axios from "axios"
 import { Link } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
-import { get_login_data } from "../../slices/loginSlice"
+import { get_login_data } from "../../slices/Login_Slice"
 
 
 export const Doctor_Login = () => {
