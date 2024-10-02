@@ -11,7 +11,7 @@ export const Header = () => {
         <>
             <nav className="navbar navbar-expand-lg bg-info">
                 <div className="container">
-                    <a className="navbar-brand" href="javascript:;">AI-Health-Care/ Admin Page</a>
+                    <a className="navbar-brand" href="javascript:;">AI-Health-Care / Admin Page</a>
                     <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                         aria-label="Toggle navigation">

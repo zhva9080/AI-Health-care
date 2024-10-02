@@ -17,21 +17,20 @@ export const Adminhomepage = () => {
     let [search, setsearch] = useState(doctor)
     let [doctorsearch, setdoctorsearch] = useState({ city: "", name: "" })
 
-    // useEffect(() => {
+   
 
-    // }, [])
+    
 
-
-
-    // ----- doctor & users details -----
+    // ------ doctor & users details ------
 
     const getdetails = () => {
-        axios.get("http://agaram.academy/api/action.php?request=getAllMembers").then((e) => {
+        axios.get("http://agaram.academy/api/action.php?request=ai_health_getalldoctorsdetails").then((e) => {
             setdoctor(e.data.data)
             setsearch(e.data.data)
         })
 
     }
+
     useEffect(() => {
         getdetails()
     }, [])
@@ -51,20 +50,42 @@ export const Adminhomepage = () => {
     }
 
 
-    // ---- Approving registered doctors----
+    // ---- Approving registered doctors ----
 
-    const approvedoctor = () => {
+    const approvedoctor = (each) => {
 
 
+        let formData = new FormData();
 
+        formData.append("status","approved")
+        formData.append("id",each.id)
+
+
+// useEffect(() => {
+
+    // }, [])
+
+
+        axios.post(`http://agaram.academy/api/action.php?request=ai_health_approve_doctor`,formData).then((d) => {
+
+            // getdetails()
+            console.log(d)
+
+        }
+
+        )
+
+// if(eachh.status=="approved"){
+
+// }
 
     }
 
-    // -----deleting doctor ------
+    // ----- deleting doctor ------
 
     const deletedoctor = (eachh) => {
 
-        axios.get(`http://agaram.academy/api/action.php?request=removeMember&id=${eachh}`).then((d) => {
+        axios.get(`http://agaram.academy/api/action.php?request=ai_health_removedoctor&id=${eachh}`).then((d) => {
             getdetails()
 
         }
@@ -72,7 +93,7 @@ export const Adminhomepage = () => {
         )
     }
 
-    // ---- view doctors personal details-----
+    // ---- View doctors personal details-----
 
     const doctordetails = (idvalue) => {
         navigate(`/admin/doctordetails/${idvalue}`)
@@ -132,7 +153,6 @@ export const Adminhomepage = () => {
                     </div>
                 </div>
 
-
                 <div className="main">
                     <div className="section ">
                         <h2 className="text-center title"> Registered Doctors</h2>
@@ -145,15 +165,17 @@ export const Adminhomepage = () => {
                                             <th className="text-center"><strong>Doctor's Name</strong></th>
                                             <th className="text-center"><strong>Hospital</strong></th>
                                             <th className="text-center"><strong>City</strong></th>
-                                            <th className="text-center"><strong>Approve</strong></th>
-                                            <th className="text-center"><strong>Reject</strong></th>
+                                            <th className="text-center"><strong>Status</strong></th>
+                                            {/* <th className="text-center"><strong>Reject</strong></th> */}
                                             <th className="text-center"><strong>Details</strong></th>
 
                                         </tr>
 
                                     </thead>
                                     <tbody>
+
                                         {search.map((eachh) =>
+                                        
                                             <tr>
                                                 <td className="text-center">
                                                     <h6>{eachh.name}</h6>
@@ -164,40 +186,14 @@ export const Adminhomepage = () => {
                                                 <td className="td-number td-quantity text-center">
                                                     <h6>{eachh.city}</h6>
                                                 </td>
-                                                <td className=" text-center">
-                                                    <button type="button" className="btn btn-success btn-link btn-lg" onClick={() => approvedoctor(eachh.id)}><i className="fa fa-check fa-2x " aria-hidden="true"></i>
-                                                    </button>
-                                                </td>
-
-                                                <td className=" text-center">
-
-
-                                                    <button type="button" className="btn btn-danger btn-link btn-lg" data-toggle="modal" data-target="#smallNoticeModal" onClick={() => deletedoctor(eachh.id)}>
+                                                <td className=" text-center"><b>{eachh.status}</b>
+                                                        {eachh.status=="approved"?<button type="button" className="btn btn-danger btn-link btn-lg" data-toggle="modal" data-target="#smallNoticeModal" onClick={() => deletedoctor(eachh.id)}>
                                                         <i className="fa fa-times fa-2x" aria-hidden="true"></i>
-                                                    </button>
-
-                                                    {/* <!-- small notice modal --> */}
-
-                                                    {/* <div className="modal" id="smallNoticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                                            <div className="modal-dialog modal-sm modal-notice">
-                                                                <div className="modal-content">
-                                                                    <div className="modal-header no-border-header">
-                                                                        <button type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                                    </div>
-                                                                    <div className="modal-body text-center">
-                                                                        <p>If you want to delete this click okay to continue. </p>
-                                                                        <a href="javascript:;" className="btn btn-link btn-default">Learn more</a>
-                                                                    </div>
-                                                                    <div className="modal-footer">
-                                                                        <button type="button" className="btn btn-link btn-danger" data-dismiss="modal" aria-hidden="true" onClick={() => deletedoctor(eachh.id)}>Okay</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div> */}
-
-
-
+                                                    </button>:<button type="button"  className="btn btn-success btn-link btn-lg" onClick={() => approvedoctor(eachh)} ><i className="fa fa-check fa-2x " aria-hidden="true"></i> 
+                                                    </button>} 
                                                 </td>
+
+
 
                                                 <td className=" text-center">
                                                     <button type="button" className="btn btn-info btn-link btn-lg" onClick={() => doctordetails(eachh.id)}><i className="fa fa-user fa-2x" aria-hidden="true"></i>
@@ -221,7 +217,7 @@ export const Adminhomepage = () => {
 
             </div>
 
-            <Footer />
+            <Footer/>
 
         </>
     )

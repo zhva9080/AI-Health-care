@@ -30,7 +30,7 @@ export const Adminlogin = () => {
         formData.append("email", loginvalue.email)
         formData.append("password", loginvalue.password)
 
-        axios.post("http://agaram.academy/api/action.php?request=candidate_login", formData).then((log) => {
+        axios.post("http://agaram.academy/api/action.php?request=ai_health_admin_login", formData).then((log) => {
             let status=log.data.status
 
             if (status == "success") {
@@ -39,7 +39,7 @@ export const Adminlogin = () => {
                 navigate("/admin/homepage")
             
             }
-
+            
             else {
                 alert("login failed")
             }
@@ -47,9 +47,8 @@ export const Adminlogin = () => {
 
         })
 
-
-
     }
+
 
     return (
         <>
@@ -62,7 +61,7 @@ export const Adminlogin = () => {
                 <nav className="navbar navbar-expand-lg bg-white fixed-top nav-down navbar-transparent" color-on-scroll="500">
                     <div className="container">
                         <div className="navbar-translate">
-                            <a className="navbar-brand" title="Paper Kit 2 PRO" data-placement="bottom" target="_blank">
+                            <a className="navbar-brand" title="AI-Health-Care" data-placement="bottom" target="_blank">
                                 <i className="fa fa-heartbeat"></i> AI-Health-Care
                             </a>
                             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
@@ -74,6 +73,7 @@ export const Adminlogin = () => {
                        
                     </div>
                 </nav>
+
                 {/* <!-- End Navbar --> */}
 
                 <div className="wrapper">
@@ -97,7 +97,6 @@ export const Adminlogin = () => {
 
 
                                             />
-
                                             <br />
                                             <input type="password" className="form-control no-border" placeholder="Password"
 
