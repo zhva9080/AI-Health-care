@@ -276,11 +276,11 @@ pk = {
 
       if (video.paused) {
         video.play();
-        $(this).html('<i class="fa fa-pause"></i> Pause Video');
+        $(this).html('<i className="fa fa-pause"></i> Pause Video');
         parent.addClass('state-play');
       } else {
         video.pause();
-        $(this).html('<i class="fa fa-play"></i> Play Video');
+        $(this).html('<i className="fa fa-play"></i> Play Video');
         parent.removeClass('state-play');
       }
     });
@@ -288,7 +288,7 @@ pk = {
 
   initPopovers: function() {
     if ($('[data-toggle="popover"]').length != 0) {
-      $('body').append('<div class="popover-filter"></div>');
+      $('body').append('<div className="popover-filter"></div>');
 
       //    Activate Popovers
       $('[data-toggle="popover"]').popover().on('show.bs.popover', function() {

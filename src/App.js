@@ -1,15 +1,18 @@
 import { createBrowserRouter, RouterProvider} from "react-router-dom";
 import './App.css';
 import { Userlogin } from "./Modules/User/Pages/login";
+import { Doctor_Login } from "./Modules/Doctor/pages/login";
+import { Doctor_Register } from "./Modules/Doctor/pages/register";
+import { Doctor_Home } from "./Modules/Doctor/pages/home";
+import { DoctorSlot } from "./Modules/Doctor/pages/slot-booking";
+import { PatientsList } from "./Modules/Doctor/pages/patient-booking-list";
+import { Patient_History } from "./Modules/Doctor/pages/patient-payment-history";
+import { Slot_List } from "./Modules/Doctor/pages/slot_list";
 import { Adminlogin } from "./Modules/admin/pages/login";
 import { Adminhomepage } from "./Modules/admin/pages/home";
 import { Adminusers } from "./Modules/admin/pages/userslist";
 import { Admindoctordetails } from "./Modules/admin/pages/doctordetails";
 import { About } from "./Modules/admin/pages/about";
-
-
-
-
 import { UserRegister } from "./Modules/User/Pages/register";
 import { Userhome } from "./Modules/User/Pages/Home";
 import { Userview } from "./Modules/User/Pages/View";
@@ -22,6 +25,34 @@ const router = createBrowserRouter([
   {
     path: "/user/login",
     element: <div><Userlogin/></div>,
+  },
+  {
+    path : "/doctor/login",
+    element : <Doctor_Login/>
+  },
+  {
+    path : "/doctor/register",
+    element : <Doctor_Register/>
+  },
+  {
+    path : "/doctor/home",
+    element : <Doctor_Home/>
+  },
+  {
+    path :"/patient_list/:id",
+    element : <PatientsList />
+  },
+  {
+    path : "/doctor/slot",
+    element : <DoctorSlot/>
+  },
+  {
+    path:"/doctor/patients_history",
+    element : <Patient_History/>
+  },
+  {
+    path :"/doctor/slot_list",
+    element: <Slot_List/>
   },
   {
     path:"/admin/login",
