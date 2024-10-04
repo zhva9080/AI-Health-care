@@ -92,7 +92,7 @@ export const Adminhomepage = () => {
         )
     }
 
-    // ---- View doctors personal details-----
+    // ------ View doctors personal details ------
 
     const doctordetails = (idvalue) => {
         navigate(`/admin/doctordetails/${idvalue}`)
