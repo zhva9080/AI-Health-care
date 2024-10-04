@@ -25,10 +25,6 @@ export const Doctorapp = () => {
     }
     useEffect(() => {
         display()
-        // axios.get("http://agaram.academy/api/action.php?request=ai_health_getallusersdetails").then((res) => {
-        //    dispatch(setPatient(res.data.data))
-        //     // console.log(res.data.data)
-        // })
     }, [])
     const Filter = (event) => {
         setSearch(doctorlist.filter((e) => {
@@ -38,7 +34,7 @@ export const Doctorapp = () => {
         }))
     }
     const booknow = (each) => {
-        console.log(each)
+        // console.log(each)
 
         // axios.get(`http://agaram.academy/api/action.php?request=ai_health_get_slot_booking&doctor_id=${each}`).then((res) => {
         //     console.log(res.data.data)

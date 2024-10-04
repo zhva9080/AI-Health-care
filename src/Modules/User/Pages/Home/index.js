@@ -9,19 +9,13 @@ import axios from "axios"
 export const Userhome = () => {
     const navigate = useNavigate()
     const patientState = useSelector((state) => state.patientdetails).patientDetails
-     console.log(patientState.diseases)
     const [diseases, setdiseases] = useState("")
-    console.log(diseases)
     const add = () => {
         dispatch(updateDiseases([...patientState.diseases, diseases]))
     }
     const dispatch = useDispatch()
     const formdata = new FormData();
-    const selftreatment = () => {
-        
-        
-      
-        
+    const selftreatment = () => {     
     }
     const doctorappointment=()=>{
         formdata.append("request", patientState.request)
@@ -34,7 +28,7 @@ export const Userhome = () => {
         formdata.append("existing_diseases", patientState.existing_diseases)
         // navigate("/user/view")
         axios.post(`http://agaram.academy/api/action.php?request=${patientState.request}`, formdata).then((res) => {
-            console.log(res)
+            // console.log(res)
             dispatch(setPatient(res.data.data))
           })
     }
