@@ -4,10 +4,15 @@ import { useSelector, useDispatch } from "react-redux"
 import { useState } from "react"
 import axios from "axios"
 import { useEffect } from "react"
-import { Link } from "react-router-dom"
+import { Link, Navigate, useNavigate } from "react-router-dom"
+import { setPatient } from "../../slices/PatientSlice"
+import { setDoctorSlotDetails } from "../../slices/bookingSlice"
 export const Doctorapp = () => {
-    // const patientState=useSelector((state)=>state.patientdetails).patientDetails
-    // console.log(patientState)
+    const patientState = useSelector((state) => state.patientdetails).patientDetails
+    
+    console.log(patientState)
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
     const [doctorlist, setDoctorlist] = useState([])
     const [searchdoctor, setSearch] = useState(doctorlist)
     const [searchinput, setsearchinput] = useState({ city: "", specialist: "" })
@@ -15,11 +20,15 @@ export const Doctorapp = () => {
         axios.get("http://agaram.academy/api/action.php?request=ai_health_getalldoctorsdetails").then((res) => {
             setDoctorlist(res.data.data)
             setSearch(res.data.data)
-            console.log(res.data.data)
+            // console.log(res.data.data)
         })
     }
     useEffect(() => {
         display()
+        // axios.get("http://agaram.academy/api/action.php?request=ai_health_getallusersdetails").then((res) => {
+        //    dispatch(setPatient(res.data.data))
+        //     // console.log(res.data.data)
+        // })
     }, [])
     const Filter = (event) => {
         setSearch(doctorlist.filter((e) => {
@@ -28,7 +37,14 @@ export const Doctorapp = () => {
             }
         }))
     }
+    const booknow = (each) => {
+        console.log(each)
 
+        // axios.get(`http://agaram.academy/api/action.php?request=ai_health_get_slot_booking&doctor_id=${each}`).then((res) => {
+        //     console.log(res.data.data)
+        //     dispatch(setDoctorSlotDetails(res.data.data))
+        // })
+    }
 
     return (<>
         <div className="add-product sidebar-collapse">
@@ -80,10 +96,10 @@ export const Doctorapp = () => {
                                                                 <p className="card-description my-0">{each.city}</p>
                                                             </div>
                                                             <div className="row">
-                                                                
+
                                                                 <ul >
-                                        
-                                                                <li><h6 className="card-category">{JSON.parse(each.specialist)}</h6></li>
+
+                                                                    <li><h6 className="card-category">{JSON.parse(each.specialist)}</h6></li>
 
                                                                 </ul>
 
@@ -100,12 +116,18 @@ export const Doctorapp = () => {
                                                             <label for=""></label>
                                                             <button type="button" className="btn btn-info btn-wd">100</button>
                                                         </div>
+
                                                         <div className="my-3">
-                                                            <Link to="/user/booking"><button type="button" className="btn btn-danger btn-round" data-toggle="modal" data-target="#loginModal" onCl>
+                                                            <button type="button" className="btn btn-danger btn-round" data-toggle="modal" data-target="#loginModal" onClick={() => {
+                                                                booknow(each.id)
+                                                                   navigate(`/user/booking?doctorid=${each.id}&enquiry_id=${patientState.id}`) 
+                                                            }}>
                                                                 Book Now
-                                                            </button></Link>
+                                                            </button>
 
                                                         </div>
+
+
 
                                                     </div>
                                                 </div>
