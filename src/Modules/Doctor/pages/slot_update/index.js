@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom"
 import { set_slot_data } from "../../slices/slotSlice"
 import axios from "axios"
 
-export const DoctorSlot = () => {
+export const Update_Doctor_Slot = () => {
 
     // sumbit data globe state start 
 
@@ -15,6 +15,8 @@ export const DoctorSlot = () => {
     // sumbit data globe state end 
 
     const doctorLoginSubmit = useSelector((state) => state.doctor_login_state).doctorLogin
+
+
     const set_dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -94,7 +96,7 @@ export const DoctorSlot = () => {
             <div className="add-product sidebar-collapse">
                 <div className="row">
                     <div className="col-md-6 col-sm-6 mx-auto ">
-                        <h2>Add Visiting Time Slot</h2>
+                        <h2>Update Visiting Time Slot</h2>
                         <hr />
                         {/* <div className="row">
                             <div className="col-md-4 col-sm-4">
@@ -237,7 +239,7 @@ export const DoctorSlot = () => {
                             </div>
                         </div>
                         <div className="col-md-2 offset-md-5 col-sm-8 " >
-                            <button className="btn btn-success btn-block" type="button" onClick={handledSumbit}>Submit</button>
+                            <button className="btn btn-success btn-block" type="button" onClick={handledSumbit}>Update</button>
                         </div>
                     </div>
                 </div>

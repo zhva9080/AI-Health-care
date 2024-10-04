@@ -12,9 +12,11 @@ import { deleteSlot } from "../../slices/removeSlotSlice"
 
 export const Doctor_Home = () => {
 
-    axios.get("http://agaram.academy/api/action.php?request=ai_health_get_all_booked_patients").then((get_all_patients)=>{
-        // console.log(get_all_patients)
-    })
+    useEffect(() => {
+        axios.get("http://agaram.academy/api/action.php?request=ai_health_get_all_booked_patients").then((get_all_patients) => {
+            // console.log(get_all_patients)
+        })
+    }, [])
 
     const get_slot_state = useSelector((state) => state.doctor_slot_state).doctorSlotSlice
     const navigate = useNavigate()
@@ -28,29 +30,6 @@ export const Doctor_Home = () => {
     }, []
     )
 
-    const date = moment().format('MMMM Do YYYY dddd');
-    useEffect(() => { }, [date]
-    )
-
-    // console.log(date)
-
-    var now = new Date();
-    var daysOfYear = [];
-    for (var d = new Date(2012, 0, 1); d <= now; d.setDate(d.getDate() + 1)) {
-        daysOfYear.push(new Date(d));
-    }
-
-    // console.log(daysOfYear)
-
-
-
-    const secure = () => {
-        let isLogged = localStorage.getItem("isLogged");
-        // !isLogged? navigate("/doctor/login") : null
-        if (!isLogged) {
-            window.location = "/doctor/login"
-        }
-    }
 
 
     return (
@@ -60,7 +39,7 @@ export const Doctor_Home = () => {
                 <div className="main">
                     <div className="section ">
                         <div className="container">
-                        <div className="media-footer">
+                            <div className="media-footer">
                                 <button href="#" className="btn btn-info pull-right" type="button">Show All</button>
                             </div>
                             <h4 className="title">
@@ -68,7 +47,7 @@ export const Doctor_Home = () => {
                                 </small> */}
 
                             </h4>
-                            
+
                             <div className="row">
                                 {
 
@@ -85,8 +64,8 @@ export const Doctor_Home = () => {
                                                             {e.clinic_timing}
                                                         </p>
                                                         <div className="card-footer mb-4">
-                                                            {get_slot_state.length > 0 ? <button className="btn btn-neutral btn-round" onClick={() => navigate(`/patient_list/${i}`)}> 
-                                                                {uniqueDay_all_patients.length} 
+                                                            {get_slot_state.length > 0 ? <button className="btn btn-neutral btn-round" onClick={() => navigate(`/patient_list/${i}`)}>
+                                                                {uniqueDay_all_patients.length}
                                                                 Booked</button> : <button className="btn btn-warning btn-round">Booked Patient</button>}
                                                         </div>
                                                         <button type="button" className="btn btn-danger btn-just-icon" onClick={deleteSlot()}><i className="nc-icon nc-simple-remove" aria-hidden="true"></i></button>
@@ -120,7 +99,6 @@ export const Doctor_Home = () => {
                 </div>
             </div>
             <Footer />
-            {secure}
         </>
     )
 }

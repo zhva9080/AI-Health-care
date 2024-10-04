@@ -21,6 +21,8 @@ import { Doctorapp } from "./Modules/User/Pages/Doctorappointment";
 import { Userhistory } from "./Modules/User/Pages/UserHistory";
 import { Viewdetails } from "./Modules/User/Pages/View/Viewdetails";
 import { UserBooking } from "./Modules/User/Pages/Booking";
+import { Update_Doctor_Slot } from "./Modules/Doctor/pages/slot_update";
+
 const router = createBrowserRouter([
   {
     path: "/user/login",
@@ -53,6 +55,10 @@ const router = createBrowserRouter([
   {
     path :"/doctor/slot_list",
     element: <Slot_List/>
+  },
+  {
+    path :"/doctor/update-slot",
+    element : <Update_Doctor_Slot/>
   },
   {
     path:"/admin/login",
