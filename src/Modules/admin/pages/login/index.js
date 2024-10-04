@@ -12,9 +12,6 @@ export const Adminlogin = () => {
 
     let loginvalue = useSelector((state) => state.login).adminlogin
 
-    // const loginusers = loginvalue.adminlogin
-    // console.log(loginusers)
-
     const dispatch = useDispatch()
 
 
@@ -26,7 +23,6 @@ export const Adminlogin = () => {
 
         let formData = new FormData();
 
-        // formData.append("request", loginusers.request)
         formData.append("email", loginvalue.email)
         formData.append("password", loginvalue.password)
 

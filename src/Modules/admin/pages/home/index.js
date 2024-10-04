@@ -1,6 +1,5 @@
 import './index.css';
 
-
 import { Header } from "../../component/Header"
 import { Footer } from '../../component/Footer';
 
@@ -17,11 +16,11 @@ export const Adminhomepage = () => {
     let [search, setsearch] = useState(doctor)
     let [doctorsearch, setdoctorsearch] = useState({ city: "", name: "" })
 
-   
 
-    
 
-    // ------ doctor & users details ------
+
+
+    // ------ doctor details ------
 
     const getdetails = () => {
         axios.get("http://agaram.academy/api/action.php?request=ai_health_getalldoctorsdetails").then((e) => {
@@ -37,17 +36,27 @@ export const Adminhomepage = () => {
 
     // ------ search bar doctors and city-----
 
-    const Filter = () => {
+    const Search = () => {
 
         let searchbar = doctor.filter((v, i) => {
 
-            if (v.name == doctorsearch.name && v.city == doctorsearch.city) {
-                return v
-            }
+            return v ? v.name.toLowerCase() == doctorsearch.name || v.city.toLowerCase() == doctorsearch.city : v.name.toLowerCase() == doctorsearch.name && v.city.toLowerCase() == doctorsearch.city
+
+
+
 
         })
         setsearch(searchbar)
+        // getdetails()
+        if (doctorsearch == "") {
+            getdetails()
+        }
+        // doctorsearch>0?  setsearch(searchbar) :
+        // getdetails() 
+
+
     }
+
 
 
     // ---- Approving registered doctors ----
@@ -57,31 +66,21 @@ export const Adminhomepage = () => {
 
         let formData = new FormData();
 
-        formData.append("status","approved")
-        formData.append("id",each.id)
+        formData.append("status", "approved")
+        formData.append("id", each.id)
 
 
-// useEffect(() => {
 
-    // }, [])
+        axios.post(`http://agaram.academy/api/action.php?request=ai_health_approve_doctor`, formData).then((d) => {
 
-
-        axios.post(`http://agaram.academy/api/action.php?request=ai_health_approve_doctor`,formData).then((d) => {
-
-            // getdetails()
+            getdetails()
             console.log(d)
 
-        }
-
-        )
-
-// if(eachh.status=="approved"){
-
-// }
-
+        })
     }
 
-    // ----- deleting doctor ------
+
+    // ------- Deleting doctor -------
 
     const deletedoctor = (eachh) => {
 
@@ -116,6 +115,19 @@ export const Adminhomepage = () => {
                                 <div className="row">
                                     <div className="col-md-5">
                                         <div className="form-group">
+                                            <input type="text" placeholder="Doctor name" className="form-control"
+
+                                                onKeyUp=
+                                                {(e) => setdoctorsearch({
+                                                    ...doctorsearch,
+                                                    name: e.target.value
+                                                })}
+
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="col-md-5">
+                                        <div className="form-group">
                                             <input type="text" placeholder="City" className="form-control"
 
                                                 onKeyUp=
@@ -127,23 +139,8 @@ export const Adminhomepage = () => {
                                             />
                                         </div>
                                     </div>
-                                    <div className="col-md-5">
-                                        <div className="form-group">
-                                            <input type="text" placeholder="Doctor name" className="form-control"
-
-                                                onKeyUp=
-                                                {(e) => setdoctorsearch({
-                                                    ...doctorsearch,
-                                                    name: e.target.value
-                                                })}
-
-
-
-                                            />
-                                        </div>
-                                    </div>
                                     <div className="col-md-2">
-                                        <button type="button" className="btn btn-info btn-block" onClick={() => Filter(doctorsearch)} ><i className="nc-icon nc-zoom-split"
+                                        <button type="button" className="btn btn-info btn-block" onClick={() => Search(doctorsearch)} ><i className="nc-icon nc-zoom-split"
                                         ></i> &nbsp;
                                             Search</button>
                                     </div>
@@ -162,42 +159,64 @@ export const Adminhomepage = () => {
                                 <table className="table">
                                     <thead className="table-info">
                                         <tr>
+                                            <th className="text-center"><strong>Sl.No</strong></th>
                                             <th className="text-center"><strong>Doctor's Name</strong></th>
-                                            <th className="text-center"><strong>Hospital</strong></th>
+                                            <th className="text-center"><strong>Email</strong></th>
                                             <th className="text-center"><strong>City</strong></th>
                                             <th className="text-center"><strong>Status</strong></th>
-                                            {/* <th className="text-center"><strong>Reject</strong></th> */}
+                                            <th className="text-center"><strong>Accept / Reject</strong></th>
                                             <th className="text-center"><strong>Details</strong></th>
+                                            <th className="text-center"><strong>Cancel Register</strong></th>
+
 
                                         </tr>
 
                                     </thead>
                                     <tbody>
 
-                                        {search.map((eachh) =>
-                                        
-                                            <tr>
+                                        {search.map((eachh, index) =>
+
+                                            <tr >
+                                                <td className="text-center" key={index}>
+                                                    <strong className='text-dark'>{index + 1})</strong>
+
+                                                </td>
                                                 <td className="text-center">
                                                     <h6>{eachh.name}</h6>
                                                 </td>
                                                 <td className=" text-center">
                                                     <h6>{eachh.email}</h6>
                                                 </td>
-                                                <td className="td-number td-quantity text-center">
+                                                <td className="text-center">
                                                     <h6>{eachh.city}</h6>
                                                 </td>
                                                 <td className=" text-center"><b>{eachh.status}</b>
-                                                        {eachh.status=="approved"?<button type="button" className="btn btn-danger btn-link btn-lg" data-toggle="modal" data-target="#smallNoticeModal" onClick={() => deletedoctor(eachh.id)}>
-                                                        <i className="fa fa-times fa-2x" aria-hidden="true"></i>
-                                                    </button>:<button type="button"  className="btn btn-success btn-link btn-lg" onClick={() => approvedoctor(eachh)} ><i className="fa fa-check fa-2x " aria-hidden="true"></i> 
-                                                    </button>} 
+                                                    {eachh.status == "approved" ?
+                                                        <i className="fa fa-check fa-2x" aria-hidden="true"></i>
+                                                        : <div className="uil-reload-css reload-small ml-3"  >
+                                                            <div ></div>
+                                                        </div>
+                                                    }
                                                 </td>
+                                                <td className=" text-center">
+                                                    {eachh.status == "approved"?
+                                                        <button type="button" className="btn btn-danger btn-link btn-lg" data-toggle="modal" data-target="#smallNoticeModal" onClick={() => deletedoctor(eachh.id)}>delete</button> :
+                                                        <button type="button" className="btn btn-success btn-link btn-lg" onClick={() => approvedoctor(eachh)} >approve</button>
 
+                                                    }
 
+                                                </td>
 
                                                 <td className=" text-center">
                                                     <button type="button" className="btn btn-info btn-link btn-lg" onClick={() => doctordetails(eachh.id)}><i className="fa fa-user fa-2x" aria-hidden="true"></i>
                                                     </button>
+
+                                                </td>
+
+                                                <td className=" text-center">
+                                                    <button type="button" className="btn btn-danger btn-link btn-lg" onClick={() => deletedoctor(eachh.id)}><i className="fa fa-times fa-2x" aria-hidden="true"></i>
+                                                    </button>
+
                                                 </td>
 
 
@@ -217,7 +236,7 @@ export const Adminhomepage = () => {
 
             </div>
 
-            <Footer/>
+            <Footer />
 
         </>
     )

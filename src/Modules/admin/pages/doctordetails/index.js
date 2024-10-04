@@ -19,7 +19,7 @@ export const Admindoctordetails = () => {
 
         axios.get(`http://agaram.academy/api/action.php?request=ai_health_viewdoctor&id=${id}`).then((viewdoctor) => {
             setview(viewdoctor.data.data)
-            console.log(viewdoctor.data.data)
+            // console.log(viewdoctor.data.data)
         })
     }, [])
 
