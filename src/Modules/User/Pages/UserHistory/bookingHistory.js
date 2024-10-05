@@ -5,7 +5,9 @@ import { setpatientHisory } from "../../slices/HistorySlice"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import { useEffect } from "react"
-export const Userhistory = () => {
+export const PaymentHistory = () => {
+   const paymentHistoryState=useSelector((state)=>state.userhistory).paymentHistory
+   const patientState = useSelector((state) => state.patientdetails).patientDetails
    
     const navigate=useNavigate()          
     const dispatch=useDispatch()             
@@ -23,11 +25,6 @@ export const Userhistory = () => {
         //     console.log(res)
         //   })
     }   
-    useEffect(()=>{
-        // axios.get("http://agaram.academy/api/action.php?request=ai_health_getDetailsForEnquiry").then((res) => {
-        //     console.log(res)
-        //   })
-    })
     
     return (<>
         <div className="add-product sidebar-collapse">
@@ -42,31 +39,27 @@ export const Userhistory = () => {
                                     <thead>
                                         <tr>
                                             <th className="text-center">Name</th>
-                                            <th className="text-center">Disease</th>
+                                            <th className="text-center">Time</th>
                                             <th className="text-center">Date</th>
                                             <th className="text-center">View</th>
-                                            <th className="text-center">Delete</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {HistoryState.map((e,i)=>
+                                         {paymentHistoryState.map((e,i)=>
                                             <tr>
                                             <td className="text-center">
-                                                <h6>{e.patient_name}</h6>
+                                                <h6>{patientState.name}</h6>
                                             </td>
                                             <td className="td-product text-center">
-                                            <h6>{e.diseases}</h6>
+                                            <h6>{e.booking_time}</h6>
                                             </td>
                                             <td className="td-price text-center">
-                                                <h6>20-09-2024</h6>
+                                                <h6>{e.booking_date}</h6>
                                             </td>
                                             <td className="td-number td-quantity text-center">
                                                 <button type="button" className="btn btn-outline-info btn-round"onClick={()=>navigate(`/user/viewdetails/${i}`)}>View</button>
                                             </td>
-                                            <td className="td-number text-center">
-                                                <button type="button" className="btn btn-outline-danger btn-round" onClick={()=>deleteHistory(i)}>Delete</button>
-                                            </td>
-                                        </tr>
+                                        </tr> 
                                         
                                         )}
                                         

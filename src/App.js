@@ -21,6 +21,7 @@ import { Doctorapp } from "./Modules/User/Pages/Doctorappointment";
 import { Userhistory } from "./Modules/User/Pages/UserHistory";
 import { Viewdetails } from "./Modules/User/Pages/View/Viewdetails";
 import { UserBooking } from "./Modules/User/Pages/Booking";
+import { PaymentHistory } from "./Modules/User/Pages/UserHistory/bookingHistory";
 const router = createBrowserRouter([
   {
     path: "/user/login",
@@ -95,7 +96,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/user/history",
-    element: <div><Userhistory/></div>,
+    element: <div><PaymentHistory/></div>,
   },
   {
     path: "/user/viewdetails/:id",

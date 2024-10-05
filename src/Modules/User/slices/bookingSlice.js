@@ -1,7 +1,8 @@
 
 import { createSlice } from "@reduxjs/toolkit";
 const initialState={
-    dotor_slot_details:[]
+    dotor_slot_details:[],
+    booking_slots:{name:"retheesha"}
 }        
 
 export const DoctorDetailsSlice=createSlice({
@@ -11,8 +12,11 @@ export const DoctorDetailsSlice=createSlice({
         setDoctorSlotDetails:(state,action)=>{
             state.dotor_slot_details=action.payload
         },
+        setBooking_slots:(state,action)=>{
+            state.booking_slots=action.payload
+        },
     }
 }
 )
-export const {setDoctorSlotDetails} =DoctorDetailsSlice.actions
+export const {setDoctorSlotDetails,setBooking_slots} =DoctorDetailsSlice.actions
 export default DoctorDetailsSlice.reducer

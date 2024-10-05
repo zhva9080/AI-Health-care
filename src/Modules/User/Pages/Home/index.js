@@ -9,9 +9,9 @@ import axios from "axios"
 export const Userhome = () => {
     const navigate = useNavigate()
     const patientState = useSelector((state) => state.patientdetails).patientDetails
-    const [diseases, setdiseases] = useState("")
+    const [diseaseslist, setdiseases] = useState("")
     const add = () => {
-        dispatch(updateDiseases([...patientState.diseases, diseases]))
+        dispatch(updateDiseases([...patientState.diseases, diseaseslist]))
     }
     const dispatch = useDispatch()
     const formdata = new FormData();
@@ -27,6 +27,7 @@ export const Userhome = () => {
         formdata.append("duration", patientState.duration)
         formdata.append("existing_diseases", patientState.existing_diseases)
         // navigate("/user/view")
+       
         axios.post(`http://agaram.academy/api/action.php?request=${patientState.request}`, formdata).then((res) => {
             // console.log(res)
             dispatch(setPatient(res.data.data))
@@ -39,7 +40,7 @@ export const Userhome = () => {
             }
         })
         console.log(diseasesList)
-        dispatch(setPatient({ ...patientState, diseases: [...diseasesList] }))
+        dispatch(updateDiseases([...patientState.diseases, diseasesList]))
     }
     return (<>
         <div className="add-product sidebar-collapse">

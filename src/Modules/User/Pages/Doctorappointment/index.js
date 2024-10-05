@@ -7,21 +7,29 @@ import { useEffect } from "react"
 import { Link, Navigate, useNavigate } from "react-router-dom"
 import { setPatient } from "../../slices/PatientSlice"
 import { setDoctorSlotDetails } from "../../slices/bookingSlice"
+import { setDoctorList } from "../../slices/Doctorlistslice"
 export const Doctorapp = () => {
     const patientState = useSelector((state) => state.patientdetails).patientDetails
     
     console.log(patientState)
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const [doctorlist, setDoctorlist] = useState([])
+    const doctorlist=useSelector((state)=>state.DoctorList).doctorlist
     const [searchdoctor, setSearch] = useState(doctorlist)
     const [searchinput, setsearchinput] = useState({ city: "", specialist: "" })
     const display = () => {
-        axios.get("http://agaram.academy/api/action.php?request=ai_health_getalldoctorsdetails").then((res) => {
-            setDoctorlist(res.data.data)
-            setSearch(res.data.data)
+        if(doctorlist==""){
+            axios.get("http://agaram.academy/api/action.php?request=ai_health_getalldoctorsdetails").then((res) => {
+                dispatch(setDoctorList((res.data.data)))
+                setSearch(res.data.data)
+            })
+        }
+        // else{
+                
+        // }
+          
             // console.log(res.data.data)
-        })
+       
     }
     useEffect(() => {
         display()
