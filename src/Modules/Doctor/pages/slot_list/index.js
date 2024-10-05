@@ -12,12 +12,11 @@ export const Slot_List = () => {
 
 
 
-    const get_slot_state = useSelector((state) => state.doctor_slot_state).doctorSlotSlice
+    // const get_slot_state = useSelector((state) => state.doctor_slot_state).doctorSlotSlice
+
     const navigate = useNavigate()
 
     const [doctor_booked_all_slots, get_doctor_booked_slots] = useState({})
-
-    // clinic_details and consultingFee starts 
 
     const [clinic_details, setClinicDetails] = useState([])
     let consultingFee = doctor_booked_all_slots.consulting_fee
@@ -46,9 +45,9 @@ export const Slot_List = () => {
                 <div className="main">
                     <div className="section ">
                         <div className="container">
-                            <div className="media-footer">
+                            {/* <div className="media-footer">
                                 <button href="#" className="btn btn-info pull-right" type="button">Show All</button>
-                            </div>
+                            </div> */}
                             <h4 className="title">
                                 {/* <small><input type="date" id="date"></input>
                                 </small> */}
@@ -73,9 +72,8 @@ export const Slot_List = () => {
                                                         <p className="card-description">
                                                             {e.clinic_timing}
                                                         </p>
-                                        
+
                                                         <h5>{consultingFee}</h5>
-                                                        <Link to="/doctor/update-slot/?id=${i}"><button type="button" className="btn btn-danger" >Edit</button></Link>
                                                         {/* <button type="button" className="btn btn-danger btn-just-icon" onClick={deleteSlot()}><i className="nc-icon nc-simple-remove" aria-hidden="true"></i></button> */}
                                                     </div>
                                                 </div>
@@ -101,6 +99,9 @@ export const Slot_List = () => {
                                         </div>
                                     </div>
                                 </div> */}
+                            </div>
+                            <div style={{width:"113px"}} className="mx-auto mt-4">
+                                <Link to="/doctor/update-slot"><button type="button" className="btn btn-success" >Edit Slots</button></Link>
                             </div>
                         </div>
                     </div>

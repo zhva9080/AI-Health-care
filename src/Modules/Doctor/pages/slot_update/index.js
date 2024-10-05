@@ -146,6 +146,7 @@ export const Update_Doctor_Slot = () => {
                                     <option value="10am to 1pm">10am to 1pm</option>
                                     <option value="2pm to 4pm">2pm to 4pm</option>
                                     <option value="5pm to 7pm">5pm to 7pm</option>
+                                    <option value="Holiday">Holiday</option>
                                 </select>
                                 {/* <div className="form-group">
                                         <select name="huge" className="selectpicker" data-style="btn btn-outline-default btn-block"
@@ -223,7 +224,7 @@ export const Update_Doctor_Slot = () => {
                                                                 <h6>{getList.consulting_fee}</h6>
                                                             </td>
                                                             <td className="td-number text-center">
-                                                                <button className="btn btn-outline-danger" type="button" onClick={() => slotDelete(index)}>Delete</button>
+                                                                <button className="btn btn-outline-danger" type="button" onClick={() => slotDelete(index)}>Edit</button>
                                                             </td>
                                                         </tr>
                                                     )

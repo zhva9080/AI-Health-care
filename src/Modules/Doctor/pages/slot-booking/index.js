@@ -144,6 +144,8 @@ export const DoctorSlot = () => {
                                     <option value="10am to 1pm">10am to 1pm</option>
                                     <option value="2pm to 4pm">2pm to 4pm</option>
                                     <option value="5pm to 7pm">5pm to 7pm</option>
+                                    <option value="Holiday">Holiday</option>
+
                                 </select>
                                 {/* <div className="form-group">
                                         <select name="huge" className="selectpicker" data-style="btn btn-outline-default btn-block"
