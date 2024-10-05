@@ -3,7 +3,7 @@ import { Footer } from "../../Component/Footer"
 import { Header } from "../../Component/Header"
 import { useSelector, useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
-import { set_slot_data } from "../../slices/slotSlice"
+import { set_slot_data, get_slot_data } from "../../slices/slotSlice"
 import axios from "axios"
 
 export const Update_Doctor_Slot = () => {
@@ -17,8 +17,18 @@ export const Update_Doctor_Slot = () => {
     const doctorLoginSubmit = useSelector((state) => state.doctor_login_state).doctorLogin
 
 
+
     const set_dispatch = useDispatch()
     const navigate = useNavigate()
+
+
+    useEffect(() => {
+        axios.get(`http://agaram.academy/api/action.php?request=ai_health_get_slot_booking&doctor_id=${doctorLoginSubmit.data.id}`).then((doctor_booked_slot_all) => {
+            set_dispatch(get_slot_data(doctor_booked_slot_all.data.data))
+            // setClinicDetails(JSON.parse(doctor_booked_slot_all.data.data.clinic_details))
+        })
+    }, []
+    )
 
     // add slot local state starts 
 

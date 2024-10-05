@@ -84,7 +84,7 @@ export const DoctorSlot = () => {
                 return getListvalues
             }
         })
-        setSlotList(data)
+        addList(data)
 
     }
 
