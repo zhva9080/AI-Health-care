@@ -9,7 +9,7 @@ export const UserRegister = () => {
   // console.log(userStatevalue)
   const navigate=useNavigate()
   const register = () => {
-    navigate("/")
+    navigate("/user/login")
     const formdata = new FormData();
     formdata.append("request", userStatevalue.request)
     formdata.append("name", userStatevalue.name)
@@ -112,7 +112,7 @@ export const UserRegister = () => {
                     <button className="btn btn-block btn-round" onClick={() => register()}>Register</button>
                   </div>
                   <div className="login">
-                    <p>Already have an account? <Link to="/">Log in</Link>.</p>
+                    <p>Already have an account? <Link to="/user/login">Log in</Link>.</p>
                   </div>
                 </div>
               </div>
