@@ -15,7 +15,8 @@ export const Userhome = () => {
     }
     const dispatch = useDispatch()
     const formdata = new FormData();
-    const selftreatment = () => {     
+    const selftreatment = () => {  
+        navigate("/user/self")   
     }
     const doctorappointment=()=>{
         formdata.append("request", patientState.request)
@@ -99,7 +100,17 @@ export const Userhome = () => {
                                                                 <button type="submit" class="btn btn-primary btn-just-icon btn-round"><i className="fa fa-plus" aria-hidden="true" onClick={add}></i></button>
                                                             </div>
 
-                                                            {patientState.diseases.map((e,i) =>
+                                                            {patientState==""? <div className="row my-2">
+                                                                    <div className="col-1"> <button type="button" data-toggle="tooltip" data-placement="top" title data-original-title="Remove" class="btn btn-danger btn-link btn-sm">
+                                                                        <i className="fa fa-times" ></i>
+                                                                    </button>
+                                                                    
+                                                                    </div>
+                                                                    <div className="col-5 my-2"></div>
+                                                                    
+                                                                                                                                   
+                                                                </div>:
+                                                            patientState.diseases.map((e,i) =>
                                                                 <div className="row my-2">
                                                                     <div className="col-1"> <button type="button" data-toggle="tooltip" data-placement="top" title data-original-title="Remove" class="btn btn-danger btn-link btn-sm" onClick={()=>removeItem(i)}>
                                                                         <i className="fa fa-times" ></i>

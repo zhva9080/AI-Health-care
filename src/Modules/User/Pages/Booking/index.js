@@ -13,7 +13,7 @@ export const UserBooking = () => {
     const BookingState = useSelector((state) => state.patientdetails).bookingDetails
     const DoctorSlotDetails = useSelector((state) => state.user_doctor_slot).dotor_slot_details
     const booked_slots = useSelector((state) => state.user_doctor_slot).booking_slots
-    const paymentHistoryState=useSelector((state)=>state.userhistory).paymentHistory
+    const paymentHistoryState = useSelector((state) => state.userhistory).paymentHistory
     console.log(booked_slots)
     const dispatch = useDispatch()
 
@@ -49,6 +49,10 @@ export const UserBooking = () => {
     )
     const [isClicked, setisClicked] = useState(true)
     const [newDoctorSlotDetails, setnewDoctorSlotDetails] = useState([])
+    let newSlots = newDoctorSlotDetails.filter((e) => {
+        return selectedDay == e.clinic_day
+    })
+
     console.log(newDoctorSlotDetails)
     const paynow = () => {
         setnewDoctorSlotDetails(DoctorSlotDetails.filter((e) => { return e.clinic_day != selectedDay && e.clinic_timing != booked_slots.booking_time }))
@@ -62,7 +66,7 @@ export const UserBooking = () => {
         axios.post(`http://agaram.academy/api/action.php?request=ai_health_create_doctor_appointment`, formdata).then((res) => {
             // console.log(res) 
             dispatch(setBooking_slots(res.data.data))
-            dispatch(setpaymentHistory([...paymentHistoryState,res.data.data]))
+            dispatch(setpaymentHistory([...paymentHistoryState, res.data.data]))
         })
     }
     return (<>
@@ -90,17 +94,21 @@ export const UserBooking = () => {
                         </div>
                         <div>
                             <div className="form-control border-input">Time slot</div>
-                            <div className="row">
-                                {doctor.map((e) =>
-                                    <button className="col-5 form-control  my-4 mx-3" value={e.clinic_timing} onClick={(e) => {
+                            <div className="row">{isClicked ? doctor.map((e) =>
+                                <button className="col-5 form-control btn-success my-4 mx-3" value={e.clinic_timing} onClick={(e) => {
+                                    dispatch(setBooking({ ...BookingState, booking_time: e.target.value }))
+                                }}>{e.clinic_timing}</button>)
+                                : newSlots.map((e) =>
+                                    <button className="col-5 form-control btn-success my-4 mx-3" value={e.clinic_timing} onClick={(e) => {
                                         dispatch(setBooking({ ...BookingState, booking_time: e.target.value }))
                                     }}>{e.clinic_timing}</button>)
-                                }
+                            }
+
                                 {/* 
                                 <button className="col-5 form-control btn btn-success my-4 mx-3" value="5pm-7pm" onClick={(e) => dispatch(setBooking({ ...BookingState, slot: e.target.value }))}>5pm-7pm</button> */}
                             </div>
                             <div>
-                                <div><button className="btn btn-danger" onClick={() => paynow()}>Pay now</button></div>
+                                <div><button className="btn btn-danger" onClick={() => { paynow(); setisClicked(false) }}>Pay now</button></div>
                             </div>
                         </div>
                     </div>

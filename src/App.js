@@ -24,7 +24,7 @@ import { UserBooking } from "./Modules/User/Pages/Booking";
 import { PaymentHistory } from "./Modules/User/Pages/UserHistory/bookingHistory";
 const router = createBrowserRouter([
   {
-    path: "/user/login",
+    path: "/",
     element: <div><Userlogin/></div>,
   },
   {

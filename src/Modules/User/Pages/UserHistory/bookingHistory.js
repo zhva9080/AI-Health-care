@@ -56,9 +56,9 @@ export const PaymentHistory = () => {
                                             <td className="td-price text-center">
                                                 <h6>{e.booking_date}</h6>
                                             </td>
-                                            <td className="td-number td-quantity text-center">
+                                            {/* <td className="td-number td-quantity text-center">
                                                 <button type="button" className="btn btn-outline-info btn-round"onClick={()=>navigate(`/user/viewdetails/${i}`)}>View</button>
-                                            </td>
+                                            </td> */}
                                         </tr> 
                                         
                                         )}

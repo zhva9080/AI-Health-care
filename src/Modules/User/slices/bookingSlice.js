@@ -2,7 +2,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 const initialState={
     dotor_slot_details:[],
-    booking_slots:{name:"retheesha"}
+    booking_slots:{}
 }        
 
 export const DoctorDetailsSlice=createSlice({
