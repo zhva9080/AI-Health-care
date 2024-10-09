@@ -140,7 +140,7 @@ export const Adminhomepage = () => {
                                         </div>
                                     </div>
                                     <div className="col-md-2">
-                                        <button type="button" className="btn btn-info btn-block" onClick={() => Search(doctorsearch)} ><i className="nc-icon nc-zoom-split"
+                                        <button type="button" className="btn btn-block" style={{backgroundColor:"#5F9EA0"}} onClick={() => Search(doctorsearch)} ><i className="nc-icon nc-zoom-split"
                                         ></i> &nbsp;
                                             Search</button>
                                     </div>
@@ -157,7 +157,7 @@ export const Adminhomepage = () => {
                         <div className="col-md-15 ml-auto mr-auto">
                             <div className="table-responsive">
                                 <table className="table">
-                                    <thead className="table-info">
+                                    <thead className="table" style={{backgroundColor:"#5F9EA0"}}>
                                         <tr>
                                             <th className="text-center"><strong>Sl.No</strong></th>
                                             <th className="text-center"><strong>Doctor's Name</strong></th>

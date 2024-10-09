@@ -46,7 +46,7 @@ export const Adminusers = () => {
                         <div className="col-md-15 ml-auto mr-auto">
                             <div className="table-responsive">
                                 <table className="table">
-                                    <thead className="table-secondary">
+                                    <thead className="table"  style={{backgroundColor:"#5F9EA0"}}>
                                         <tr>
                                             <th className="text-center" ><b>Sl.No</b></th>
                                             <th className="text-center" ><b>Name</b></th>

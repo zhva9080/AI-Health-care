@@ -27,15 +27,15 @@ export const Adminlogin = () => {
         formData.append("password", loginvalue.password)
 
         axios.post("http://agaram.academy/api/action.php?request=ai_health_admin_login", formData).then((log) => {
-            let status=log.data.status
+            let status = log.data.status
 
             if (status == "success") {
-                alert("Successfully login")
+                // alert("Successfully login")
                 dispatch(login(log.data.data))
                 navigate("/admin/homepage")
-            
+
             }
-            
+
             else {
                 alert("login failed")
             }
@@ -57,16 +57,18 @@ export const Adminlogin = () => {
                 <nav className="navbar navbar-expand-lg bg-white fixed-top nav-down navbar-transparent" color-on-scroll="500">
                     <div className="container">
                         <div className="navbar-translate">
-                            <a className="navbar-brand" title="AI-Health-Care" data-placement="bottom" target="_blank">
+                            <img className="logo" style={{ width: "50%" }} src="../../assets/img/sections/admin/AIH_Logo_CP.png" />
+
+                            {/* <a className="navbar-brand" title="AI-Health-Care" data-placement="bottom" target="_blank">
                                 <i className="fa fa-heartbeat"></i> AI-Health-Care
-                            </a>
+                            </a> */}
                             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                                 <span className="navbar-toggler-bar bar1"></span>
                                 <span className="navbar-toggler-bar bar2"></span>
                                 <span className="navbar-toggler-bar bar3"></span>
                             </button>
                         </div>
-                       
+
                     </div>
                 </nav>
 

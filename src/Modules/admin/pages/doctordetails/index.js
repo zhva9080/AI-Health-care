@@ -38,7 +38,7 @@ export const Admindoctordetails = () => {
                 {view.map((eachh) => <div>
 
                     <div className="typography-line">
-                        <h1 className="text-info"> {eachh.name} <i className="fa fa-stethoscope "></i>
+                        <h1 className="text-primary"> {eachh.name} <i className="fa fa-stethoscope "></i>
                         </h1>
                     </div>
                     <br />
