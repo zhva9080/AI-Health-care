@@ -57,7 +57,7 @@ export const Adminlogin = () => {
                 <nav className="navbar navbar-expand-lg bg-white fixed-top nav-down navbar-transparent" color-on-scroll="500">
                     <div className="container">
                         <div className="navbar-translate">
-                            <img className="logo" style={{ width: "50%" }} src="../../assets/img/sections/admin/AIH_Logo_CP.png" />
+                            <img className="logo" style={{ width: "70%" }} src="../../assets/img/sections/admin/AIH_Logo_CP.png" />
 
                             {/* <a className="navbar-brand" title="AI-Health-Care" data-placement="bottom" target="_blank">
                                 <i className="fa fa-heartbeat"></i> AI-Health-Care

@@ -108,56 +108,77 @@ export const Adminhomepage = () => {
 
                 <Header />
 
-                <div className="col-md-11 ml-auto mr-auto my-5">
-                    <div className="card card-raised card-form-horizontal no-transition">
-                        <div className="card-body">
-                            <form method="" action="">
-                                <div className="row">
-                                    <div className="col-md-5">
-                                        <div className="form-group">
-                                            <input type="text" placeholder="Doctor name" className="form-control"
 
-                                                onKeyUp=
-                                                {(e) => setdoctorsearch({
-                                                    ...doctorsearch,
-                                                    name: e.target.value
-                                                })}
 
-                                            />
+
+
+                <div class="page-header" style={{ backgroundImage: "url('../../assets/img/sections/pexels-tima-miroshnichenko-5452301.jpg" }}>
+                    <div class="filter"></div>
+                    <div class="content-center">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-8 ml-auto mr-auto text-center">
+                                    <h1 class="title"> Find Registered Doctor's</h1>
+
+                                    <br />
+                                </div>
+
+                                <div className="col-md-12 ml-auto mr-auto my-12">
+                                    <div className="card card-raised card-form-horizontal no-transition">
+                                        <div className="card-body">
+                                            <form method="" action="">
+                                                <div className="row">
+                                                    <div className="col-md-5">
+                                                        <div className="form-group">
+                                                            <input type="text" placeholder="Doctor name" className="form-control"
+
+                                                                onKeyUp=
+                                                                {(e) => setdoctorsearch({
+                                                                    ...doctorsearch,
+                                                                    name: e.target.value
+                                                                })}
+
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-md-5">
+                                                        <div className="form-group">
+                                                            <input type="text" placeholder="City" className="form-control"
+
+                                                                onKeyUp=
+                                                                {(e) => setdoctorsearch({
+                                                                    ...doctorsearch,
+                                                                    city: e.target.value
+                                                                })}
+
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-md-2">
+                                                        <button type="button" className="btn btn-block btn-secondary" onClick={() => Search(doctorsearch)} ><i className="nc-icon nc-zoom-split"
+                                                        ></i> &nbsp;
+                                                            Search</button>
+                                                    </div>
+                                                </div>
+                                            </form>
                                         </div>
-                                    </div>
-                                    <div className="col-md-5">
-                                        <div className="form-group">
-                                            <input type="text" placeholder="City" className="form-control"
-
-                                                onKeyUp=
-                                                {(e) => setdoctorsearch({
-                                                    ...doctorsearch,
-                                                    city: e.target.value
-                                                })}
-
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="col-md-2">
-                                        <button type="button" className="btn btn-block" style={{backgroundColor:"#5F9EA0"}} onClick={() => Search(doctorsearch)} ><i className="nc-icon nc-zoom-split"
-                                        ></i> &nbsp;
-                                            Search</button>
                                     </div>
                                 </div>
-                            </form>
+
+                            </div>
                         </div>
                     </div>
                 </div>
 
+
                 <div className="main">
                     <div className="section ">
-                        <h2 className="text-center title"> Registered Doctors</h2>
+                        <h2 className="text-center title">All Registered Doctors</h2>
 
                         <div className="col-md-15 ml-auto mr-auto">
                             <div className="table-responsive">
                                 <table className="table">
-                                    <thead className="table" style={{backgroundColor:"#5F9EA0"}}>
+                                    <thead className="table-secondary" >
                                         <tr>
                                             <th className="text-center"><strong>Sl.No</strong></th>
                                             <th className="text-center"><strong>Doctor's Name</strong></th>
@@ -199,7 +220,7 @@ export const Adminhomepage = () => {
                                                     }
                                                 </td>
                                                 <td className=" text-center">
-                                                    {eachh.status == "approved"?
+                                                    {eachh.status == "approved" ?
                                                         <button type="button" className="btn btn-danger btn-link btn-lg" data-toggle="modal" data-target="#smallNoticeModal" onClick={() => deletedoctor(eachh.id)}>delete</button> :
                                                         <button type="button" className="btn btn-success btn-link btn-lg" onClick={() => approvedoctor(eachh)} >approve</button>
 

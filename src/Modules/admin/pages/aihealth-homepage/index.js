@@ -10,7 +10,7 @@ export const Homepage = () => {
       <nav class="navbar navbar-expand-lg fixed-top nav-down navbar-transparent" color-on-scroll="500">
         <div class="container">
           <div class="navbar-translate">
-          <img className="logo" style={{width:"50%"}} src="../../assets/img/sections/admin/AIH_Logo_CP.png"/>
+            <img className="logo" style={{ width: "70%" }} src="../../assets/img/sections/admin/AIH_Logo_CP.png" />
 
             {/* <a class="navbar-brand" rel="tooltip" title="AI-Health Care" data-placement="bottom" target="_blank">
               AI-Health Care 
@@ -39,8 +39,81 @@ export const Homepage = () => {
 
 
 
+      <div class="blog-2 section section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-10 ml-auto mr-auto">
+    
+            <br />
+            <div class="row">
+              <div class="col-md-4">
+                <div class="card card-blog">
+                  <div class="card-image">
+                  <br/>
+                    <a href="javascript:;">
+                      <img class="img img-raised" src="./assets/img/sections/istockphoto-1226390157-612x612.jpg"/>
+                    </a>
+                  </div>
+                  <br/>
+                  <br/>
+                  <div class="card-body">
+                    <h6 class="card-title text-info">
+                    <i class="fa fa-medkit mr-1" aria-hidden="true"></i>
+                    Prescriped Medicines</h6>
+                    <p class="card-description">
+                    Our doctors providing real-time consultations and personalized prescriptions during live sessions. <br />
+                    </p>
+                
+            
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card card-blog">
+                  <div class="card-image">
+                    <a href="javascript:;">
+                      <img class="img img-raised" src="./assets/img/sections/online-doctor-consultation-the-patient-is-at-a-remote-appointment-with-a-therapist-a-woman.jpg" />
+                    </a>
+                  </div>
+                  <div class="card-body">
+                    <h6 class="card-title text-success">
+                    <i class="fa fa-video-camera mr-1" aria-hidden="true"></i>
+                      Instant video consultation
+                    </h6>
+                    <p class="card-description">
+                      Connects you to a doctor,direct from your home.
+                      <br />
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card card-blog">
+                  <div class="card-image">
+                    <a href="javascript:;">
+                      <img class="img img-raised" src="./assets/img/sections/istockphoto-1408909553-612x612.jpg" />
+                    </a>
+                  </div>
+                  <div class="card-body">
+                    <h6 class="card-title text-danger">
+                    <i class="fa fa-user-md mr-1" aria-hidden="true"></i>
+                    Finding a good doctor
+                    </h6>
+          
+                    <p class="card-description">
+                    we are proud to provide access to some of the best doctors in the field.Trust us to connect you with the right doctor for your specific condition.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-      <div class="pricing-5 section">
+
+      <div class="pricing-5 section-gray">
         <div class="container">
           <div class="row">
             <div class="col-md-4">
@@ -133,7 +206,7 @@ export const Homepage = () => {
 
 
 
-      <div class="project-4 section w-100 ml-0 section-dark " style={{backgroundColor:"#17B169"}}>
+      <div class="project-4 section w-100 ml-0 section-dark " style={{ backgroundColor: "#17B169" }}>
         <div class="container">
           <div class="row">
             <div class="col-md-8 ml-auto mr-auto text-center">
@@ -157,7 +230,7 @@ export const Homepage = () => {
                   <a href="javascript:;">
                     <h3 class="card-title">Qualified team of certified doctors</h3>
                   </a>
-                  <br/>
+                  <br />
                   <b class="card-description">you're in expert hands. Our team of certified doctors is dedicated to providing you with the highest quality healthcare services. Each one of our doctors has undergone rigorous training and accreditation to ensure you receive the best care possible.</b>
                   {/* <div class="card-footer">
                     <a href="javascript:;" class="btn btn-link btn-neutral">
@@ -187,7 +260,7 @@ export const Homepage = () => {
                   <a href="javascript:;">
                     <h3 class="card-title"> Patients health and well-being</h3>
                   </a>
-                  <br/>
+                  <br />
                   <b class="card-description">Our dedicated doctors are committed to providing comprehensive care, from accurate prescriptions to attentive patient management. Trust in our expertise to guide you through every step of your health journey. We ensure that each prescription is tailored to your needs, and we offer compassionate care and quality medications to support your well-being.</b>
                   {/* <div class="card-footer">
                     <a href="javascript:;" class="btn btn-link btn-neutral">
@@ -229,7 +302,7 @@ export const Homepage = () => {
                   <a href="javascript:;">
                     <h3 class="card-title">The need of a nutrition Foods </h3>
                   </a>
-                  <br/>
+                  <br />
                   <b class="card-description">Experience the future of nutrition with our AI-generated meal plans. Tailored to your specific health needs and conditions, our advanced technology ensures that you get the optimal balance of nutrients to support your wellness journey. Whether you're managing an illness or looking to improve your overall health, our AI-driven solutions provide the perfect meals to help you thrive.</b>
                   {/* <div class="card-footer">
                     <a href="javascript:;" class="btn btn-link btn-neutral">
@@ -249,7 +322,7 @@ export const Homepage = () => {
               </div>
             </div>
           </div>
-          
+
 
           <br />
           <hr /><br />
@@ -262,7 +335,7 @@ export const Homepage = () => {
                   <a href="javascript:;">
                     <h3 class="card-title">Ayurvedic & Allopathic Medicines</h3>
                   </a>
-                  <br/>
+                  <br />
                   <b class="card-description">Discover the perfect blend of ancient wisdom and modern science with our AI-generated Ayurvedic and allopathic medicine recommendations. Tailored to address your specific health concerns, our advanced technology ensures you receive the most effective and personalized treatment. Whether you're managing an illness or seeking to enhance your overall well-being,trust our AI-driven solutions to provide the right balance of traditional and contemporary medicine.</b>
                   {/* <div class="card-footer">
                     <a href="javascript:;" class="btn btn-link btn-neutral">
