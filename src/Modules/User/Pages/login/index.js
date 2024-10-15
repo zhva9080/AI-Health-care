@@ -16,7 +16,7 @@ export const Userlogin = () => {
     formdata.append("email", userLoginvalue.email)
     formdata.append("password", userLoginvalue.password)
     if((userLoginvalue.email=="" || userLoginvalue.password=="")){
-      alert("Please fill all fields")
+      alert("Please fill out the required fields")
     }
     else{
       axios.post(`http://agaram.academy/api/action.php?request=${userLoginvalue.request}`, formdata).then((res) => {

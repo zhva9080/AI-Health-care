@@ -38,10 +38,17 @@ export const Userhome = () => {
         formdata.append("existing_diseases", patientState.existing_diseases)
         // navigate("/user/view")
 
-        axios.post(`http://agaram.academy/api/action.php?request=${patientState.request}`, formdata).then((res) => {
-            // console.log(res)
-            dispatch(setPatient(res.data.data))
-        })
+        if(patientState.name=="" || patientState.gender=="" || patientState.age=="" || patientState.duration=="" ){
+            alert("plese fill all fields")
+        }
+        else{
+            axios.post(`http://agaram.academy/api/action.php?request=${patientState.request}`, formdata).then((res) => {
+                // console.log(res)
+                dispatch(setPatient(res.data.data))
+            })
+
+        }
+        
     }
     const removeItem = (index) => {
         let diseasesList = patientState.diseases.filter((each, diseasesIndex) => index != diseasesIndex)

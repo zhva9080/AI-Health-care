@@ -119,7 +119,7 @@ export const UserRegister = () => {
                     <input type="text" className="form-control" placeholder="Email" onKeyUp={(e) => dispatch(register_details({ ...userStatevalue, email: e.target.value }))} required/>
                     <input type="text" className="form-control" placeholder="Contact No" onKeyUp={(e) => dispatch(register_details({ ...userStatevalue, phone: e.target.value }))} required/>
                     <input type="password" className="form-control" placeholder="Create Password" onKeyUp={(e) => dispatch(register_details({ ...userStatevalue, password: e.target.value }))} required/>
-                    <button className="btn btn-block btn-round" type="submit" onClick={() => register()}>Register</button>
+                    <button className="btn btn-block btn-round" type="button" onClick={() => register()}>Register</button>
                   </div>
                   
                   <div className="login">
