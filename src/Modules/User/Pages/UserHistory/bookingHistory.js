@@ -27,7 +27,7 @@ export const PaymentHistory = () => {
     }   
     
     return (<>
-        <div className="add-product sidebar-collapse">
+       
         <Header/>
             <div className="main">
                 <div className="section ">
@@ -71,6 +71,5 @@ export const PaymentHistory = () => {
                 </div>
             </div>
         <Footer/>
-        </div>
     </>)
 }

@@ -27,12 +27,15 @@ export const patientSlice = createSlice({
       updateDiseases:(state,action)=>{
         state.patientDetails.diseases=action.payload
       },
+      setage:(state,action)=>{
+        state.patientDetails.age=action.payload
+      },
       setBooking:(state,action)=>{
         state.bookingDetails=action.payload
       },
     },
   })
   
-  export const {setPatient,setBooking,updateDiseases} = patientSlice.actions
+  export const {setPatient,setBooking,updateDiseases,setage} = patientSlice.actions
 
   export default patientSlice.reducer

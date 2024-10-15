@@ -14,7 +14,7 @@ export const UserBooking = () => {
     const DoctorSlotDetails = useSelector((state) => state.user_doctor_slot).dotor_slot_details
     const booked_slots = useSelector((state) => state.user_doctor_slot).booking_slots
     const paymentHistoryState = useSelector((state) => state.userhistory).paymentHistory
-    console.log(booked_slots)
+    console.log(DoctorSlotDetails)
     const dispatch = useDispatch()
 
 
@@ -71,7 +71,85 @@ export const UserBooking = () => {
     }
     return (<>
         <Header />
-        <div className="container mt-5">
+        <div className="team-5  bg-light" style={{ backgroundImage: "url('../../../../../public/assets/img/sections/doctor_online.jpg')" }}>
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-8 ml-auto mr-auto text-center">
+                        <h2 className="text-dark"><b>Book Now!</b></h2>
+                        <h5 className="description text-dark mt-2">Skip the travel!
+                            Take Online Doctor Consultation</h5>
+                    </div>
+
+                </div>
+                <div className="row">
+
+                    <div className="col-md-9">
+                        <div className="card card-profile card-plain">
+                            <div className="row">
+                                <div className="col-md-5">
+                                    <div className="card-img-top">
+                                        <a href="javascript:;">
+                                            <img className="img" src="../../assets/img/sections/doctor_online.jpg" />
+                                        </a>
+                                    </div>
+                                </div>
+                                <div className="col-md-5">
+                                    <div className="card-body text-left">
+                                        <div className="row">
+                                            <div className="col-8"><input className="form-control" placeholder="date" type="date" min={mindate} max={maxdate}
+                                            onChange={(e) =>{setSelectedDay(moment(e.target.value).format('dddd'));
+                                                dispatch(setBooking({ ...BookingState, booking_date: e.target.value }))}
+                                            }/></div>
+                                            <div className="text-success col-4 mt-2">{selectedDay}</div>
+                                            <div>{DoctorSlotDetails.consulting_fee}</div>
+                                        </div>
+                                        <div className="row">{isClicked ? doctor.map((e) =>
+                                            <button className="col-5 form-control btn-success my-4 mx-3" value={e.clinic_timing} onClick={(e) => {
+                                                dispatch(setBooking({ ...BookingState, booking_time: e.target.value }))
+                                            }}>{e.clinic_timing}</button>)
+                                            : newSlots.map((e) =>
+                                                <button className="col-5 form-control btn-success my-4 mx-3" value={e.clinic_timing} onClick={(e) => {
+                                                    dispatch(setBooking({ ...BookingState, booking_time: e.target.value }))
+                                                }}>{e.clinic_timing}</button>
+                                            )}</div>
+
+                                        <button type="button" className="btn btn-success btn-round my-3" data-toggle="modal" data-target="#smallNoticeModal" onClick={() => { paynow(); setisClicked(false) }}>
+                                            Pay Now
+                                        </button>
+                                        {/* <button className="btn btn-success my-3" >Pay now</button> */}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-md-3">
+                        <p className="text-dark my-5 "><b>Easily schedule your appointment with us. Just select your doctor, choose a date and time, and provide your information. You’ll receive a confirmation email shortly after. If you have any questions, feel free to contact us!</b></p>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+            <div className="modal fade" id="smallNoticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div className="modal-dialog modal-sm modal-notice">
+                <div className="modal-content">
+                    <div className="modal-header no-border-header">
+                        <button type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div className="modal-body text-center">
+                        <p><i className="fa fa-thumbs-up fa-2x text-success" aria-hidden="true"></i><strong className="mx-2">Booked Successfully</strong></p>
+                        
+                    </div>
+                    <div className="modal-footer">
+                        <button type="button" className="btn btn-link" data-dismiss="modal" aria-hidden="true">Okay</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        
+        {/* <div className="container mt-5">
             <div className="container tim-container mt-5">
                 <div className="row ">
                     <div className="col-md-4 col-sm-6">
@@ -79,15 +157,15 @@ export const UserBooking = () => {
                 </div>
                 <div className="card w-50 mt-5 mx-auto" data-color="purple" data-background="color">
                     <div className="card-body text-center">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <div class="form-group">
-                                        <div class="form-control">{selectedDay}</div>
+                        <div className="row">
+                            <div className="col-md-6">
+                                <div className="form-group">
+                                    <div className="form-group">
+                                        <div className="form-control">{selectedDay}</div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div className="col-md-6">
                                 <input className="form-control" placeholder="date" type="date" min={mindate} max={maxdate}
                                     onChange={(e) => setSelectedDay(moment(e.target.value).format('dddd'))} onClick={(e) => dispatch(setBooking({ ...BookingState, booking_date: e.target.value }))} />
                             </div>
@@ -102,11 +180,11 @@ export const UserBooking = () => {
                                     <button className="col-5 form-control btn-success my-4 mx-3" value={e.clinic_timing} onClick={(e) => {
                                         dispatch(setBooking({ ...BookingState, booking_time: e.target.value }))
                                     }}>{e.clinic_timing}</button>)
-                            }
+                            } */}
 
-                                {/* 
+        {/* 
                                 <button className="col-5 form-control btn btn-success my-4 mx-3" value="5pm-7pm" onClick={(e) => dispatch(setBooking({ ...BookingState, slot: e.target.value }))}>5pm-7pm</button> */}
-                            </div>
+        {/* </div>
                             <div>
                                 <div><button className="btn btn-danger" onClick={() => { paynow(); setisClicked(false) }}>Pay now</button></div>
                             </div>
@@ -114,7 +192,7 @@ export const UserBooking = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </div> */}
     </>)
 
 

@@ -8,29 +8,47 @@ export const UserRegister = () => {
   const dispatch = useDispatch()
   // console.log(userStatevalue)
   const navigate=useNavigate()
+  // const handlesummit=(e)=>{
+  //   e.preventDefault();
+  // }
   const register = () => {
-    navigate("/user/login")
+    
     const formdata = new FormData();
     formdata.append("request", userStatevalue.request)
     formdata.append("name", userStatevalue.name)
     formdata.append("email", userStatevalue.email)
     formdata.append("password", userStatevalue.password)
     formdata.append("phone", userStatevalue.phone)
-    axios.post(`http://agaram.academy/api/action.php?request=${userStatevalue.request}`, formdata).then((res) => {
+    if((userStatevalue.name=="" || userStatevalue.email==""|| userStatevalue.password==""||userStatevalue.phone=="")){
+     alert("Please Fill out the required fields")
+    }
+  
+    else{
+      axios.post(`http://agaram.academy/api/action.php?request=${userStatevalue.request}`, formdata).then((res) => {
 
-      console.log(res)
-    })
-
+        console.log(res)
+        if(res.data.status=="success"){
+          alert("Registration Success")
+          navigate("/")
+        }
+        
+      })
+    }
+    
+    // alert("Registration Success")
+    // 
   }
   return (<>
+   {/* <form onSubmit={handlesummit}> */}
     <div className="register-page full-screen sidebar-collapse">
 
       <nav className="navbar navbar-expand-lg bg-white fixed-top nav-down navbar-transparent" color-on-scroll="500">
         <div className="container">
           <div className="navbar-translate">
-            <Link className="navbar-brand" data-placement="bottom" target="_blank" to={"/user/register"}>
+          <img src="../../assets/img/user/AIH_Logo_Red_CR.png" width={"45%"}/>
+            {/* <Link className="navbar-brand" data-placement="bottom" target="_blank" to={"/user/register"}>
               AI-Health-Care
-            </Link>
+            </Link> */}
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-bar bar1"></span>
               <span className="navbar-toggler-bar bar2"></span>
@@ -94,26 +112,20 @@ export const UserRegister = () => {
               <div className="col-lg-6 col-md-6 col-sm-5 col-12 mr-auto">
                 <div className="card card-register">
                   <h3 className="card-title text-center">User Registration</h3>
-                  {/* <div className="social">
-                    <button href="#paper-kit" className="btn btn-just-icon btn-facebook"><i className="fa fa-facebook"></i></button>
-                    <button href="#paper-kit" className="btn btn-just-icon btn-google"><i className="fa fa-google"></i></button>
-                    <button href="#paper-kit" className="btn btn-just-icon btn-twitter"><i className="fa fa-twitter"></i></button>
-                  </div> */}
-                  <div className="division">
-                    <div className="line l"></div>
-                    <span>or</span>
-                    <div className="line r"></div>
+                
+                  
+                  <div className="register-form mt-5">
+                    <input type="text" className="form-control" placeholder="Name" onKeyUp={(e) => dispatch(register_details({ ...userStatevalue, name: e.target.value }))} required/>
+                    <input type="text" className="form-control" placeholder="Email" onKeyUp={(e) => dispatch(register_details({ ...userStatevalue, email: e.target.value }))} required/>
+                    <input type="text" className="form-control" placeholder="Contact No" onKeyUp={(e) => dispatch(register_details({ ...userStatevalue, phone: e.target.value }))} required/>
+                    <input type="password" className="form-control" placeholder="Create Password" onKeyUp={(e) => dispatch(register_details({ ...userStatevalue, password: e.target.value }))} required/>
+                    <button className="btn btn-block btn-round" type="submit" onClick={() => register()}>Register</button>
                   </div>
-                  <div className="register-form">
-                    <input type="text" className="form-control" placeholder="Name" onKeyUp={(e) => dispatch(register_details({ ...userStatevalue, name: e.target.value }))} />
-                    <input type="text" className="form-control" placeholder="Email" onKeyUp={(e) => dispatch(register_details({ ...userStatevalue, email: e.target.value }))} />
-                    <input type="text" className="form-control" placeholder="Contact No" onKeyUp={(e) => dispatch(register_details({ ...userStatevalue, phone: e.target.value }))} />
-                    <input type="password" className="form-control" placeholder="Create Password" onKeyUp={(e) => dispatch(register_details({ ...userStatevalue, password: e.target.value }))} />
-                    <button className="btn btn-block btn-round" onClick={() => register()}>Register</button>
-                  </div>
+                  
                   <div className="login">
-                    <p>Already have an account? <Link to="/user/login">Log in</Link>.</p>
+                    <p>Already have an account? <Link to="/"><b>Log in</b></Link>.</p>
                   </div>
+                  
                 </div>
               </div>
             </div>
@@ -123,6 +135,6 @@ export const UserRegister = () => {
       </div>
 
     </div>
-
+{/* </form> */}
   </>)
 }
