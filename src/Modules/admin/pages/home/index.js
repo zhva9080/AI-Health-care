@@ -119,7 +119,6 @@ export const Adminhomepage = () => {
                             <div class="row">
                                 <div class="col-md-8 ml-auto mr-auto text-center">
                                     <h1 class="title"> Find Registered Doctor's</h1>
-
                                     <br />
                                 </div>
 

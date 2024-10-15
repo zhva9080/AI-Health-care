@@ -9,16 +9,19 @@ import { useState } from 'react'
 export const Adminlogin = () => {
 
 
+    // const [isSubmitted, setIsSubmitted] = useState(false);
 
     let loginvalue = useSelector((state) => state.login).adminlogin
 
     const dispatch = useDispatch()
 
-
     const navigate = useNavigate();
 
 
     const Loginfunction = () => {
+
+        // e.preventDefault();
+        // setIsSubmitted(true)
 
 
         let formData = new FormData();
@@ -26,23 +29,28 @@ export const Adminlogin = () => {
         formData.append("email", loginvalue.email)
         formData.append("password", loginvalue.password)
 
-        axios.post("http://agaram.academy/api/action.php?request=ai_health_admin_login", formData).then((log) => {
-            let status = log.data.status
 
-            if (status == "success") {
-                // alert("Successfully login")
-                dispatch(login(log.data.data))
-                navigate("/admin/homepage")
+        if ((loginvalue.email == "" || loginvalue.password == "")) {
+            alert("Please Fill the Required Details")
+        }
+        else {
+            axios.post("http://agaram.academy/api/action.php?request=ai_health_admin_login", formData).then((log) => {
+                let status = log.data.status
 
-            }
+                if (status == "success") {
+                    alert("Login successfully")
+                    dispatch(login(log.data.data))
+                    navigate("/admin/homepage")
 
-            else {
-                alert("login failed")
-            }
+                }
+
+                else {
+                    alert("login failed")
+                }
 
 
-        })
-
+            })
+        }
     }
 
 
@@ -108,7 +116,7 @@ export const Adminlogin = () => {
                                             <button className="btn btn-info btn-block btn-round" type="button" onClick={Loginfunction}>Login</button>
                                         </form>
                                         <div className="forgot">
-                                            <a href="#paper-kit" className="btn btn-link">Forgot password?</a>
+                                            <a href="" className="btn btn-link">Forgot password?</a>
                                         </div>
                                     </div>
                                 </div>

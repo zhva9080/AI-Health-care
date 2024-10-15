@@ -117,7 +117,7 @@ export const Homepage = () => {
         <div class="container">
           <div class="row">
             <div class="col-md-4">
-              <h2 class="title">Register & Login for getting our features</h2>
+              <h2 class="title">Register & Login for getting connect with us</h2>
               <div class="choose-plan">
                 <ul class="nav nav-pills nav-pills-success" role="tablist">
                   <li class="nav-item">
