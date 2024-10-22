@@ -42,8 +42,9 @@ export const Userhome = () => {
             alert("plese fill all fields")
         }
         else{
-            axios.post(`http://agaram.academy/api/action.php?request=${patientState.request}`, formdata).then((res) => {
-                // console.log(res)
+            // axios.post(`http://agaram.academy/api/action.php?request=${patientState.request}`, formdata).then((res) => {
+                axios.post(`https://retheesha.pythonanywhere.com/createpatientdetails`, formdata).then((res) => {    
+                console.log(res)
                 dispatch(setPatient(res.data.data))
             })
 
@@ -176,7 +177,7 @@ export const Userhome = () => {
                                 <button className="btn btn-outline-danger btn-block btn-round" type="button" onClick={selftreatment}>Self Treatment</button>
                             </div>
                             <div className="col-md-6 col-sm-4">
-                                <Link to="/user/doctorapp"><button className="btn btn-outline-primary btn-block btn-round" type="button" onClick={() => doctorappointment()}>Doctor Appointment</button></Link>
+                                <button className="btn btn-outline-primary btn-block btn-round" type="button" onClick={() => doctorappointment()}>Doctor Appointment</button>
                             </div>
                         </div>
                     </div>

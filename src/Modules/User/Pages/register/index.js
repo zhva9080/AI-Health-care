@@ -24,12 +24,13 @@ export const UserRegister = () => {
     }
   
     else{
-      axios.post(`http://agaram.academy/api/action.php?request=${userStatevalue.request}`, formdata).then((res) => {
+      // axios.post(`http://agaram.academy/api/action.php?request=${userStatevalue.request}`, formdata).then((res) => {
+      axios.post(`https://retheesha.pythonanywhere.com/userregister`, formdata).then((res) => {
 
         console.log(res)
         if(res.data.status=="success"){
           alert("Registration Success")
-          navigate("/")
+          // navigate("/")
         }
         
       })

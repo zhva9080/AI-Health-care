@@ -19,7 +19,8 @@ export const Userlogin = () => {
       alert("Please fill out the required fields")
     }
     else{
-      axios.post(`http://agaram.academy/api/action.php?request=${userLoginvalue.request}`, formdata).then((res) => {
+      // axios.post(`http://agaram.academy/api/action.php?request=${userLoginvalue.request}`, formdata).then((res) => {
+        axios.post(`https://retheesha.pythonanywhere.com/userlogin`, formdata).then((res) => {
         console.log(res)
         if (res.data.status == "success") {
           dispatch(setloginUser(res.data.data))
