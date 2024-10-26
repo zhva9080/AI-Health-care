@@ -24,9 +24,9 @@ export const Adminhomepage = () => {
     // ------ doctor & users details ------
 
     const getdetails = () => {
-        axios.get("http://agaram.academy/api/action.php?request=ai_health_getalldoctorsdetails").then((e) => {
-            setdoctor(e.data.data)
-            setsearch(e.data.data)
+        axios.get("https://retheesha.pythonanywhere.com/getdoctordata").then((e) => {
+            setdoctor(e.data)
+            setsearch(e.data)
         })
 
     }
@@ -85,7 +85,7 @@ export const Adminhomepage = () => {
 
     const deletedoctor = (eachh) => {
 
-        axios.get(`http://agaram.academy/api/action.php?request=ai_health_removedoctor&id=${eachh}`).then((d) => {
+        axios.delete(`https://retheesha.pythonanywhere.com/delete/${eachh}`).then((d) => {
             getdetails()
 
         }
@@ -187,10 +187,11 @@ export const Adminhomepage = () => {
                                                     <h6>{eachh.city}</h6>
                                                 </td>
                                                 <td className=" text-center"><b>{eachh.status}</b>
-                                                        {eachh.status=="approved"?<button type="button" className="btn btn-danger btn-link btn-lg" data-toggle="modal" data-target="#smallNoticeModal" onClick={() => deletedoctor(eachh.id)}>
+                                                <button type="button" className="btn btn-danger btn-link btn-lg" data-toggle="modal" data-target="#smallNoticeModal" onClick={() => deletedoctor(eachh.id)}>delete</button>
+                                                        {/* {eachh.status=="approved"?<button type="button" className="btn btn-danger btn-link btn-lg" data-toggle="modal" data-target="#smallNoticeModal" onClick={() => deletedoctor(eachh.id)}>
                                                         <i className="fa fa-times fa-2x" aria-hidden="true"></i>
-                                                    </button>:<button type="button"  className="btn btn-success btn-link btn-lg" onClick={() => approvedoctor(eachh)} ><i className="fa fa-check fa-2x " aria-hidden="true"></i> 
-                                                    </button>} 
+                                                    </button>:<button type="button"  className="btn btn-success btn-link btn-lg" onClick={() => approvedoctor(eachh)} ><i className="fa fa-check fa-2x " aria-hidden="true"></i>  */}
+                                                    {/* }  */}
                                                 </td>
 
 

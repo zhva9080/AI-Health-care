@@ -20,8 +20,8 @@ export const Adminusers = () => {
 
 
     const getusers = () => {
-        axios.get("http://agaram.academy/api/action.php?request=ai_health_getallusersdetails").then((e) => {
-            setuser(e.data.data)
+        axios.get("https://retheesha.pythonanywhere.com/getuserdata").then((e) => {
+            setuser(e.data)
         })
 
     }

@@ -51,7 +51,8 @@ const [slotList, setSlotList] = useState([])
         slot_data.append("clinic_details", JSON.stringify(getList.clinic_details))
 
 
-        axios.post("http://agaram.academy/api/action.php?request=ai_health_create_doctor_slot", slot_data).then((response) => {
+        // axios.post("http://agaram.academy/api/action.php?request=ai_health_create_doctor_slot", slot_data).then((response) => {
+            axios.post("https://retheesha.pythonanywhere.com/createdoctorslot", slot_data).then((response) => {    
             console.log(response.data)
             alert(response.data)
 

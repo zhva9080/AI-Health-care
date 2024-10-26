@@ -13,6 +13,7 @@ export const Userhome = () => {
     const patientState = useSelector((state) => state.patientdetails).patientDetails
     let ageinput=useSelector((state) => state.patientdetails).patientDetails.age
     console.log(ageinput)
+    console.log(patientState.diseases)
     const [diseaseslist, setdiseases] = useState("")
     // const [birthDate, setBirthDate] = useState('');
     const add = () => {
@@ -36,16 +37,18 @@ export const Userhome = () => {
         formdata.append("diseases", JSON.stringify(patientState.diseases))
         formdata.append("duration", patientState.duration)
         formdata.append("existing_diseases", patientState.existing_diseases)
+        // formdata.append("date", "h")
         // navigate("/user/view")
 
-        if(patientState.name=="" || patientState.gender=="" || patientState.age=="" || patientState.duration=="" ){
+        if(patientState.name=="" || patientState.gender=="" || patientState.duration=="" ){
             alert("plese fill all fields")
         }
         else{
-            // axios.post(`http://agaram.academy/api/action.php?request=${patientState.request}`, formdata).then((res) => {
-                axios.post(`https://retheesha.pythonanywhere.com/createpatientdetails`, formdata).then((res) => {    
+            axios.post(`http://agaram.academy/api/action.php?request=${patientState.request}`, formdata).then((res) => {
+            // axios.post("https://sivaharish.pythonanywhere.com/patientenquiry", formdata).then((res) => {    
                 console.log(res)
-                dispatch(setPatient(res.data.data))
+                dispatch(setPatient(res.data))
+                navigate('/user/doctorapp')
             })
 
         }
@@ -85,7 +88,7 @@ export const Userhome = () => {
                                                             <input class="form-control no-border" type="text" placeholder="KIND OF ILLNESS" onKeyUp={(e) => setdiseases(e.target.value)} />
                                                             <button type="button" className="btn btn-primary" onClick={add}><i className="fa fa-plus " aria-hidden="true" ></i></button>
                                                         </div>
-                                                        {patientState.diseases.map((e, i) =>
+                                                        {/* {patientState.diseases==""?"":patientState.diseases.map((e, i) =>
                                                             <div className="row my-2">
                                                                 <div className="col-2"> 
                                                                     <button type="button" className="btn btn-danger btn-link " onClick={() => removeItem(i)}>
@@ -95,7 +98,8 @@ export const Userhome = () => {
                                                                 </div>
                                                                 <div className="col-5 my-2 remove">{e}</div>
                                                             </div>
-                                                        )}
+                                                        )} */}
+                                                        
 
                                                     </div>
                                                     <div className="form-group my-5 col-4">

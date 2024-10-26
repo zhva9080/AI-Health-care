@@ -22,11 +22,11 @@ export const Doctorapp = () => {
     const [searchinput, setsearchinput] = useState({ city: "", specialist: "" })
     const display = () => {
         if(doctorlist==""){
-        axios.get("http://agaram.academy/api/action.php?request=ai_health_getalldoctorsdetails").then((res) => {
-            dispatch(setDoctorList((res.data.data)))
+        axios.get("https://retheesha.pythonanywhere.com/getdoctordata").then((res) => {
+            dispatch(setDoctorList((res.data)))
             // console.log()
             // dispatch(setSpecialist(res.data.data.map((e)=>JSON.parse(e.specialist))))
-            setSearch(res.data.data)
+            setSearch(res.data)
         })
         }
         // else{
@@ -45,9 +45,10 @@ export const Doctorapp = () => {
     const booknow = (each) => {
         // console.log(each)
 
-        // axios.get(`http://agaram.academy/api/action.php?request=ai_health_get_slot_booking&doctor_id=${each}`).then((res) => {
-        //     console.log(res.data.data)
-        //     dispatch(setDoctorSlotDetails(res.data.data))
+        // // axios.get(`http://agaram.academy/api/action.php?request=ai_health_get_slot_booking&doctor_id=${each}`).then((res) => {
+        // //     // axios.get(`https://retheesha.pythonanywhere.com//doctor_id=${each}`).then((res) => {    
+        // //     console.log(res.data.data)
+        // //     dispatch(setDoctorSlotDetails(res.data.data))
         // })
     }
 

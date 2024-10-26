@@ -36,12 +36,12 @@ export const Doctor_Register = () => {
         formData.append("name",doctorRegisterSubmit.name)
         formData.append("email",doctorRegisterSubmit.email)
         formData.append("password",doctorRegisterSubmit.password)
-        formData.append("doctor_id",doctorRegisterSubmit.doctor_id)
+        formData.append("doctorid",doctorRegisterSubmit.doctor_id)
         formData.append("specialist",JSON.stringify(doctorRegisterSubmit.specialist))
         formData.append("phone",doctorRegisterSubmit.phone)
         formData.append("city",doctorRegisterSubmit.city)
 
-        axios.post("http://agaram.academy/api/action.php?request=ai_health_doctor_register",formData) 
+        axios.post("https://retheesha.pythonanywhere.com/doctorregister",formData) 
 
         navigate("/doctor/login")
         
@@ -113,11 +113,7 @@ export const Doctor_Register = () => {
                                 <div className="col-lg-6 col-md-6 col-sm-5 col-12 mr-auto">
                                     <div className="card card-register">
                                         <h3 className="card-title text-center">Registration Form</h3>
-                                        <div className="social">
-                                            <button to="#paper-kit" className="btn btn-just-icon btn-facebook"><i className="fa fa-facebook"></i></button>
-                                            <button to="#paper-kit" className="btn btn-just-icon btn-google"><i className="fa fa-google"></i></button>
-                                            <button to="#paper-kit" className="btn btn-just-icon btn-twitter"><i className="fa fa-twitter"></i></button>
-                                        </div>
+                                        
                                         <div className="division">
                                             <div className="line l"></div>
                                             <span>or</span>

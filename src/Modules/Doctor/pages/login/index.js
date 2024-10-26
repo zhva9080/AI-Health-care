@@ -18,7 +18,8 @@ export const Doctor_Login = () => {
         formData.append("email",doctorLoginSubmit.email)
         formData.append("password",doctorLoginSubmit.password)
 
-            axios.post("http://agaram.academy/api/action.php?request=ai_health_doctor_login",formData).then((log)=>{
+            // axios.post("http://agaram.academy/api/action.php?request=ai_health_doctor_login",formData).then((log)=>{
+            axios.post("https://retheesha.pythonanywhere.com/doctorlogin",formData).then((log)=>{   
                 let status = log.data.status
 
                 if (status == "success"){

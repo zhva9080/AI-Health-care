@@ -30,7 +30,7 @@ export const Adminlogin = () => {
         formData.append("email", loginvalue.email)
         formData.append("password", loginvalue.password)
 
-        axios.post("http://agaram.academy/api/action.php?request=ai_health_admin_login", formData).then((log) => {
+        axios.post("https://retheesha.pythonanywhere.com/adminlogin", formData).then((log) => {
             let status=log.data.status
 
             if (status == "success") {

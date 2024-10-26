@@ -39,7 +39,8 @@ export const UserBooking = () => {
     const param2 = searchParams.get('enquiry_id')
     // getting doctor slot details
     useEffect(() => {
-        axios.get(`http://agaram.academy/api/action.php?request=ai_health_get_slot_booking&doctor_id=${param1}`).then((res) => {
+        // axios.get(`http://agaram.academy/api/action.php?request=ai_health_get_slot_booking&doctor_id=${param1}`).then((res) => {
+        axios.get(`https://retheesha.pythonanywhere.com/getuniquedoctorslot/${param1}`).then((res) => {
             dispatch(setDoctorSlotDetails(JSON.parse(res.data.data.clinic_details)))
         })
     }, [])
@@ -63,7 +64,7 @@ export const UserBooking = () => {
         formdata.append("booking_time", BookingState.booking_time)
         formdata.append("doctor_id", param1)
         formdata.append("enquiry_id", param2)
-        axios.post(`http://agaram.academy/api/action.php?request=ai_health_create_doctor_appointment`, formdata).then((res) => {
+        axios.post(`https://retheesha.pythonanywhere.com/createdoctorapp`, formdata).then((res) => {
             // console.log(res) 
             dispatch(setBooking_slots(res.data.data))
             dispatch(setpaymentHistory([...paymentHistoryState, res.data.data]))
