@@ -115,30 +115,7 @@ export const Doctorapp = () => {
                                                         
 
                                                     </div>
-                                                    {/* <div className="row">
-                                                        <div className="col-4">
-                                                            <div className="media-footer">
-                                                                <a href="tel:+917896586325" className="btn btn-warning btn-wd">{each.phone}</a>
-                                                            </div>
-                                                            <div className="my-3">
-                                                                <label for=""></label>
-                                                                <button type="button" className="btn btn-info btn-wd">100</button>
-                                                            </div>
-
-                                                            <div className="my-3">
-                                                                <button type="button" className="btn btn-danger btn-round" data-toggle="modal" data-target="#loginModal" onClick={() => {
-                                                                    booknow(each.id)
-                                                                    navigate(`/user/booking?doctorid=${each.id}&enquiry_id=${patientState.id}`)
-                                                                }}>
-                                                                    Book Now
-                                                                </button>
-
-                                                            </div>
-
-
-
-                                                        </div>
-                                                    </div> */}
+                                                   
                                                 </div>
                                             </div>
                                         </div>
@@ -146,99 +123,13 @@ export const Doctorapp = () => {
 
                                 )}
 
-                                {/* {searchdoctor.map((each) =>
-                                    <div className="col-md-6 col-sm-6">
-                                        <div>
-                                            {/* <div className="card" data-background="color" data-color="green" data-radius="none">
-                                            <div className="card-body">
-
-                                                <div className="row">
-                                                    <div className="col-8">
-                                                        <div className="row">
-
-                                                            <div className="col-8">
-                                                                <span>
-                                                                    <h4 className="card-title"><a href="#">{ }</a></h4>
-                                                                </span>
-                                                                <h6 className="card-category">{each.name}</h6>
-                                                                <p className="card-description">{each.address}</p>
-                                                                <p className="card-description my-0">{each.city}</p>
-                                                            </div>
-                                                            <div className="row">
-
-                                                                <ul >
-
-                                                                    <li><h6 className="card-category">{JSON.parse(each.specialist)}</h6></li>
-
-                                                                </ul>
-
-
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                    <div className="col-4">
-                                                        <div className="media-footer">
-                                                            <a href="tel:+917896586325" className="btn btn-warning btn-wd">{each.phone}</a>
-                                                        </div>
-                                                        <div className="my-3">
-                                                            <label for=""></label>
-                                                            <button type="button" className="btn btn-info btn-wd">100</button>
-                                                        </div>
-
-                                                        <div className="my-3">
-                                                            <button type="button" className="btn btn-danger btn-round" data-toggle="modal" data-target="#loginModal" onClick={() => {
-                                                                booknow(each.id)
-                                                                   navigate(`/user/booking?doctorid=${each.id}&enquiry_id=${patientState.id}`) 
-                                                            }}>
-                                                                Book Now
-                                                            </button>
-
-                                                        </div>
-
-
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div> */}
-
-                            </div> */
-                            {/* <div className="modal fade" id="loginModal" tabindex="-1" role="dialog" style={{ display: "none" }} aria-hidden="true">
-                                        <div className="modal-dialog modal-register">
-                                            <div className="modal-content">"none"
-                                                <div className="modal-header no-border-header text-center">
-                                                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-
-                                                </div>
-                                                <div className="modal-body">
-                                                    <div className="form-group">
-                                                        <label>Select Day</label>
-                                                        <input type="text" placeholder="Email" className="form-control" />
-                                                    </div>
-                                                    <div className="form-group">
-                                                        <label>Time slot</label>
-                                                                                                            </div>
-                                                    <button className="btn btn-block btn-round">Pay now</button>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div> */}
-
-                            {/* </div>
-
-                                )} */}
-
-                        </div>
+                            </div>
 
                     </div>
 
                 </div>
             </div>
 
-        {/* </div> */}
+        </div>
     </>)
 }

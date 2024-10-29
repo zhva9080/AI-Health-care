@@ -12,10 +12,10 @@ import { deleteSlot } from "../../slices/removeSlotSlice"
 
 export const Doctor_Home = () => {
 
-    axios.get("http://agaram.academy/api/action.php?request=ai_health_get_all_booked_patients").then((get_all_patients)=>{
-    // axios.get(`https://retheesha.pythonanywhere.com/getuniquedoctorslot/2`).then((get_all_patients)=>{  
-        console.log(get_all_patients)
-    })
+    // axios.get("http://agaram.academy/api/action.php?request=ai_health_get_all_booked_patients").then((get_all_patients)=>{
+    // // axios.get(`https://retheesha.pythonanywhere.com/getuniquedoctorslot/2`).then((get_all_patients)=>{  
+    //     console.log(get_all_patients)
+    // })
 
     const get_slot_state = useSelector((state) => state.doctor_slot_state).doctorSlotSlice
     const navigate = useNavigate()
@@ -24,7 +24,7 @@ export const Doctor_Home = () => {
 
     useEffect(() => {
         // axios.get(`http://agaram.academy/api/action.php?request=getAllMembers`).then((day_all_patient_data) => {
-            axios.get(`https://retheesha.pythonanywhere.com/getpatientbooking/2`).then((day_all_patient_data) => {   
+            axios.get(`https://retheesha.pythonanywhere.com/getpatientbooking/5`).then((day_all_patient_data) => {   
             get_patients_data(day_all_patient_data.data.data)
         })
     }, []

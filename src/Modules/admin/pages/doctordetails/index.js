@@ -17,7 +17,7 @@ export const Admindoctordetails = () => {
 
     useEffect(() => {
 
-        axios.get(`http://agaram.academy/api/action.php?request=ai_health_viewdoctor&id=${id}`).then((viewdoctor) => {
+        axios.get(`https://retheesha.pythonanywhere.com/viewdoctor/${id}`).then((viewdoctor) => {
             setview(viewdoctor.data.data)
             console.log(viewdoctor.data.data)
         })
@@ -35,10 +35,11 @@ export const Admindoctordetails = () => {
                
                 <br />
 
-                {view.map((eachh) => <div>
+                {/* {view.map((eachh) =>  */}
+                <div>
 
                     <div className="typography-line">
-                        <h1 className="text-info"> {eachh.name} <i className="fa fa-stethoscope "></i>
+                        <h1 className="text-info"> {view.name} <i className="fa fa-stethoscope "></i>
                         </h1>
                     </div>
                     <br />
@@ -54,22 +55,22 @@ export const Admindoctordetails = () => {
                                 </div>
                                 <div className="card-body">
                                     <h4 className="card-title">
-                                        {eachh.specialist} </h4>
+                                        {view.specialist} </h4>
                                     <hr />
                                     <div className="card-description">
-                                        <h4>{eachh.doctorid}</h4>
+                                        <h4>{view.doctorid}</h4>
                                     </div>
                                     <hr />
                                     <div className="card-description">
-                                        <h4>{eachh.email}</h4>
+                                        <h4>{view.email}</h4>
                                     </div>
                                     <hr />
                                     <div className="card-description">
-                                        <h4>{eachh.phone}</h4>
+                                        <h4>{view.phone}</h4>
                                     </div>
                                     <hr />
                                     <div className="card-description">
-                                        <h4>{eachh.city}</h4>
+                                        <h4>{view.city}</h4>
 
                                     </div>
                                     <hr />
@@ -87,7 +88,8 @@ export const Admindoctordetails = () => {
 
 
                         </div> 
-                </div> )}
+                </div> 
+                {/* )} */}
 
                 <div className="col-md-4 offset-md-4 my-5 mx-6">
 

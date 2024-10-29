@@ -29,7 +29,7 @@ export const Userhome = () => {
     }
     const doctorappointment = () => {
         const formdata = new FormData();
-        formdata.append("request", patientState.request)
+         // formdata.append("id", patientState.id)
         formdata.append("name", patientState.name)
         formdata.append("gender", patientState.gender)
         formdata.append("blood_group", patientState.blood_group)
@@ -37,15 +37,15 @@ export const Userhome = () => {
         formdata.append("diseases", JSON.stringify(patientState.diseases))
         formdata.append("duration", patientState.duration)
         formdata.append("existing_diseases", patientState.existing_diseases)
-        // formdata.append("date", "h")
+        // formdata.append("date", "")
         // navigate("/user/view")
 
         if(patientState.name=="" || patientState.gender=="" || patientState.duration=="" ){
             alert("plese fill all fields")
         }
         else{
-            axios.post(`http://agaram.academy/api/action.php?request=${patientState.request}`, formdata).then((res) => {
-            // axios.post("https://sivaharish.pythonanywhere.com/patientenquiry", formdata).then((res) => {    
+            // axios.post(`http://agaram.academy/api/action.php?request=${patientState.request}`, formdata).then((res) => {
+            axios.post("https://retheesha.pythonanywhere.com/createpatientdetails", formdata).then((res) => {    
                 console.log(res)
                 dispatch(setPatient(res.data))
                 navigate('/user/doctorapp')
