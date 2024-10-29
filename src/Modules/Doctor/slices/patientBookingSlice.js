@@ -5,7 +5,7 @@ const patientBookingSlice = createSlice(
     {
         name : 'patient_booking_state',
         initialState :{
-            patientBooking:[]
+            patientBooking:{}
         },
         reducers:{
             get_patient_data :(state,action)=>{
