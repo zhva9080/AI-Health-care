@@ -4,6 +4,7 @@ import { Header } from "../../Component/Header"
 import { useSelector, useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { set_slot_data, get_slot_data,Updated_clinic_details } from "../../slices/slotSlice"
+import { useLocation } from "react-router-dom"
 
 import axios from "axios"
 
@@ -13,13 +14,12 @@ export const Update_Doctor_Slot = () => {
 
     const get_slot_state = useSelector((state) => state.doctor_slot_state).getSlotListSlice
     // const clinc_details_state=useSelector((state) => state.doctor_slot_state).getSlotListSlice.clinic_details
-    console.log(get_slot_state)
+    // console.log(get_slot_state)
     // console.log(clinc_details_state)
+
     // sumbit data globe state end 
 
     const doctorLoginSubmit = useSelector((state) => state.doctor_login_state).doctorLogin
-
-
 
     const set_dispatch = useDispatch()
     const navigate = useNavigate()
@@ -47,23 +47,14 @@ export const Update_Doctor_Slot = () => {
     })
 
     // add slot local state end 
-
-
     
-
-
-    // delete slot starts
-
-    const [slotList, setSlotList] = useState([])
-
-    // delete slot end
 
     const handledChange = (e) => {
         setDetail({ ...detail, [e.target.name]: e.target.value })
     }
 
 
-    const addSlotList = () => {
+    const updateSlotList = () => {
         const list_data = { ...getList, clinic_details: [...getList.clinic_details, detail] }
         addList(list_data)
 
@@ -92,7 +83,7 @@ export const Update_Doctor_Slot = () => {
 
 
 
-    const[editdata,SetEditdata]=useState([])
+    const[editdata,setEditdata]=useState([])
     const edit = (index) => {
 
         const data = get_slot_state.clinic_details.filter((getListvalues, getListindex) => {
@@ -100,17 +91,25 @@ export const Update_Doctor_Slot = () => {
                 return getListvalues
             }
         })
-        SetEditdata(data)
+        setEditdata(data)
 
     }
 
+
+
+    // const pathname  = useLocation(); ()=>{
+        
+    //     useEffect(() => {
+    //         window.scrollTo(0, 0);
+    //     }, [pathname]);
+    // }
     return (
         <>
             <Header />
             <div className="add-product sidebar-collapse">
                 <div className="row">
                     <div className="col-md-6 col-sm-6 mx-auto ">
-                        <h2>Update Visiting Time Slot</h2>
+                        <h3 className="text-center">Update Visiting Time Slot</h3>
                         <hr />
                         {/* <div className="row">
                             <div className="col-md-4 col-sm-4">
@@ -203,7 +202,7 @@ export const Update_Doctor_Slot = () => {
                                 {/* <button className="btn btn-danger btn-block"><i className="fa fa-inr" aria-hidden="true"></i>100</button> */}
                                 <input type="number" className="form-control border-secondary p-0 text-center" placeholder="₹ 100" onKeyUp={(e) => addList({ ...getList, consulting_fee: e.target.value })} />
                             </div>
-                            <button className="btn btn-primary btn-block btn-round w-25 mt-5 mx-auto" type="button" onClick={addSlotList}>ADD</button>
+                            <button className="btn btn-primary btn-block btn-round w-25 mt-5 mx-auto" type="button" onClick={updateSlotList}>Update</button>
                         </div>
 )}
                         {/* <hr /> */}
@@ -253,6 +252,7 @@ export const Update_Doctor_Slot = () => {
 
                                                 )
                                             }
+                                            
 
 
                                         </tbody>
@@ -261,7 +261,7 @@ export const Update_Doctor_Slot = () => {
                             </div>
                         </div>
                         <div className="col-md-2 offset-md-5 col-sm-8 " >
-                            <button className="btn btn-success btn-block" type="button" onClick={()=>updateslots()}>Update</button>
+                            <button className="btn btn-success btn-block" type="button" onClick={()=>updateslots()}>Finish Update</button>
                         </div>
                     </div>
                 </div>

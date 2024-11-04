@@ -5,6 +5,8 @@ import axios from "axios"
 import { useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 import './index.css'
+import { Doct_Reg_Log_Header } from "../../Component/Register_Header"
+
 
 
 
@@ -36,15 +38,11 @@ export const Doctor_Register = () => {
         formData.append("phone", doctorRegisterSubmit.phone)
         formData.append("city", doctorRegisterSubmit.city)
 
-
-        // useEffect(() => {
-            axios.post("http://agaram.academy/api/action.php?request=ai_health_doctor_register", formData).then((res) => {
+            axios.post("https://srimathan.pythonanywhere.com/doctorregister", formData).then((res) => {
+                console.log(res)
                 let status = res.data.status
-                status == "success" ? navigate("/doctor/login") : alert("please check the register form")
-
+                status == "success" ? navigate("/doctor/login") : alert("please wait untill the verification")
             })
-
-        // }, [])
 
     }
 
@@ -52,33 +50,13 @@ export const Doctor_Register = () => {
         <>
             <div className="register-page full-screen sidebar-collapse">
                 {/* <!-- Navbar --> */}
-                <nav className="navbar navbar-expand-lg bg-white fixed-top nav-down navbar-transparent" color-on-scroll="500">
-                    <div className="container text-center">
-                        <div className="navbar-translate">
-                            <Link className="navbar-brand" to="https://demos.creative-tim.com/paper-kit-2-pro/index.html" rel="tooltip" title="AI Health Care" data-placement="bottom" target="_blank">
-                                AI-Health-Care
-                            </Link>
-                            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-                                <span className="navbar-toggler-bar bar1"></span>
-                                <span className="navbar-toggler-bar bar2"></span>
-                                <span className="navbar-toggler-bar bar3"></span>
-                            </button>
-                        </div>
-                        {/* <div className="collapse navbar-collapse" data-nav-image="../../assets/img/blurred-image-1.jpg" data-color="orange">
-                            <ul className="navbar-nav mx-auto">
-                                <li className="nav-item">
-                                    <Link className="btn btn-round btn-danger" to="https://www.creative-tim.com/product/paper-kit-2-pro" target="_blank">
-                                        Doctor Register
-                                    </Link>
-                                </li>
-                            </ul>
-                        </div> */}
-                    </div>
-                </nav>
+                <Doct_Reg_Log_Header/>
                 {/* <!-- End Navbar --> */}
 
                 <div className="wrapper">
-                    <div className="page-header" style={{ backgroundImage: "url ('../../assets/img/sections/soroush-karimi.jpg')" }}>
+                    <div className="page-header" 
+                    // style={{ backgroundImage: "url ('../../assets/img/sections/soroush-karimi.jpg')" }}
+                    >
                         <div className="filter"></div>
                         <div className="container ">
                             <div className="row">
@@ -88,8 +66,8 @@ export const Doctor_Register = () => {
                                             <i className="fa fa-umbrella"></i>
                                         </div>
                                         <div className="description">
-                                            <h3> We've got you covered </h3>
-                                            <p>Larger, yet dramatically thinner. More powerful, but remarkably power efficient. Everything you need in a single case.</p>
+                                            <h3> A Pillar of Effective Care</h3>
+                                            <p>A physician's decisions affect lives, so they must approach their work with honesty and respect for others. Trustworthiness is essential in the physician-patient relationship, and only someone with a strong moral foundation can foster that trust.</p>
                                         </div>
                                     </div>
                                     <div className="info info-horizontal">
@@ -97,8 +75,8 @@ export const Doctor_Register = () => {
                                             <i className="fa fa-map-signs"></i>
                                         </div>
                                         <div className="description">
-                                            <h3> Clear Directions </h3>
-                                            <p>Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas.</p>
+                                            <h3> Kindness and Ethics</h3>
+                                            <p>A good person with empathy, kindness, and a strong ethical compass is better suited to use knowledge for the greater good. In medicine, a great physician isn't just technically skilled but genuinely cares about their patients' well-being.</p>
                                         </div>
                                     </div>
                                     <div className="info info-horizontal">
@@ -106,8 +84,8 @@ export const Doctor_Register = () => {
                                             <i className="fa fa-user-secret"></i>
                                         </div>
                                         <div className="description">
-                                            <h3> We value your privacy </h3>
-                                            <p>Completely synergize resource taxing relationships via premier niche markets.</p>
+                                            <h3> Healthcare's True Goal </h3>
+                                            <p>"A doctor's mission should be not simply to prevent death but to improve the quality of life." – Patch Adams.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -142,7 +120,7 @@ export const Doctor_Register = () => {
 
 
                                             <input type="text" className="form-control" placeholder="Dr. Name" onKeyUp={(e) => dispatch(submit_Register({ ...doctorRegisterSubmit, name: e.target.value }))} />
-                                            <input type="text" className="form-control" placeholder="Email" onKeyUp={(e) => dispatch(submit_Register({ ...doctorRegisterSubmit, email: e.target.value }))} />
+                                            <input type="email" className="form-control" placeholder="Email" onKeyUp={(e) => dispatch(submit_Register({ ...doctorRegisterSubmit, email: e.target.value }))} />
                                             <input type="password" className="form-control" placeholder="Create Password" onKeyUp={(e) => dispatch(submit_Register({ ...doctorRegisterSubmit, password: e.target.value }))} />
                                             <input type="text" className="form-control" placeholder="Doctor UID" onKeyUp={(e) => dispatch(submit_Register({ ...doctorRegisterSubmit, doctor_id: e.target.value }))} />
                                             {/* <input type="text" className="form-control" placeholder="Specialist" onKeyUp={(e)=>dispatch(submit_Register({...doctorRegisterSubmit,specialist:e.target.value}))}/> */}
@@ -151,7 +129,7 @@ export const Doctor_Register = () => {
                                                 <input type="text" 
                                                     // value={specialists} 
                                                     className="form-control mb-0" placeholder="Specialist" onKeyUp={(e) => (addSpecialist(e.target.value))} />
-                                                <button className="btn btn-info m-0" 
+                                                <button className="btn btn-info m-0 rounded-end" 
                                                 type="button" 
                                                 // disabled={specialists.length>0 ? false :true}
                                                  onClick={setSpecialList} >Add</button>

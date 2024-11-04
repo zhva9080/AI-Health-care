@@ -22,7 +22,7 @@ import { Userhistory } from "./Modules/User/Pages/UserHistory";
 import { Viewdetails } from "./Modules/User/Pages/View/Viewdetails";
 import { UserBooking } from "./Modules/User/Pages/Booking";
 import { Update_Doctor_Slot } from "./Modules/Doctor/pages/slot_update";
-import { Rpatients_history } from "./Modules/Doctor/pages/remaining-patients-history";
+import { Doctor_profile } from "./Modules/Doctor/pages/doctor-profile";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +31,10 @@ const router = createBrowserRouter([
   },
   {
     path : "/doctor/login",
+    element : <Doctor_Login/>
+  },
+  {
+    path : "/",
     element : <Doctor_Login/>
   },
   {
@@ -62,8 +66,8 @@ const router = createBrowserRouter([
     element : <Update_Doctor_Slot/>
   },
   {
-    path:"/doctor/patients_list",
-    element:<Rpatients_history/>
+    path :"/doctor/profile",
+    element:<Doctor_profile />
   },
   {
     path:"/admin/login",
