@@ -28,7 +28,7 @@ export const Doctor_Login = () => {
 //                 let status = log.data.status
 // >>>>>>> submaster
 
-        axios.post("https://srimathan.pythonanywhere.com/doctorlogin", formData).then((log) => {
+        axios.post("https://retheesha.pythonanywhere.com/doctorlogin", formData).then((log) => {
             let status = log.data.status
             console.log(log.data)
             if (status == "success") {

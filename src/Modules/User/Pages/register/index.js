@@ -130,7 +130,7 @@ export const UserRegister = () => {
                   </div>
                   
                   <div className="login">
-                    <p>Already have an account? <Link to="/"><b>Log in</b></Link>.</p>
+                    <p>Already have an account? <Link to="/user/login"><b>Log in</b></Link>.</p>
                   </div>
                   
                 </div>
