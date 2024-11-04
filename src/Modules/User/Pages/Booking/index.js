@@ -32,7 +32,7 @@ export const UserBooking = () => {
         const max = moment(tomorrow).add(6, 'days')
         setmaxdate(max.format('YYYY-MM-DD'))
 
-    }
+    })
     //getting url params
     const searchParams = new URLSearchParams(window.location.search)
     const param1 = searchParams.get('doctorid')
@@ -157,7 +157,7 @@ export const UserBooking = () => {
         </div>
         </div>
         
-        </div> */}
+        
     </>)
 
 
