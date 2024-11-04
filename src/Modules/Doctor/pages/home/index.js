@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux"
 import axios from "axios"
 import { useState, useEffect } from "react"
 import moment from "moment"
-import { get_patient_data } from "../../slices/patientBookingSlice"
+import { get_patient_data,setEnquiry } from "../../slices/patientBookingSlice"
 import './index.css'
 
 
@@ -20,30 +20,49 @@ export const Doctor_Home = () => {
 
     // get globe state
     const get_patients_slots_state = useSelector((state) => state.patient_booking_state).patientBooking
+// <<<<<<< doctor-module-2
     // const get_patients_enquiry_details = useSelector((state) => state.patient_booking_state).patientBooking.enquiry_details
 
 
 
-    const [patients_booked_data, setPatients] = useState([])
+//     const [patients_booked_data, setPatients] = useState([])
 
+//     // get diseases from api parse diseases
+//     const get_disease_data = get_patients_slots_state
+
+// =======
+    // const enquiry_state=useSelector((state) => state.patient_booking_state).patientBooking.enquiry_details
+    console.log(get_patients_slots_state)
     // get diseases from api parse diseases
-    const get_disease_data = get_patients_slots_state
-
+    const [disease_data, getDiease] = useState([])
+    console.log(disease_data)
+// >>>>>>> submaster
 
     const [disease_data, getDiease] = useState([])
 
     
 
     useEffect(() => {
-        axios.get(`http://agaram.academy/api/action.php?request=ai_health_get_all_booked_patients&doctor_id=${doctorLoginSubmit.data.id}`).then((get_all_patients) => {
+        // axios.get(`http://agaram.academy/api/action.php?request=ai_health_get_all_booked_patients&doctor_id=${doctorLoginSubmit.data.id}`).then((get_all_patients) => {
+            axios.get(`https://retheesha.pythonanywhere.com/getpatientbooking/${doctorLoginSubmit.data.id}`).then((get_all_patients) => {    
             set_dispatch(get_patient_data(get_all_patients.data.data))
-            setPatients(get_all_patients.data.data.enquiry_details)
-            // getDiease(JSON.parse(get_all_patients.data.data.enquiry_details))
-            getDiease(get_all_patients.data.data.enquiry_details.diseases)
-        })
-    }, [])
-    console.log(disease_data)
+// <<<<<<< doctor-module-2
+//             setPatients(get_all_patients.data.data.enquiry_details)
+//             // getDiease(JSON.parse(get_all_patients.data.data.enquiry_details))
+//             getDiease(get_all_patients.data.data.enquiry_details.diseases)
+//         })
+//     }, [])
+//     console.log(disease_data)
 
+// =======
+            console.log(get_all_patients)
+            // set_dispatch(setEnquiry(get_all_patients.data.data.enquiry_details))
+            // getDiease((get_all_patients.data.data.enquiry_details.diseases))
+        })
+    },[])
+
+    // console.log(get_patients_slots_state.enquiry_details)
+// >>>>>>> submaster
 
     return (
         <>
@@ -53,10 +72,11 @@ export const Doctor_Home = () => {
                     <div className="section body-bg">
                         <div className="container">
                             <div className="row">
+
                                 {
                                     <>
                                     <div className="col-6 mx-auto ">
-                                        {patients_booked_data == "" ? <h2 className="text-center align-middle m-0">No Patient Booked</h2> :
+                                        {get_patients_slots_state=== null? <h2 className="text-center align-middle m-0">No Patient Booked</h2> :
                                             <div className="card card-blog border border-3 patient-card px-4">
                                                 <div className="card-image">
                                                     <a href="#pablo">
@@ -65,7 +85,7 @@ export const Doctor_Home = () => {
                                                 </div>
 
                                                 {
-                                                    patients_booked_data.map((p_booked_details, p_booked_details_index) =>
+                                                    get_patients_slots_state.map((p_booked_details, p_booked_details_index) =>
 
                                                         <div className="card-body">
                                                             <div>
@@ -153,13 +173,16 @@ export const Doctor_Home = () => {
                                                             </p>
                                                         </div>)
                                                 }
+
                                             </div>
                                         }
                                     </div>
-                                    </>
-                                }
 
 
+                                )
+
+
+                                    }
                             </div>
                         </div>
                     </div>

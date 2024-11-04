@@ -29,6 +29,7 @@ export const Doctor_Register = () => {
 
         let formData = new FormData()
 
+
         formData.append("status", doctorRegisterSubmit.status)
         formData.append("name", doctorRegisterSubmit.name)
         formData.append("email", doctorRegisterSubmit.email)
@@ -38,11 +39,21 @@ export const Doctor_Register = () => {
         formData.append("phone", doctorRegisterSubmit.phone)
         formData.append("city", doctorRegisterSubmit.city)
 
-            axios.post("https://srimathan.pythonanywhere.com/doctorregister", formData).then((res) => {
-                console.log(res)
+// <<<<<<< doctor-module-2
+//             axios.post("https://srimathan.pythonanywhere.com/doctorregister", formData).then((res) => {
+//                 console.log(res)
+// =======
+
+        // useEffect(() => {
+            axios.post("https://retheesha.pythonanywhere.com/doctorregister", formData).then((res) => {
+// >>>>>>> submaster
                 let status = res.data.status
                 status == "success" ? navigate("/doctor/login") : alert("please wait untill the verification")
             })
+
+
+        // }, [])
+
 
     }
 

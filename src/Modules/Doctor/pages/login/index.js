@@ -16,9 +16,17 @@ export const Doctor_Login = () => {
 
     const submitDoctorLogin = () => {
 
+// <<<<<<< doctor-module-2
         const formData = new FormData()
         formData.append("email", doctorLoginSubmit.email)
         formData.append("password", doctorLoginSubmit.password)
+// =======
+
+//             // axios.post("http://agaram.academy/api/action.php?request=ai_health_doctor_login",formData).then((log)=>{
+//             axios.post("https://retheesha.pythonanywhere.com/doctorlogin",formData).then((log)=>{   
+
+//                 let status = log.data.status
+// >>>>>>> submaster
 
         axios.post("https://srimathan.pythonanywhere.com/doctorlogin", formData).then((log) => {
             let status = log.data.status
