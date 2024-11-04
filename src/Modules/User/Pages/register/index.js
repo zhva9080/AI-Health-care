@@ -15,7 +15,7 @@ export const UserRegister = () => {
     formdata.append("email", userStatevalue.email)
     formdata.append("password", userStatevalue.password)
     formdata.append("phone", userStatevalue.phone)
-    axios.post(`http://agaram.academy/api/action.php?request=${userStatevalue.request}`, formdata).then((res) => {
+    axios.post("https://sivaharish.pythonanywhere.com/userregister", formdata).then((res) => {
 
       console.log(res)
     })

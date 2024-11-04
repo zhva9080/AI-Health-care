@@ -11,6 +11,9 @@ import  patientSlice from '../Modules/User/slices/PatientSlice'
 import userRegisterSlice from '../Modules/User/slices/RegisterSlice'
 import  Userloginslice from '../Modules/User/slices/Loginslice'
 import patientHistorySlice  from '../Modules/User/slices/HistorySlice'
+// import { DoctorDetailsSlice } from '../Modules/User/slices/bookingSlice'
+import DoctorDetailsSlice from '../Modules/User/slices/bookingSlice'
+import DoctorlistSlice  from '../Modules/User/slices/Doctorlistslice'
 
 export const store = configureStore({
   reducer: {
@@ -25,7 +28,12 @@ export const store = configureStore({
     patientdetails:patientSlice,
     userRegister:userRegisterSlice,
     userlogin:Userloginslice,
-    userhistory:patientHistorySlice
+    user_doctor_slot:DoctorDetailsSlice,
+    userhistory:patientHistorySlice,
+    DoctorList:DoctorlistSlice
+   
+
+
 
   }
 })

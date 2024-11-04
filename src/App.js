@@ -21,7 +21,11 @@ import { Doctorapp } from "./Modules/User/Pages/Doctorappointment";
 import { Userhistory } from "./Modules/User/Pages/UserHistory";
 import { Viewdetails } from "./Modules/User/Pages/View/Viewdetails";
 import { UserBooking } from "./Modules/User/Pages/Booking";
+import { Homepage } from "./Modules/admin/pages/aihealth-homepage";
 const router = createBrowserRouter([
+  {path:"/",
+    element:<Homepage/>
+  },
   {
     path: "/user/login",
     element: <div><Userlogin/></div>,
