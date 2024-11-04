@@ -41,7 +41,7 @@ export const Doctor_Register = () => {
         formData.append("phone",doctorRegisterSubmit.phone)
         formData.append("city",doctorRegisterSubmit.city)
 
-        axios.post("http://agaram.academy/api/action.php?request=ai_health_doctor_register",formData) 
+        axios.post("https://sivaharish.pythonanywhere.com/doctorregister",formData) 
 
         navigate("/doctor/login")
         
