@@ -14,10 +14,10 @@ export const Userlogin = () => {
   formdata.append("email", userLoginvalue.email)
   formdata.append("password", userLoginvalue.password)
   const login = () => {
-    axios.post(`http://agaram.academy/api/action.php?request=${userLoginvalue.request}`, formdata).then((res) => {
+    axios.post("https://sivaharish.pythonanywhere.com/userlogin", formdata).then((res) => {
       console.log(res)
       if (res.data.status == "success") {
-        dispatch(setloginUser(res.data.data))
+        dispatch(setloginUser(res.data))
         navigate("/user/home")
       }
       else {

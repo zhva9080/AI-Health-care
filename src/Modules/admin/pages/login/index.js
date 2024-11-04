@@ -19,25 +19,21 @@ export const Adminlogin = () => {
 
 
     const Loginfunction = () => {
-
-        // e.preventDefault();
-        // setIsSubmitted(true)
-
-
+        
         let formData = new FormData();
 
-        formData.append("email", loginvalue.email)
-        formData.append("password", loginvalue.password)
+        formData.append("email",loginvalue.email)
+        formData.append("password",loginvalue.password)
 
 
-        if ((loginvalue.email == "" || loginvalue.password == "")) {
+        if ((loginvalue.email=="")||(loginvalue.password=="")){
             alert("Please Fill the Required Details")
         }
         else {
-            axios.post("http://agaram.academy/api/action.php?request=ai_health_admin_login", formData).then((log) => {
-                let status = log.data.status
+            axios.post("https://sivaharish.pythonanywhere.com/adminlogin",formData).then((log)=>{
+                // let status = log.data.status
 
-                if (status == "success") {
+                if (log.data.status=="success"){
                     alert("Login successfully")
                     dispatch(login(log.data.data))
                     navigate("/admin/homepage")

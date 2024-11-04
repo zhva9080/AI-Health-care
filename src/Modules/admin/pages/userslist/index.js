@@ -20,8 +20,8 @@ export const Adminusers = () => {
 
 
     const getusers = () => {
-        axios.get("http://agaram.academy/api/action.php?request=ai_health_getallusersdetails").then((e) => {
-            setuser(e.data.data)
+        axios.get("https://sivaharish.pythonanywhere.com/userslist").then((e) => {
+            setuser(e.data)
         })
 
     }
@@ -61,10 +61,10 @@ export const Adminusers = () => {
                                                     <strong>{index + 1})</strong>
                                                 </td>
                                                 <td className="text-center">
-                                                    <h6>{eachh.name}</h6>
+                                                    <h6>{eachh.user_Name}</h6>
                                                 </td>
                                                 <td className=" text-center">
-                                                    <h6>{eachh.email}</h6>
+                                                    <h6>{eachh.user_Email}</h6>
                                                 </td>
                                                 <td className=" text-center">
                                                     <h6>{eachh.phone}</h6>

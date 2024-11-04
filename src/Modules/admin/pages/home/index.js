@@ -23,9 +23,9 @@ export const Adminhomepage = () => {
     // ------ doctor details ------
 
     const getdetails = () => {
-        axios.get("http://agaram.academy/api/action.php?request=ai_health_getalldoctorsdetails").then((e) => {
-            setdoctor(e.data.data)
-            setsearch(e.data.data)
+        axios.get("https://sivaharish.pythonanywhere.com/getdoctorsdata").then((e) => {
+            setdoctor(e.data)
+            setsearch(e.data)
         })
 
     }
@@ -71,7 +71,7 @@ export const Adminhomepage = () => {
 
 
 
-        axios.post(`http://agaram.academy/api/action.php?request=ai_health_approve_doctor`, formData).then((d) => {
+        axios.post("https://sivaharish.pythonanywhere.com/approvedoctor", formData).then((d) => {
 
             getdetails()
             console.log(d)
@@ -84,7 +84,7 @@ export const Adminhomepage = () => {
 
     const deletedoctor = (eachh) => {
 
-        axios.get(`http://agaram.academy/api/action.php?request=ai_health_removedoctor&id=${eachh}`).then((d) => {
+        axios.delete(`https://sivaharish.pythonanywhere.com/delete/${eachh}`).then((d) => {
             getdetails()
 
         }

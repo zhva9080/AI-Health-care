@@ -11,12 +11,12 @@ import { useParams } from 'react-router-dom';
 export const Admindoctordetails = () => {
 
 
-    const [view, setview] = useState([])
-    // const [special,setspecial]= useState("")
+    const [view, setview] = useState({})
+    // const [special,setspecial]= useState([])
     const { id } = useParams()
     useEffect(() => {
 
-        axios.get(`http://agaram.academy/api/action.php?request=ai_health_viewdoctor&id=${id}`).then((viewdoctor) => {
+        axios.get(`https://sivaharish.pythonanywhere.com/viewdoctor/${id}`).then((viewdoctor) => {
             setview(viewdoctor.data.data)
             // setspecial(viewdoctor.data.data.specialist)
             // console.log(viewdoctor.data.data)
@@ -36,7 +36,7 @@ export const Admindoctordetails = () => {
                 <div class="container">
                     <div class="space-top"></div>
                     <div class="row">
-                        {view.map((eachh) =>
+                        {/* {view.map((eachh) => */}
                             <div class="col-md-12">
                                 <div class="card card-profile card-plain">
                                     <div class="row">
@@ -49,34 +49,36 @@ export const Admindoctordetails = () => {
                                         </div>
                                         <div class="col-md-6">
                                             <div class="card-body text-left ml-4">
-                                                <h1 className="text-dark"> {eachh.name} <i className="fa fa-stethoscope "></i>
+                                                <h1 className="text-dark"> {view.name} <i className="fa fa-stethoscope "></i>
                                                 </h1>
                                                 <br />
                                                 <h6 className="card-catagory" style={{ color: "#20c997" }}>
-                                                    {JSON.parse(eachh.specialist)} </h6>
+                                                    {/* {JSON.parse(view.specialist)}  */}
+                                                    {/* {view.specialist} */}
+                                                    </h6>
                                                 <div className="card-description">
                                                     <i class="fa fa-address-card-o fa-2x mr-4" aria-hidden="true"></i>
-                                                    <b>{eachh.doctorid}</b>
+                                                    <b>{view.doctor_id}</b>
                                                 </div>
                                                 <div className="card-description">
                                                     <i class="fa fa-envelope-o fa-2x text-primary mr-4" aria-hidden="true"></i>
 
-                                                    <b>{eachh.email}</b>
+                                                    <b>{view.email}</b>
                                                 </div>
                                                 <div className="card-description">
                                                     <i class="fa fa-phone fa-2x text-info mr-4" aria-hidden="true"></i>
-                                                    <b>{eachh.phone}</b>
+                                                    <b>{view.phone}</b>
                                                 </div>
                                                 <div className="card-description">
                                                     <i class="fa fa-map-marker fa-2x text-danger mr-4" aria-hidden="true"></i>
-                                                    <b>{eachh.city}</b>
+                                                    <b>{view.city}</b>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        )}
+                        {/* )} */}
                     </div>
                 </div>
 

@@ -10,10 +10,13 @@ export const patientHistorySlice=createSlice({
         setpatientHisory:(state,action)=>{
             state.patienthistory=action.payload
         },
+        setpaymentHistory:(state,action)=>{ 
+            state.paymentHistory=action.payload 
+        },
         
     },
    
 }
 )
-export const {setpatientHisory} =patientHistorySlice.actions
+export const {setpatientHisory,setpaymentHistory} =patientHistorySlice.actions
 export default patientHistorySlice.reducer

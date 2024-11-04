@@ -25,7 +25,7 @@ export const Userhome = () => {
     formdata.append("existing_diseases", patientState.existing_diseases)
     const selftreatment = () => {
         // navigate("/user/view")
-        axios.post(`http://agaram.academy/api/action.php?request=${patientState.request}`, formdata).then((res) => {
+        axios.post("https://sivaharish.pythonanywhere.com/patientenquiry", formdata).then((res) => {
             console.log(res)
           })
       
@@ -214,7 +214,7 @@ export const Userhome = () => {
                                     <button className="btn btn-outline-danger btn-block btn-round" type="button" onClick={selftreatment}>Self Treatment</button>
                                 </div>
                                 <div className="col-md-6 col-sm-4">
-                                    <Link to="/user/doctorapp"><button className="btn btn-outline-primary btn-block btn-round" type="submit">Doctor Appointment</button></Link>
+                                    <Link to="/user/doctorapp"><button className="btn btn-outline-primary btn-block btn-round" type="button" onClick={selftreatment}>Doctor Appointment</button></Link>
                                 </div>
                             </div>
                         </div>
