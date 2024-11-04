@@ -11,6 +11,7 @@ import './index.css'
 export const Userhome = () => {
     const navigate = useNavigate()
     const patientState = useSelector((state) => state.patientdetails).patientDetails
+    const diseasesarr=useSelector((state) => state.patientdetails).patientDetails.diseases
     let ageinput=useSelector((state) => state.patientdetails).patientDetails.age
     console.log(ageinput)
     console.log(patientState.diseases)
@@ -44,10 +45,10 @@ export const Userhome = () => {
             alert("plese fill all fields")
         }
         else{
-            axios.post(`http://agaram.academy/api/action.php?request=${patientState.request}`, formdata).then((res) => {
-            // axios.post("https://sivaharish.pythonanywhere.com/patientenquiry", formdata).then((res) => {    
+            // axios.post(`http://agaram.academy/api/action.php?request=${patientState.request}`, formdata).then((res) => {
+            axios.post("https://retheesha.pythonanywhere.com/createpatientdetails", formdata).then((res) => {    
                 console.log(res)
-                dispatch(setPatient(res.data))
+                dispatch(setPatient(res.data.data))
                 navigate('/user/doctorapp')
             })
 
@@ -88,7 +89,7 @@ export const Userhome = () => {
                                                             <input class="form-control no-border" type="text" placeholder="KIND OF ILLNESS" onKeyUp={(e) => setdiseases(e.target.value)} />
                                                             <button type="button" className="btn btn-primary" onClick={add}><i className="fa fa-plus " aria-hidden="true" ></i></button>
                                                         </div>
-                                                        {/* {patientState.diseases==""?"":patientState.diseases.map((e, i) =>
+                                                        {Array.isArray(diseasesarr) && diseasesarr.length > 0 ?diseasesarr.map((e, i) =>
                                                             <div className="row my-2">
                                                                 <div className="col-2"> 
                                                                     <button type="button" className="btn btn-danger btn-link " onClick={() => removeItem(i)}>
@@ -98,7 +99,7 @@ export const Userhome = () => {
                                                                 </div>
                                                                 <div className="col-5 my-2 remove">{e}</div>
                                                             </div>
-                                                        )} */}
+                                                        ):""}
                                                         
 
                                                     </div>

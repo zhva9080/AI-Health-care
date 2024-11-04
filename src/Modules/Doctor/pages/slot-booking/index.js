@@ -67,7 +67,7 @@ export const DoctorSlot = () => {
         slot_data.append("clinic_details", JSON.stringify(getList.clinic_details))
 
 
-        axios.post("http://agaram.academy/api/action.php?request=ai_health_create_doctor_slot", slot_data).then((response) => {
+        axios.post("https://retheesha.pythonanywhere.com/createdoctorslot", slot_data).then((response) => {
             // console.log(response.data)
 
         })
@@ -78,13 +78,13 @@ export const DoctorSlot = () => {
 
 
     const slotDelete = (index) => {
-
-        const data = getList.filter((getListvalues, getListindex) => {
-            if (index != getListindex) {
-                return getListvalues
-            }
-        })
-        addList(data)
+        console.log(index)
+        const data = getList.clinic_details.filter((getlistvalues, getListindex) => getListindex !== index);
+        addList(prevState => ({
+            ...prevState,
+            clinic_details: data
+        }));
+        // console.log(data)
 
     }
 
@@ -208,9 +208,8 @@ export const DoctorSlot = () => {
                                         </thead>
                                         <tbody>
 
-                                            {
-                                                getList.clinic_details.map((e, index) => {
-                                                    return (
+                                            {getList.clinic_details && getList.clinic_details.length > 0 ? 
+                                             getList.clinic_details.map((e, index) => 
                                                         // console.log(index)
                                                         <tr key={index}>
                                                             <td className="text-center">
@@ -226,10 +225,9 @@ export const DoctorSlot = () => {
                                                                 <button className="btn btn-outline-danger" type="button" onClick={() => slotDelete(index)}>Delete</button>
                                                             </td>
                                                         </tr>
-                                                    )
-                                                }
+                                                    ):""
 
-                                                )
+                                                
                                             }
 
 

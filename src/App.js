@@ -106,7 +106,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/user/history",
-    element: <div><PaymentHistory/></div>,
+    element: <div><Userhistory/></div>,
   },
   {
     path: "/user/viewdetails/:id",

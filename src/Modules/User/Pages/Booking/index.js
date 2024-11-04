@@ -39,10 +39,12 @@ export const UserBooking = () => {
     const param2 = searchParams.get('enquiry_id')
     // getting doctor slot details
     useEffect(() => {
-        // axios.get(`http://agaram.academy/api/action.php?request=ai_health_get_slot_booking&doctor_id=${param1}`).then((res) => {
-        axios.get(`https://retheesha.pythonanywhere.com/getuniquedoctorslot/${param1}`).then((res) => {
+        if(DoctorSlotDetails==""){
+            // axios.get(`http://agaram.academy/api/action.php?request=ai_health_get_slot_booking&doctor_id=${param1}`).then((res) => {
+            axios.get(`https://retheesha.pythonanywhere.com/getuniquedoctorslot/${param1}`).then((res) => {
             dispatch(setDoctorSlotDetails(JSON.parse(res.data.data.clinic_details)))
         })
+        }
     }, [])
     let doctor = DoctorSlotDetails.filter((e) => {
         return selectedDay == e.clinic_day

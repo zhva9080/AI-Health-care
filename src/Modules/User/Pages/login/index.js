@@ -27,7 +27,7 @@ export const Userlogin = () => {
           navigate("/user/home")
         }
         else {
-          alert("failed")
+          alert("Unable to log in. Please verify your credentials and try again.")
         }
       })
     }

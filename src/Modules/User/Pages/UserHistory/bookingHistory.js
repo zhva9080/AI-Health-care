@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import { useEffect } from "react"
 export const PaymentHistory = () => {
+
    const paymentHistoryState=useSelector((state)=>state.userhistory).paymentHistory
    const patientState = useSelector((state) => state.patientdetails).patientDetails
    

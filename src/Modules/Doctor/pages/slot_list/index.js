@@ -28,7 +28,7 @@ export const Slot_List = () => {
     const doctorLoginSubmit = useSelector((state) => state.doctor_login_state).doctorLogin
 
     useEffect(() => {
-        axios.get(`http://agaram.academy/api/action.php?request=ai_health_get_slot_booking&doctor_id=${doctorLoginSubmit.data.id}`).then((doctor_booked_slot_all) => {
+        axios.get(`https://retheesha.pythonanywhere.com/getuniquedoctorslot/${doctorLoginSubmit.data.id}`).then((doctor_booked_slot_all) => {
             get_doctor_booked_slots(doctor_booked_slot_all.data.data)
             setClinicDetails(JSON.parse(doctor_booked_slot_all.data.data.clinic_details))
         })

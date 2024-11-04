@@ -30,7 +30,10 @@ export const UserRegister = () => {
         console.log(res)
         if(res.data.status=="success"){
           alert("Registration Success")
-          // navigate("/")
+          navigate("/")
+        }
+        else if(res.data.message=="User already exists"){
+          alert("This email is already registered. Please use a different email address.")
         }
         
       })

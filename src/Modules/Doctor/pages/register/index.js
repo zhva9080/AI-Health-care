@@ -38,7 +38,7 @@ export const Doctor_Register = () => {
 
 
         // useEffect(() => {
-            axios.post("http://agaram.academy/api/action.php?request=ai_health_doctor_register", formData).then((res) => {
+            axios.post("https://retheesha.pythonanywhere.com/doctorregister", formData).then((res) => {
                 let status = res.data.status
                 status == "success" ? navigate("/doctor/login") : alert("please check the register form")
 

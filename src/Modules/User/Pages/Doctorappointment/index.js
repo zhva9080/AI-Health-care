@@ -13,11 +13,12 @@ import './index.css'
 export const Doctorapp = () => {
     const patientState = useSelector((state) => state.patientdetails).patientDetails
     const specialistState = useSelector((state) => state.DoctorList).specialist
-    console.log(specialistState)
-
+    
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const doctorlist = useSelector((state) => state.DoctorList).doctorlist
+    console.log(doctorlist)
+
     const [searchdoctor, setSearch] = useState(doctorlist)
     const [searchinput, setsearchinput] = useState({ city: "", specialist: "" })
     const display = () => {
@@ -39,9 +40,17 @@ export const Doctorapp = () => {
     useEffect(() => {
         display()
     }, [])
+    // const Filter = (event) => {
+    //     setSearch(doctorlist.filter((e) => (e.city.toLowerCase().includes(event.city)) && (e.name.toLowerCase().includes(event.specialist))))
+    // }
     const Filter = (event) => {
-        setSearch(doctorlist.filter((e) => (e.city.toLowerCase().includes(event.city)) && (e.name.toLowerCase().includes(event.specialist))))
-    }
+        setSearch(
+            doctorlist.filter((e) => 
+                e.city.toLowerCase().includes(event.city.toLowerCase()) ||
+                e.specialist.toLowerCase().includes(event.specialist.toLowerCase())
+            )
+        );
+    };
     const booknow = (each) => {
         // console.log(each)
 

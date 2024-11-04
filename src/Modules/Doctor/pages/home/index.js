@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux"
 import axios from "axios"
 import { useState, useEffect } from "react"
 import moment from "moment"
-import { get_patient_data } from "../../slices/patientBookingSlice"
+import { get_patient_data,setEnquiry } from "../../slices/patientBookingSlice"
 import './index.css'
 
 
@@ -16,10 +16,11 @@ export const Doctor_Home = () => {
 
     // get globe state
     const get_patients_slots_state = useSelector((state) => state.patient_booking_state).patientBooking
-
+    // const enquiry_state=useSelector((state) => state.patient_booking_state).patientBooking.enquiry_details
+    console.log(get_patients_slots_state)
     // get diseases from api parse diseases
     const [disease_data, getDiease] = useState([])
-
+    console.log(disease_data)
 
     
 
@@ -27,13 +28,16 @@ export const Doctor_Home = () => {
     const doctorLoginSubmit = useSelector((state) => state.doctor_login_state).doctorLogin
 
     useEffect(() => {
-        axios.get(`http://agaram.academy/api/action.php?request=ai_health_get_all_booked_patients&doctor_id=${doctorLoginSubmit.data.id}`).then((get_all_patients) => {
+        // axios.get(`http://agaram.academy/api/action.php?request=ai_health_get_all_booked_patients&doctor_id=${doctorLoginSubmit.data.id}`).then((get_all_patients) => {
+            axios.get(`https://retheesha.pythonanywhere.com/getpatientbooking/${doctorLoginSubmit.data.id}`).then((get_all_patients) => {    
             set_dispatch(get_patient_data(get_all_patients.data.data))
-            // getDiease(JSON.parse(get_all_patients.data.data.enquiry_details.diseases))
+            console.log(get_all_patients)
+            // set_dispatch(setEnquiry(get_all_patients.data.data.enquiry_details))
+            // getDiease((get_all_patients.data.data.enquiry_details.diseases))
         })
-    })
+    },[])
 
-    console.log(get_patients_slots_state)
+    // console.log(get_patients_slots_state.enquiry_details)
 
     return (
         <>
@@ -50,9 +54,10 @@ export const Doctor_Home = () => {
                             </h4>
 
                             <div className="row">
-                                {
-
-                                    <div className="col-6 mx-auto">
+                                {get_patients_slots_state=== null ? 
+                                        <div>No slots available</div>:
+                                    get_patients_slots_state.map((e)=>
+                                        <div className="col-6 mx-auto">
                                         <div className="card card-blog border border-3">
                                             {/* <div className="card-image">
                                                 <a href="#pablo">
@@ -63,48 +68,48 @@ export const Doctor_Home = () => {
                                                 <div>
                                                     <label className="w-50">Booked Date</label>
                                                     <h5 className="card-title">
-                                                            {/* <b> {get_patients_slots_state.booking_date} </b> */}
+                                                            <b> {e.booking_date} </b>
                                                         </h5>
                                                 </div>
                                                 <div>
                                                     <label className="w-50">Booked Time</label>
                                                     <h5 className="card-title">
-                                                            {/* {get_patients_slots_state.booking_time} */}
+                                                            {e.booking_time}
                                                         </h5>
                                                 </div>
                                                 <div>
                                                     <label className="w-50">Patient Name</label>
                                                     <h5 className="card-title">
-                                                            {/* {get_patients_slots_state.enquiry_details.name} */}
+                                                            {e.enquiry_details.name}
                                                         </h5>
                                                 </div>
                                                 <div>
                                                     <label className="w-50">Patient age</label>
                                                     <h5 className="card-title">
-                                                        {/* {get_patients_slots_state.enquiry_details.age} */}
+                                                        {e.enquiry_details.age}
                                                     </h5>
                                                 </div>
                                                 <div>
                                                     <label className="w-50">Gender</label>
                                                     <h5 className="card-title">
-                                                            {/* {get_patients_slots_state.enquiry_details.gender} */}
+                                                            {e.enquiry_details.gender}
                                                         </h5>
                                                 </div>
                                                 <div>
                                                     <label className="w-50">Blood Group</label>
                                                     <h5 className="card-title">
-                                                            {/* {get_patients_slots_state.enquiry_details.blood_group} */}
+                                                            {e.enquiry_details.blood_group}
                                                         </h5>
                                                 </div>
                                                 <div>
                                                     <label className="w-50">Duration of Infection</label>
                                                     <h5 className="card-title">
-                                                            {/* {get_patients_slots_state.enquiry_details.duration} */}
+                                                            {e.enquiry_details.duration}
                                                         </h5>
                                                 </div>
                                                 <div className="">
-                                                    <h5 className="my-3 text-danger">Current Diseases</h5>
-                                                        {/* <ul>
+                                                    {/* <h5 className="my-3 text-danger">Current Diseases</h5>
+                                                        <ul>
                                                             {
                                                                 disease_data.map((e, i) =>
                                                                     <li className="card-title">{e}</li>
@@ -114,7 +119,7 @@ export const Doctor_Home = () => {
                                                 </div>
                                                 <p className="card-description">
                                                     <h5 className="my-3 text-danger">Existing  Diseases</h5>
-                                                    {/* {get_patients_slots_state.enquiry_details.existing_diseases} */}
+                                                    {e.enquiry_details.existing_diseases}
                                                 </p>
                                                 {/* <hr /> */}
                                                 {/* <div className="card-footer">
@@ -132,9 +137,9 @@ export const Doctor_Home = () => {
                                         </div>
                                     </div>
 
-                                }
+                                )
 
-
+                                    }
                             </div>
                         </div>
                     </div>

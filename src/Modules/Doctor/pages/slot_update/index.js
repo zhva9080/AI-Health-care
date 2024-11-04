@@ -13,22 +13,24 @@ export const Update_Doctor_Slot = () => {
 
     const get_slot_state = useSelector((state) => state.doctor_slot_state).getSlotListSlice
     // const clinc_details_state=useSelector((state) => state.doctor_slot_state).getSlotListSlice.clinic_details
-    console.log(get_slot_state)
+    console.log(get_slot_state.clinic_details)
     // console.log(clinc_details_state)
     // sumbit data globe state end 
 
     const doctorLoginSubmit = useSelector((state) => state.doctor_login_state).doctorLogin
 
-
+    const [clinic_details, setClinicDetails] = useState([])
 
     const set_dispatch = useDispatch()
     const navigate = useNavigate()
 
 
     useEffect(() => {
-        axios.get(`http://agaram.academy/api/action.php?request=ai_health_get_slot_booking&doctor_id=${doctorLoginSubmit.data.id}`).then((doctor_booked_slot_all) => {
+        // axios.get(`http://agaram.academy/api/action.php?request=ai_health_get_slot_booking&doctor_id=${doctorLoginSubmit.data.id}`).then((doctor_booked_slot_all) => {
+            axios.get(`https://retheesha.pythonanywhere.com/getuniquedoctorslot/${doctorLoginSubmit.data.id}`).then((doctor_booked_slot_all) => { 
             set_dispatch(get_slot_data(doctor_booked_slot_all.data.data))
-            set_dispatch(Updated_clinic_details(JSON.parse(doctor_booked_slot_all.data.data.clinic_details)))
+            // set_dispatch(Updated_clinic_details(doctor_booked_slot_all.data.data.clinic_details))
+            setClinicDetails(JSON.parse(doctor_booked_slot_all.data.data.clinic_details))
             
         })
     },[]
@@ -83,7 +85,7 @@ export const Update_Doctor_Slot = () => {
         slot_data.append("clinic_details", JSON.stringify(getList.clinic_details))
 
 
-        axios.post("http://agaram.academy/api/action.php?request=ai_health_update_slots", slot_data).then((response) => {
+        axios.post("https://retheesha.pythonanywhere.com/createdoctorslot", slot_data).then((response) => {
             console.log(response.data)
 
         })
@@ -95,7 +97,7 @@ export const Update_Doctor_Slot = () => {
     const[editdata,SetEditdata]=useState([])
     const edit = (index) => {
 
-        const data = get_slot_state.clinic_details.filter((getListvalues, getListindex) => {
+        const data = clinic_details.filter((getListvalues, getListindex) => {
             if (index == getListindex) {
                 return getListvalues
             }
@@ -140,7 +142,7 @@ export const Update_Doctor_Slot = () => {
                                 {/* <select name="huge" className="form-select" data-style="btn btn-outline-default btn-block" style={{ height: "40px" }} data-menu-style="" onKeyUp={(e) => addList({ ...getList,clinic_details [{clinic_day: e.target.value}] })} > */}
                                 
                                 <select type='dropdown' name="clinic_day" className="form-select" data-style="btn btn-outline-default btn-block" style={{ height: "40px" }} data-menu-style="" onClick={handledChange} >
-                                    {/* <option disabled selected>Select Day</option> */}
+                                    <option disabled selected>Select Day</option>
                                     
                                     <option value={e.clinic_day}>{e.clinic_day}</option>
                                     
@@ -160,7 +162,7 @@ export const Update_Doctor_Slot = () => {
                                  
                                 <select name="clinic_timing" className="form-select" data-style="btn btn-outline-default btn-block" style={{ height: "40px" }} onClick={handledChange}>
                                
-                                    <option value={e.clinic_timing}>{e.clinic_timing}</option>
+                                    {/* <option value={e.clinic_timing}>{e.clinic_timing}</option> */}
                                     <option value="9am to 10am">9am to 10am</option>
                                     <option value="10am to 12pm">10am to 12pm</option>
                                     <option value="10am to 1pm">10am to 1pm</option>
@@ -200,12 +202,12 @@ export const Update_Doctor_Slot = () => {
                             <div className="col-md-4 col-sm-4">
                                 <h6> Consultation Fee</h6>
                                 <hr />
-                                {/* <button className="btn btn-danger btn-block"><i className="fa fa-inr" aria-hidden="true"></i>100</button> */}
+                                <button className="btn btn-danger btn-block"><i className="fa fa-inr" aria-hidden="true"></i>100</button>
                                 <input type="number" className="form-control border-secondary p-0 text-center" placeholder="₹ 100" onKeyUp={(e) => addList({ ...getList, consulting_fee: e.target.value })} />
                             </div>
                             <button className="btn btn-primary btn-block btn-round w-25 mt-5 mx-auto" type="button" onClick={addSlotList}>ADD</button>
                         </div>
-)}
+ )} 
                         {/* <hr /> */}
 
                     </div>
@@ -231,7 +233,7 @@ export const Update_Doctor_Slot = () => {
                                         <tbody>
 
                                             {
-                                                get_slot_state.clinic_details.map((e, index) => {
+                                                clinic_details.map((e, index) => {
                                                     return (
                                                         // console.log(index)
                                                         <tr key={index}>
