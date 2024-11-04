@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import { register_details } from "../../slices/RegisterSlice"
 import { useEffect } from "react"
@@ -6,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom"
 export const UserRegister = () => {
   const userStatevalue = useSelector((state) => state.userRegister).registerData
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   // console.log(userStatevalue)
   const navigate=useNavigate()
   // const handlesummit=(e)=>{
@@ -14,11 +16,12 @@ export const UserRegister = () => {
   const register = () => {
     
     const formdata = new FormData();
-    formdata.append("request", userStatevalue.request)
+    // formdata.append("request", userStatevalue.request)
     formdata.append("name", userStatevalue.name)
     formdata.append("email", userStatevalue.email)
     formdata.append("password", userStatevalue.password)
     formdata.append("phone", userStatevalue.phone)
+
 
     if((userStatevalue.name=="" || userStatevalue.email==""|| userStatevalue.password==""||userStatevalue.phone=="")){
      alert("Please Fill out the required fields")
@@ -27,6 +30,7 @@ export const UserRegister = () => {
     else{
       // axios.post(`http://agaram.academy/api/action.php?request=${userStatevalue.request}`, formdata).then((res) => {
       axios.post(`https://retheesha.pythonanywhere.com/userregister`, formdata).then((res) => {
+
 
 
         console.log(res)
@@ -90,9 +94,6 @@ export const UserRegister = () => {
                     <p>we  recommended medicines and foods that prescribed by siddha & allopathic forms.</p>
                   </div>
                 </div>
-
-
-
                 <div className="info info-horizontal">
                   <div className="icon">
                     <i className="fa fa-stethoscope"></i>
@@ -118,7 +119,7 @@ export const UserRegister = () => {
               <div className="col-lg-6 col-md-6 col-sm-5 col-12 mr-auto">
                 <div className="card card-register">
                   <h3 className="card-title text-center">User Registration</h3>
-                
+      
                   
                   <div className="register-form mt-5">
                     <input type="text" className="form-control" placeholder="Name" onKeyUp={(e) => dispatch(register_details({ ...userStatevalue, name: e.target.value }))} required/>
@@ -126,6 +127,7 @@ export const UserRegister = () => {
                     <input type="text" className="form-control" placeholder="Contact No" onKeyUp={(e) => dispatch(register_details({ ...userStatevalue, phone: e.target.value }))} required/>
                     <input type="password" className="form-control" placeholder="Create Password" onKeyUp={(e) => dispatch(register_details({ ...userStatevalue, password: e.target.value }))} required/>
                     <button className="btn btn-block btn-round" type="button" onClick={() => register()}>Register</button>
+
                   </div>
                   
                   <div className="login">

@@ -11,6 +11,7 @@ const initialState = {
     duration: "",
     existing_diseases: ""
   },
+  
   bookingDetails:{
     booking_date:"",
     booking_time:""
