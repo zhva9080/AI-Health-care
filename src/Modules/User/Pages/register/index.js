@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import { register_details } from "../../slices/RegisterSlice"
 import { useEffect } from "react"
@@ -9,7 +8,7 @@ export const UserRegister = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   // console.log(userStatevalue)
-  const navigate=useNavigate()
+ 
   // const handlesummit=(e)=>{
   //   e.preventDefault();
   // }
@@ -36,7 +35,7 @@ export const UserRegister = () => {
         console.log(res)
         if(res.data.status=="success"){
           alert("Registration Success")
-          navigate("/")
+          navigate("/user/login")
         }
         else if(res.data.message=="User already exists"){
           alert("This email is already registered. Please use a different email address.")

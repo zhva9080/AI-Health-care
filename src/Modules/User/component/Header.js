@@ -47,7 +47,7 @@ export const Header=()=>{
                                         <i className="fa fa-history"></i>
                                         History
                                     </Link>
-                                    <Link className="dropdown-item" to="/" >
+                                    <Link className="dropdown-item" to="/user/login" >
                                         <i className="fa fa-sign-out"></i>
                                        logout
                                     </Link>

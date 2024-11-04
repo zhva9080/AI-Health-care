@@ -38,7 +38,6 @@ export const Doctor_Home = () => {
     console.log(disease_data)
 // >>>>>>> submaster
 
-    const [disease_data, getDiease] = useState([])
 
     
 
@@ -74,7 +73,7 @@ export const Doctor_Home = () => {
                             <div className="row">
 
                                 {
-                                    <>
+                                    
                                     <div className="col-6 mx-auto ">
                                         {get_patients_slots_state=== null? <h2 className="text-center align-middle m-0">No Patient Booked</h2> :
                                             <div className="card card-blog border border-3 patient-card px-4">
@@ -179,7 +178,7 @@ export const Doctor_Home = () => {
                                     </div>
 
 
-                                )
+                                
 
 
                                     }
