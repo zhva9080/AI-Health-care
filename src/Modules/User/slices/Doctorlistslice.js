@@ -1,3 +1,4 @@
+
 import { createSlice } from "@reduxjs/toolkit";
 const initialState={
    doctorlist:[],
@@ -20,4 +21,5 @@ export const DoctorlistSlice=createSlice({
 }
 )
 export const {setDoctorList,setSpecialist} =DoctorlistSlice.actions
+
 export default DoctorlistSlice.reducer

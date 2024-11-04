@@ -19,6 +19,7 @@ export const UserRegister = () => {
     formdata.append("email", userStatevalue.email)
     formdata.append("password", userStatevalue.password)
     formdata.append("phone", userStatevalue.phone)
+
     if((userStatevalue.name=="" || userStatevalue.email==""|| userStatevalue.password==""||userStatevalue.phone=="")){
      alert("Please Fill out the required fields")
     }
@@ -26,6 +27,7 @@ export const UserRegister = () => {
     else{
       // axios.post(`http://agaram.academy/api/action.php?request=${userStatevalue.request}`, formdata).then((res) => {
       axios.post(`https://retheesha.pythonanywhere.com/userregister`, formdata).then((res) => {
+
 
         console.log(res)
         if(res.data.status=="success"){

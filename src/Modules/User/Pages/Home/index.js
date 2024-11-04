@@ -41,6 +41,7 @@ export const Userhome = () => {
         // formdata.append("date", "h")
         // navigate("/user/view")
 
+
         if(patientState.name=="" || patientState.gender=="" || patientState.duration=="" ){
             alert("plese fill all fields")
         }
@@ -53,7 +54,7 @@ export const Userhome = () => {
             })
 
         }
-        
+
     }
     const removeItem = (index) => {
         let diseasesList = patientState.diseases.filter((each, diseasesIndex) => index != diseasesIndex)
@@ -172,6 +173,7 @@ export const Userhome = () => {
                                     <input className="form-control w-50 border-success" type="date" placeholder="Enter age" onChange={(e) =>dispatch(setage(calculateAge(e.target.value)))}>
                                     </input>
                                     {/* dispatch(setPatient({ ...patientState, age: e.target.value }))} */}
+
                                 </div>
 
                             </div>

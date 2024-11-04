@@ -1,3 +1,4 @@
+
 import { Header } from "../../component/Header"
 import { Footer } from "../../component/Footer"
 import { useSelector, useDispatch } from "react-redux"
@@ -250,4 +251,3 @@ export const Doctorapp = () => {
 
         {/* </div> */}
     </>)
-}

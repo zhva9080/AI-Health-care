@@ -67,8 +67,10 @@ export const DoctorSlot = () => {
         slot_data.append("clinic_details", JSON.stringify(getList.clinic_details))
 
 
+
         axios.post("https://retheesha.pythonanywhere.com/createdoctorslot", slot_data).then((response) => {
             // console.log(response.data)
+
 
         })
 

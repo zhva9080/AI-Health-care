@@ -27,6 +27,7 @@ export const Doctor_Register = () => {
 
         let formData = new FormData()
 
+
         formData.append("status", doctorRegisterSubmit.status)
         formData.append("name", doctorRegisterSubmit.name)
         formData.append("email", doctorRegisterSubmit.email)
@@ -45,6 +46,7 @@ export const Doctor_Register = () => {
             })
 
         // }, [])
+
 
     }
 
