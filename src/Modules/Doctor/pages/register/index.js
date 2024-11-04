@@ -34,7 +34,7 @@ export const Doctor_Register = () => {
         formData.append("name", doctorRegisterSubmit.name)
         formData.append("email", doctorRegisterSubmit.email)
         formData.append("password", doctorRegisterSubmit.password)
-        formData.append("doctor_id", doctorRegisterSubmit.doctor_id)
+        formData.append("doctorid", doctorRegisterSubmit.doctor_id)
         formData.append("specialist", JSON.stringify(doctorRegisterSubmit.specialist))
         formData.append("phone", doctorRegisterSubmit.phone)
         formData.append("city", doctorRegisterSubmit.city)
