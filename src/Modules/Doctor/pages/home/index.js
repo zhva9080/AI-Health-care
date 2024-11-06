@@ -11,52 +11,41 @@ import './index.css'
 
 export const Doctor_Home = () => {
 
-    const set_dispatch = useDispatch()
-    const navigate = useNavigate()
-
-
-    // get doctor id in login page
-    const doctorLoginSubmit = useSelector((state) => state.doctor_login_state).doctorLogin
-
-    // get globe state
-    const get_patients_slots_state = useSelector((state) => state.patient_booking_state).patientBooking
-
-    const get_patients_enquiry_details = useSelector((state) => state.patient_booking_state).patientBooking.enquiry_details
-
-
-
-    const [patients_booked_data, setPatients] = useState([])
-
-    // get diseases from api parse diseases
-    const get_disease_data = get_patients_slots_state
-
-
-    // const enquiry_state=useSelector((state) => state.patient_booking_state).patientBooking.enquiry_details
-    console.log(get_patients_slots_state)
-    // get diseases from api parse diseases
-    const [disease_data, getDiease] = useState([])
-    console.log(disease_data)
-
-
-    
-
-    useEffect(() => {
-            axios.get(`https://retheesha.pythonanywhere.com/getpatientbooking/${doctorLoginSubmit.data.id}`).then((get_all_patients) => {    
-            set_dispatch(get_patient_data(get_all_patients.data.data))
-
-            setPatients(get_all_patients.data.data.enquiry_details)
-            // getDiease(JSON.parse(get_all_patients.data.data.enquiry_details))
-            // getDiease(get_all_patients.data.data.enquiry_details.diseases)
-//         })
-//     }, [])
-//     console.log(disease_data)
-            console.log(get_all_patients)
-            // set_dispatch(setEnquiry(get_all_patients.data.data.enquiry_details))
-            // getDiease((get_all_patients.data.data.enquiry_details.diseases))
-        })
-    },[])
-
-
+   
+     
+    const set_dispatch = useDispatch() 
+    const navigate = useNavigate() 
+ 
+    // get globe state 
+    const get_patients_slots_state = useSelector((state) => state.patient_booking_state).patientBooking 
+    // const enquiry_state=useSelector((state) => state.patient_booking_state).patientBooking.enquiry_details 
+    console.log(get_patients_slots_state) 
+    // get diseases from api parse diseases 
+    const [diseases, setDiseases] = useState([]); 
+    console.log(diseases) 
+ 
+     
+ 
+    // get doctor id in login page 
+    const doctorLoginSubmit = useSelector((state) => state.doctor_login_state).doctorLogin     
+ 
+    useEffect(() => { 
+            axios.get(`https://sivaharish.pythonanywhere.com/getpatientbooking/${doctorLoginSubmit.data.id}`).then((response) => {     
+            const patientData = response.data.data; 
+            set_dispatch(get_patient_data(patientData)) 
+            const dieseasearr=patientData?.enquiry_details?.diseases 
+            // const diseasesData = JSON.parse(dieseasearr); 
+           setDiseases(dieseasearr); 
+             
+        })   
+    }, []) 
+     const today = moment().startOf('day'); // Start of today's date (00:00:00) 
+ 
+      const todaySlots = get_patients_slots_state?.filter(slot => { 
+      const slotDate = moment(slot.booking_date);  
+      return slotDate.isSame(today, 'day'); 
+    }); 
+    console.log(todaySlots)
 
     return (
         <>
@@ -67,8 +56,8 @@ export const Doctor_Home = () => {
                         <div className="container">
                             
                         <div className="row">
-                                {get_patients_slots_state=== null? <h2 className="text-center align-middle m-0">No Patient Booked</h2>:
-                                get_patients_slots_state.map((p_booked_details, p_booked_details_index) =>
+                                {todaySlots=== ""? <h2 className="text-center align-middle m-0">No Patient Booked</h2>:
+                                todaySlots.map((p_booked_details, p_booked_details_index) =>
                                     
                                     <div className="col-6 mx-auto ">
                                         
@@ -155,12 +144,9 @@ export const Doctor_Home = () => {
                                                                 {/* <h5 className="my-3 text-danger">Current Diseases</h5> */}
                                                                 <label className="w-50 patient-label-head my-3">Current Diseases</label>
                                                                 <ul>
-                                                                    {
-                                                                        // getDiease(p_booked_details.diseases)
-                                                                        // getDiease(JSON.parse(p_booked_details.diseases))
-
-                                                                    }
-                                                                </ul>
+                                                                {p_booked_details.enquiry_details.diseases==""?"": 
+                                                                   JSON.parse(p_booked_details.enquiry_details.diseases) }
+                                                                                                 </ul>
                                                             </div>
                                                             <p className="card-description">
                                                                 <label className="w-50 patient-label-head my-3">Existing  Diseases</label>

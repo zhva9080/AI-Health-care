@@ -68,7 +68,7 @@ export const DoctorSlot = () => {
 
 
 
-        axios.post("https://retheesha.pythonanywhere.com/createdoctorslot", slot_data).then((response) => {
+        axios.post("https://sivaharish.pythonanywhere.com/createdoctorslot", slot_data).then((response) => {
             // console.log(response.data)
 
 

@@ -34,7 +34,7 @@ export const Doctor_Register = () => {
         formData.append("name", doctorRegisterSubmit.name)
         formData.append("email", doctorRegisterSubmit.email)
         formData.append("password", doctorRegisterSubmit.password)
-        formData.append("doctorid", doctorRegisterSubmit.doctor_id)
+        formData.append("doctor_id", doctorRegisterSubmit.doctor_id)
         formData.append("specialist", JSON.stringify(doctorRegisterSubmit.specialist))
         formData.append("phone", doctorRegisterSubmit.phone)
         formData.append("city", doctorRegisterSubmit.city)
@@ -45,7 +45,7 @@ export const Doctor_Register = () => {
 // =======
 
         // useEffect(() => {
-            axios.post("https://retheesha.pythonanywhere.com/doctorregister", formData).then((res) => {
+            axios.post("https://sivaharish.pythonanywhere.com/doctorregister", formData).then((res) => {
 // >>>>>>> submaster
                 let status = res.data.status
                 status == "success" ? navigate("/doctor/login") : alert("please wait untill the verification")

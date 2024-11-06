@@ -14,7 +14,7 @@ export const Userhome = () => {
     const diseasesarr=useSelector((state) => state.patientdetails).patientDetails.diseases
     let ageinput=useSelector((state) => state.patientdetails).patientDetails.age
     console.log(ageinput)
-    console.log(patientState.diseases)
+    // console.log(patientState.diseases)
     const [diseaseslist, setdiseases] = useState("")
     // const [birthDate, setBirthDate] = useState('');
     const add = () => {
@@ -47,7 +47,7 @@ export const Userhome = () => {
         }
         else{
             // axios.post(`http://agaram.academy/api/action.php?request=${patientState.request}`, formdata).then((res) => {
-            axios.post("https://retheesha.pythonanywhere.com/createpatientdetails", formdata).then((res) => {    
+            axios.post("https://sivaharish.pythonanywhere.com/patientenquiry", formdata).then((res) => {    
                 console.log(res)
                 dispatch(setPatient(res.data.data))
                 navigate('/user/doctorapp')

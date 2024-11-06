@@ -25,7 +25,7 @@ export const UserBooking = () => {
     useEffect(() => {
         const today = moment()
 
-        const tomorrow = moment(today).add(1, "days");
+        const tomorrow = moment(today).add(0, "days");
 
         setmindate(tomorrow.format('YYYY-MM-DD'))
 
@@ -39,12 +39,11 @@ export const UserBooking = () => {
     const param2 = searchParams.get('enquiry_id')
     // getting doctor slot details
     useEffect(() => {
-        if(DoctorSlotDetails==""){
             // axios.get(`http://agaram.academy/api/action.php?request=ai_health_get_slot_booking&doctor_id=${param1}`).then((res) => {
-            axios.get(`https://retheesha.pythonanywhere.com/getuniquedoctorslot/${param1}`).then((res) => {
+            axios.get(`https://sivaharish.pythonanywhere.com/getuniquedoctorslot/${param1}`).then((res) => {
             dispatch(setDoctorSlotDetails(JSON.parse(res.data.data.clinic_details)))
         })
-        }
+    
 
     }, [])
     let doctor = DoctorSlotDetails.filter((e) => {
@@ -68,7 +67,7 @@ export const UserBooking = () => {
         formdata.append("doctor_id", param1)
         formdata.append("enquiry_id", param2)
 
-        axios.post(`https://retheesha.pythonanywhere.com/createdoctorapp`, formdata).then((res) => {
+        axios.post(`https://sivaharish.pythonanywhere.com/createdoctorapp`, formdata).then((res) => {
             // console.log(res) 
             dispatch(setBooking_slots(res.data.data))
             dispatch(setpaymentHistory([...paymentHistoryState, res.data.data]))

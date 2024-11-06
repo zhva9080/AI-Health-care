@@ -32,7 +32,7 @@ export const Update_Doctor_Slot = () => {
 
     useEffect(() => {
         // axios.get(`http://agaram.academy/api/action.php?request=ai_health_get_slot_booking&doctor_id=${doctorLoginSubmit.data.id}`).then((doctor_booked_slot_all) => {
-            axios.get(`https://retheesha.pythonanywhere.com/getuniquedoctorslot/${doctorLoginSubmit.data.id}`).then((doctor_booked_slot_all) => { 
+            axios.get(`https://sivaharish.pythonanywhere.com/getuniquedoctorslot/${doctorLoginSubmit.data.id}`).then((doctor_booked_slot_all) => { 
             set_dispatch(get_slot_data(doctor_booked_slot_all.data.data))
             // set_dispatch(Updated_clinic_details(doctor_booked_slot_all.data.data.clinic_details))
             setClinicDetails(JSON.parse(doctor_booked_slot_all.data.data.clinic_details))
@@ -81,7 +81,7 @@ export const Update_Doctor_Slot = () => {
         slot_data.append("clinic_details", JSON.stringify(getList.clinic_details))
 
 
-        axios.post("https://retheesha.pythonanywhere.com/createdoctorslot", slot_data).then((response) => {
+        axios.post("https://sivaharish.pythonanywhere.com/createdoctorslot", slot_data).then((response) => {
             console.log(response.data)
 
         })
