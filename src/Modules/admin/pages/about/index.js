@@ -90,7 +90,7 @@ export const About = () => {
                                     </a>
                                 </div>
                                 <br></br>
-                                <h3 className="card-title">RATHEESHA</h3>
+                                <h3 className="card-title">RETHEESHA</h3>
 
                                 <p className="card-description text-center">
 
