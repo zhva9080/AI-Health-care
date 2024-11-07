@@ -24,11 +24,11 @@ export const Doctorapp = () => {
     const [searchinput, setsearchinput] = useState({ city: "", specialist: "" })
     const display = () => {
         if(doctorlist==""){
-        axios.get("https://sivaharish.pythonanywhere.com/getdoctorsdata").then((res) => {
-            dispatch(setDoctorList((res.data)))
+        axios.get("https://sivaharish.pythonanywhere.com/getlogindoctordata").then((res) => {
+            dispatch(setDoctorList((res.data.data)))
             // console.log()
             // dispatch(setSpecialist(res.data.data.map((e)=>JSON.parse(e.specialist))))
-            setSearch(res.data)
+            setSearch(res.data.data)
         })
         }
         // else{
