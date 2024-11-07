@@ -184,7 +184,7 @@ export const Homepage = () => {
                     </div>
                   </div> */}
                     <div class="col-md-12">
-                      <div class="card card-pricing" style={{ backgroundColor: "#6bd098" }}>
+                      <div class="card card-pricing" style={{ backgroundColor: "#6bd098"}}>
                         <div class="card-body">
                           {/* <h6 class="card-category text-dark">HTML Package</h6> */}
                           <h1 class="card-title">Already a member? </h1>

@@ -64,7 +64,7 @@ export const Slot_List = () => {
                                             <div className="col-md-3 mx-auto">
                                                 {e == "" ? <h2 className="text-center">No Slots Booked</h2> :
 
-                                                    <div className="card card-pricing " data-color="orange">
+                                                    <div className="card card-price " data-color="orange">
                                                         <div className="card-body slot_bg">
 
                                                             <div className="card-icon">

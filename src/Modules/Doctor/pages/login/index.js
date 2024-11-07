@@ -28,19 +28,22 @@ export const Doctor_Login = () => {
 //                 let status = log.data.status
 // >>>>>>> submaster
 
-        axios.post("https://sivaharish.pythonanywhere.com/doctorlogin", formData).then((log) => {
-            let status = log.data.status
-            console.log(log.data)
-            if (status == "success") {
-                // localStorage.setItem("isLogged", "true")
-                navigate("/doctor/home")
-                dispatch(get_login_data(log.data))
-            }else {
-                alert("Please Check the UserId and password")
-            }
-        }
-        )
-    }
+        
+axios.post("https://sivaharish.pythonanywhere.com/doctorlogin", formData).then((log) => { 
+    if (log.data.status== "success" && (log.data.data?.status=="approved")) { 
+        // localStorage.setItem("isLogged", "true") 
+        navigate("/doctor/home") 
+        dispatch(get_login_data(log.data)) 
+    } 
+    else if(log.data.data?.status=="processing"){ 
+        alert("Your registeration under verification please wait untill process") 
+    } 
+    else { 
+        alert("Please Check the UserId and password") 
+    } 
+} 
+) 
+}
 
     return (
         <>

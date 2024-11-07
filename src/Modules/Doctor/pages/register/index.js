@@ -20,10 +20,10 @@ export const Doctor_Register = () => {
 
     const [specialists, addSpecialist] = useState("")
     const setSpecialList = () => {
-        dispatch(updateSpecialist([...doctorRegisterSubmit.specialist,specialists]))
+        dispatch(updateSpecialist([...doctorRegisterSubmit.specialist, specialists]))
     }
 
-    
+
 
     const submit_doct_register = () => {
 
@@ -39,21 +39,32 @@ export const Doctor_Register = () => {
         formData.append("phone", doctorRegisterSubmit.phone)
         formData.append("city", doctorRegisterSubmit.city)
 
-// <<<<<<< doctor-module-2
-//             axios.post("https://srimathan.pythonanywhere.com/doctorregister", formData).then((res) => {
-//                 console.log(res)
-// =======
+        // <<<<<<< doctor-module-2
+        //             axios.post("https://srimathan.pythonanywhere.com/doctorregister", formData).then((res) => {
+        //                 console.log(res)
+        // =======
 
         // useEffect(() => {
+
+        if ((doctorRegisterSubmit.name == "" || doctorRegisterSubmit.email == "" || doctorRegisterSubmit.password == "" || doctorRegisterSubmit.doctor_id == ""|| doctorRegisterSubmit.specialist == "" || doctorRegisterSubmit.phone == "" || doctorRegisterSubmit.city == "")) {
+            alert("Please Fill out the required fields")
+        }
+
+        else {
+
             axios.post("https://sivaharish.pythonanywhere.com/doctorregister", formData).then((res) => {
-// >>>>>>> submaster
-                let status = res.data.status
-                status == "success" ? navigate("/doctor/login") : alert("please wait untill the verification")
+                // >>>>>>> submaster
+
+                if (res.data.status == "success") {
+                    alert("Registration Success")
+                    navigate("/doctor/login")
+                }
+                else if (res.data.message == "User already exists") {
+                    alert("This email is already registered. Please use a different email address.")
+                }
+
             })
-
-
-        // }, [])
-
+        }
 
     }
 
@@ -61,11 +72,11 @@ export const Doctor_Register = () => {
         <>
             <div className="register-page full-screen sidebar-collapse">
                 {/* <!-- Navbar --> */}
-                <Doct_Reg_Log_Header/>
+                <Doct_Reg_Log_Header />
                 {/* <!-- End Navbar --> */}
 
                 <div className="wrapper">
-                    <div className="page-header" 
+                    <div className="page-header"
                     // style={{ backgroundImage: "url ('../../assets/img/sections/soroush-karimi.jpg')" }}
                     >
                         <div className="filter"></div>
@@ -137,13 +148,13 @@ export const Doctor_Register = () => {
                                             {/* <input type="text" className="form-control" placeholder="Specialist" onKeyUp={(e)=>dispatch(submit_Register({...doctorRegisterSubmit,specialist:e.target.value}))}/> */}
 
                                             <div className="input-group">
-                                                <input type="text" 
+                                                <input type="text"
                                                     // value={specialists} 
                                                     className="form-control mb-0" placeholder="Specialist" onKeyUp={(e) => (addSpecialist(e.target.value))} />
-                                                <button className="btn btn-info m-0 rounded-end" 
-                                                type="button" 
-                                                // disabled={specialists.length>0 ? false :true}
-                                                 onClick={setSpecialList} >Add</button>
+                                                <button className="btn btn-info m-0 rounded-end"
+                                                    type="button"
+                                                    // disabled={specialists.length>0 ? false :true}
+                                                    onClick={setSpecialList} >Add</button>
                                             </div>
                                             <ul className="mt-3">
                                                 {doctorRegisterSubmit.specialist.map((s) =>

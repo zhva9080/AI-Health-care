@@ -78,14 +78,14 @@ export const UserRegister = () => {
 
 
       <div className="wrapper">
-        <div className="page-header" style={{ backgroundImage: "url('public/assets/img/sections/pexels-negativespace-48604.jpg')" }}>
+        <div className="page-header" style={{ backgroundImage: "url('../assets/img/sections/pexels-cottonbro-7578816.jpg')" }}>
           <div className="filter"></div>
           <div className="container">
             <div className="row">
               <div className="col-lg-6 col-md-6 col-sm-7 col-12 ml-auto">
 
                 <div className="info info-horizontal">
-                  <div className="icon">
+                  <div className="icon text-danger">
                     <i className="fa fa-heartbeat"></i>
                   </div>
                   <div className="description">
