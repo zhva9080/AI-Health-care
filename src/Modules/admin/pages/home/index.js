@@ -16,15 +16,16 @@ export const Adminhomepage = () => {
     let [search, setsearch] = useState(doctor)
     let [doctorsearch, setdoctorsearch] = useState({ city: "", name: "" })
 
-
+    const admintoken=localStorage.getItem("admin_token")
 
 
 
     // ------ doctor details ------
 
     const getdetails = () => {
+        const headers={'Authorization':`Bearer ${admintoken}`}
 
-        axios.get("https://sivaharish.pythonanywhere.com/getdoctorsdata").then((e) => {
+        axios.get("https://sivaharish.pythonanywhere.com/getdoctorsdata",{headers}).then((e) => {
 
             setdoctor(e.data)
             setsearch(e.data)

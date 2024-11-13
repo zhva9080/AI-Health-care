@@ -12,6 +12,8 @@ import { setDoctorList, setSpecialist } from "../../slices/Doctorlistslice"
 import './index.css'
 
 export const Doctorapp = () => {
+    const usertoken=localStorage.getItem("user_token")
+
     const patientState = useSelector((state) => state.patientdetails).patientDetails
     const specialistState = useSelector((state) => state.DoctorList).specialist
     
@@ -24,7 +26,9 @@ export const Doctorapp = () => {
     const [searchinput, setsearchinput] = useState({ city: "", specialist: "" })
     const display = () => {
         if(doctorlist==""){
-        axios.get("https://sivaharish.pythonanywhere.com/getlogindoctordata").then((res) => {
+            const headers={'Authorization':`Bearer ${usertoken}`}
+
+        axios.get("https://sivaharish.pythonanywhere.com/getlogindoctordata",{headers}).then((res) => {
             dispatch(setDoctorList((res.data.data)))
             // console.log()
             // dispatch(setSpecialist(res.data.data.map((e)=>JSON.parse(e.specialist))))

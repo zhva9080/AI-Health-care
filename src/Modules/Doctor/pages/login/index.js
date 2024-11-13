@@ -31,7 +31,8 @@ export const Doctor_Login = () => {
         
 axios.post("https://sivaharish.pythonanywhere.com/doctorlogin", formData).then((log) => { 
     if (log.data.status== "success" && (log.data.data?.status=="approved")) { 
-        // localStorage.setItem("isLogged", "true") 
+        localStorage.setItem("doctor_id",log.data.data.id)
+        localStorage.setItem("doctor_token",log.data.data.doctor_token)
         navigate("/doctor/home") 
         dispatch(get_login_data(log.data)) 
     } 

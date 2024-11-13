@@ -9,6 +9,9 @@ import { useParams } from 'react-router-dom';
 
 
 export const Admindoctordetails = () => {
+    const admintoken=localStorage.getItem("admin_token")
+
+
 
 
     const [view, setview] = useState({})
@@ -16,7 +19,9 @@ export const Admindoctordetails = () => {
     const { id } = useParams()
     useEffect(() => {
 
-        axios.get(`https://sivaharish.pythonanywhere.com/viewdoctor/${id}`).then((viewdoctor) => {
+        const headers={'Authorization':`Bearer ${admintoken}`}
+
+        axios.get(`https://sivaharish.pythonanywhere.com/viewdoctor/${id}`,{headers}).then((viewdoctor) => {
             setview(viewdoctor.data.data)
             // setspecial(viewdoctor.data.data.specialist)
             // console.log(viewdoctor.data.data)

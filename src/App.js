@@ -27,14 +27,27 @@ import { Doctor_profile } from "./Modules/Doctor/pages/doctor-profile";
 
 
 import { Homepage } from "./Modules/admin/pages/aihealth-homepage";
+import { Navigate } from "react-router-dom";
+
+// const token=localStorage.getItem('user_token')  
+ 
+// const ProtectedRoute = ({ element }) => { 
+//   if (token==null) { 
+//     return <Navigate to="/user/login"/> 
+//   } 
+//   else{ 
+//     return element 
+//   } 
+// }
 
 const router = createBrowserRouter([
+
   {path:"/",
     element:<Homepage/>
   },
   {
     path: "/user/login",
-    element: <div><Userlogin/></div>,
+    element: <div><Userlogin/></div>
   },
   {
     path : "/doctor/login",
@@ -97,7 +110,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/user/home",
-    element: <div><Userhome/></div>,
+    element:<Userhome/>
   },
   {
     path: "/user/editprofile",

@@ -13,6 +13,8 @@ export const Patient_History = () => {
 
     const set_dispatch = useDispatch();
     const navigate = useNavigate();
+    const doctortoken=localStorage.getItem("doctor_token")
+
 
     // Get global state for patient slots and doctor login 
     const get_patients_slots_state = useSelector((state) => state.patient_booking_state?.patientBooking);
@@ -25,12 +27,17 @@ export const Patient_History = () => {
     console.log(get_patients_slots_state);
     console.log(disease_data);
 
+    const doctor_id=localStorage.getItem("doctor_id") 
+    const doctorId = doctorLoginSubmit?.data?.id || doctor_id;
+
     // Fetch patient data based on the doctor's login ID 
     useEffect(() => {
+        const headers={'Authorization':`Bearer ${doctortoken}`}
+
         if (doctorLoginSubmit?.data?.id) {
             const fetchPatientData = async () => {
                 try {
-                    const response = await axios.get(`https://sivaharish.pythonanywhere.com/getpatientbooking/${doctorLoginSubmit.data.id}`);
+                    const response = await axios.get(`https://sivaharish.pythonanywhere.com/getpatientbooking/${doctorId}`,{headers});
                     set_dispatch(get_patient_data(response.data.data));
                 } catch (error) {
                     console.error('Error fetching patient data:', error);

@@ -26,6 +26,7 @@ export const Userlogin = () => {
         console.log(res)
         if (res.data.status == "success") {
           dispatch(setloginUser(res.data.data))
+          localStorage.setItem("user_token",res.data.data.user_token)
           navigate("/user/home")
         }
         else {

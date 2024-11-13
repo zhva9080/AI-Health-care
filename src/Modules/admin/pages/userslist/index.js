@@ -17,11 +17,15 @@ export const Adminusers = () => {
     }, [])
 
     const navigate = useNavigate();
+    
+    const admintoken=localStorage.getItem("admin_token")
+
 
 
     const getusers = () => {
+        const headers={'Authorization':`Bearer ${admintoken}`}
 
-        axios.get("https://sivaharish.pythonanywhere.com/userslist").then((e) => {
+        axios.get("https://sivaharish.pythonanywhere.com/userslist",{headers}).then((e) => {
 
             setuser(e.data)
         })

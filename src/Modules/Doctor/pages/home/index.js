@@ -11,6 +11,9 @@ import './index.css'
 
 export const Doctor_Home = () => {
 
+    const doctortoken=localStorage.getItem("doctor_token")
+   
+
 
 
     const set_dispatch = useDispatch()
@@ -28,9 +31,13 @@ export const Doctor_Home = () => {
 
     // get doctor id in login page 
     const doctorLoginSubmit = useSelector((state) => state.doctor_login_state).doctorLogin
+    const doctor_id=localStorage.getItem("doctor_id") 
+    const doctorId = doctorLoginSubmit?.data?.id || doctor_id;
 
     useEffect(() => {
-        axios.get(`https://sivaharish.pythonanywhere.com/getpatientbooking/${doctorLoginSubmit.data.id}`).then((response) => {
+        const headers={'Authorization':`Bearer ${doctortoken}`}
+
+        axios.get(`https://sivaharish.pythonanywhere.com/getpatientbooking/${doctorId}`,{headers}).then((response) => {
             const patientData = response.data.data;
             set_dispatch(get_patient_data(patientData))
             const dieseasearr = patientData?.enquiry_details?.diseases

@@ -10,7 +10,7 @@ import { deleteSlot } from "../../slices/removeSlotSlice"
 
 
 export const Slot_List = () => {
-
+    const doctortoken=localStorage.getItem("doctor_token")
 
 
     // const get_slot_state = useSelector((state) => state.doctor_slot_state).doctorSlotSlice
@@ -27,9 +27,13 @@ export const Slot_List = () => {
 
 
     const doctorLoginSubmit = useSelector((state) => state.doctor_login_state).doctorLogin
+    const doctor_id=localStorage.getItem("doctor_id") 
+    const doctorId = doctorLoginSubmit?.data?.id || doctor_id;
 
     useEffect(() => {
-        axios.get(`https://sivaharish.pythonanywhere.com/getuniquedoctorslot/${doctorLoginSubmit.data.id}`).then((doctor_booked_slot_all) => {
+        const headers={'Authorization':`Bearer ${doctortoken}`}
+
+        axios.get(`https://sivaharish.pythonanywhere.com/getuniquedoctorslot/${doctorId}`,{headers}).then((doctor_booked_slot_all) => {
             get_doctor_booked_slots(doctor_booked_slot_all.data.data)
             setClinicDetails(JSON.parse(doctor_booked_slot_all.data.data.clinic_details))
         })

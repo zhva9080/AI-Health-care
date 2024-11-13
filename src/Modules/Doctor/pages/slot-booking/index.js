@@ -18,6 +18,8 @@ export const DoctorSlot = () => {
     const doctorLoginSubmit = useSelector((state) => state.doctor_login_state).doctorLogin
     const set_dispatch = useDispatch()
     const navigate = useNavigate()
+    const doctortoken=localStorage.getItem("doctor_token")
+
 
     // add slot local state starts 
 
@@ -67,8 +69,9 @@ export const DoctorSlot = () => {
         // slot_data.append("doctor_id", getList.doctor_id)
 
 
+        const headers={'Authorization':`Bearer ${doctortoken}`}
 
-        axios.post("https://sivaharish.pythonanywhere.com/createdoctorslot", slot_data).then((response) => {
+        axios.post("https://sivaharish.pythonanywhere.com/createdoctorslot", slot_data,{headers}).then((response) => {
             // console.log(response.data)
 
 

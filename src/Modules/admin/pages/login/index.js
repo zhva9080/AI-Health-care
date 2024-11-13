@@ -30,6 +30,7 @@ export const Adminlogin = () => {
             alert("Please Fill the Required Details")
         }
         else {
+
             axios.post("https://sivaharish.pythonanywhere.com/adminlogin",formData).then((log)=>{
                 // let status = log.data.status
 
@@ -37,6 +38,7 @@ export const Adminlogin = () => {
                 if (log.data.status=="success"){
                     alert("Login successfully")
                     dispatch(login(log.data.data))
+                    localStorage.setItem("admin_token",log.data.data.admin_token)
                     navigate("/admin/homepage")
 
 
@@ -111,7 +113,7 @@ export const Adminlogin = () => {
                                                 }))}
 
                                             />
-                                            <button className="btn btn-info btn-block btn-round" type="button" onClick={Loginfunction}>Login</button>
+                                            <button className="btn btn-light btn-block btn-round" type="button" onClick={Loginfunction}>Login</button>
                                         </form>
                                         <div className="forgot">
                                             <a href="" className="btn btn-link">Forgot password?</a>

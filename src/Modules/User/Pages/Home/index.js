@@ -9,6 +9,8 @@ import axios from "axios"
 import moment from "moment"
 import './index.css'
 export const Userhome = () => {
+    const usertoken=localStorage.getItem("user_token")
+
     const navigate = useNavigate()
     const patientState = useSelector((state) => state.patientdetails).patientDetails
     const diseasesarr=useSelector((state) => state.patientdetails).patientDetails.diseases
@@ -46,8 +48,10 @@ export const Userhome = () => {
             alert("plese fill all fields")
         }
         else{
+            const headers={'Authorization':`Bearer ${usertoken}`}
+
             // axios.post(`http://agaram.academy/api/action.php?request=${patientState.request}`, formdata).then((res) => {
-            axios.post("https://sivaharish.pythonanywhere.com/patientenquiry", formdata).then((res) => {    
+            axios.post("https://sivaharish.pythonanywhere.com/patientenquiry",{headers}, formdata).then((res) => {    
                 console.log(res)
                 dispatch(setPatient(res.data.data))
                 navigate('/user/doctorapp')
