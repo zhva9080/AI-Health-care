@@ -58,8 +58,7 @@ export const Admindoctordetails = () => {
                                                 </h1>
                                                 <br />
                                                 <h6 className="card-catagory" style={{ color: "#20c997" }}>
-                                                    {/* {JSON.parse(view.specialist)}  */}
-                                                    {/* {view.specialist} */}
+                                                    {JSON.parse(view.specialist)} 
                                                     </h6>
                                                 <div className="card-description">
                                                     <i class="fa fa-address-card-o fa-2x mr-4" aria-hidden="true"></i>

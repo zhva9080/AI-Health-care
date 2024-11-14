@@ -45,6 +45,39 @@ export const Doctorapp = () => {
     useEffect(() => {
         display()
     }, [])
+
+        // const fetchDoctorData = async () => { 
+            
+        //     setError(null);   // Clear previous error 
+         
+         
+        // if(doctorlist==""){ 
+         
+        // axios.get("https://retheesha.pythonanywhere.com/getlogindoctordata",{headers}).then((res) => { 
+        //     dispatch(setDoctorList((res.data.data))) 
+        //     console.log(res) 
+        //     // dispatch(setSpecialist(res.data.data.map((e)=>JSON.parse(e.specialist)))) 
+        //     setSearch(res.data.data) 
+        // }) 
+        // } 
+        // else{ 
+ 
+        // } 
+ 
+        // console.log(res.data.data) 
+ 
+     
+    // useEffect(() => { 
+    //     display() 
+    // }, [])
+
+
+
+
+
+
+
+
     // const Filter = (event) => {
     //     setSearch(doctorlist.filter((e) => (e.city.toLowerCase().includes(event.city)) && (e.name.toLowerCase().includes(event.specialist))))
     // }
