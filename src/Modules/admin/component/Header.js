@@ -1,11 +1,20 @@
 
-import { Link } from "react-router-dom"
+import { Link, Navigate } from "react-router-dom"
 import { useSelector } from 'react-redux'
+import { useNavigate } from "react-router-dom"
+
+
 
 
 export const Header = () => {
 
+    const navigate = useNavigate();
     let loginname = useSelector((state) => state.login).adminlogin
+
+ const logout = () => {
+    localStorage.removeItem("admin_token")
+    navigate("/")
+ }
 
     return (
         <>
@@ -45,8 +54,8 @@ export const Header = () => {
                                 <div className="dropdown-menu dropdown-menu-right dropdown-secondary" >
                                     <Link className="dropdown-item" to={"/admin/about"}>About <i class="nc-icon nc-bank" aria-hidden="true"></i>
                                     </Link>
-                                    <Link className="dropdown-item" to={"/admin/login"}>Logout <i class="fa fa-sign-out " aria-hidden="true"></i>
-                                    </Link>
+                                    <button className="dropdown-item" onClick={() => logout()}>Logout <i class="fa fa-sign-out " aria-hidden="true"></i>
+                                    </button>
                                 </div>
                             </li>
 

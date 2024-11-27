@@ -4,17 +4,25 @@ import { useSelector, useDispatch } from "react-redux"
 import { setPatient } from "../../slices/PatientSlice"
 import { useNavigate, Link } from "react-router-dom"
 import { useState } from "react"
-import { updateDiseases,setage } from "../../slices/PatientSlice"
+import { updateDiseases, setage } from "../../slices/PatientSlice"
 import axios from "axios"
 import moment from "moment"
 import './index.css'
+import { setAllopathicdetails, setFooddetails, setSiddhadetails, setdetails } from "../../slices/AItipsSlice"
+
+
+
+
+
 export const Userhome = () => {
-    const usertoken=localStorage.getItem("user_token")
+    const usertoken = localStorage.getItem("user_token")
+    const ai_detailsState=useSelector((state)=>state.ai_tips).ai_tips 
+    console.log(ai_detailsState)
 
     const navigate = useNavigate()
     const patientState = useSelector((state) => state.patientdetails).patientDetails
-    const diseasesarr=useSelector((state) => state.patientdetails).patientDetails.diseases
-    let ageinput=useSelector((state) => state.patientdetails).patientDetails.age
+    const diseasesarr = useSelector((state) => state.patientdetails).patientDetails.diseases
+    let ageinput = useSelector((state) => state.patientdetails).patientDetails.age
     console.log(ageinput)
     // console.log(patientState.diseases)
     const [diseaseslist, setdiseases] = useState("")
@@ -25,11 +33,59 @@ export const Userhome = () => {
     const dispatch = useDispatch()
     const calculateAge = (date) => {
         return moment().diff(moment(date), 'years')
-      };
-    
-    const selftreatment = () => {
-        navigate("/user/view")
+    };
+
+    const question = `list me the solution for given diseases/problems ${diseasesarr} and considering the following details: 
+ 
+      Days of infection:${patientState.duration} 
+      Age:${patientState.age} 
+      Please generate a detailed response in the following format: 
+
+      ALLOPATHIC: Provide a description of allopathic medicines  
+      SIDDHA: Provide a description of Siddha medicines   
+      FOOD: Provide a detailed description of food to be taken`
+
+    const selftreatment = async (event) => {
+
+        const apikey = "AIzaSyCuzZ8Cyn3GdiXc-KFSE7jLXTNMvPYuzp0"
+
+        axios({
+            url: `https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=${apikey}`,
+            method: "POST",
+            data: {
+                contents: [
+                    { parts: [{ text: question }] },
+                ]
+            },
+        }).then((response) => {
+            console.log(response)
+            console.log(response['data']['candidates'][0]['content']['parts'][0]['text'])
+            const text = response['data']['candidates'][0]['content']['parts'][0]['text']
+
+            // dispatch(setdetails(text))
+
+            let startAllopathic = text.indexOf("ALLOPATHIC") + "ALLOPATHIC".length
+            let endAllopathic = text.indexOf("SIDDHA");
+            let allopathictext = text.substring(startAllopathic, endAllopathic);
+            console.log(allopathictext)
+            dispatch(setAllopathicdetails(allopathictext))
+
+            let startSiddha = text.indexOf("SIDDHA") + "SIDDHA".length
+            let endSiddha = text.indexOf("FOOD");
+            let Siddhatext = text.substring(startSiddha, endSiddha);
+            dispatch(setSiddhadetails(Siddhatext))
+
+            let startFood = text.indexOf("FOOD") + "FOOD".length   // Start after the word "quick" 
+            // let endFood = text.indexOf("ALLOPATHIC");  // Find the position of "fox" 
+            let Foodtext = text.substring(startFood);
+            dispatch(setFooddetails(Foodtext))
+        })
+        navigate('/user/view')
+
     }
+
+
+
     const doctorappointment = () => {
         const formdata = new FormData();
         formdata.append("request", patientState.request)
@@ -44,14 +100,14 @@ export const Userhome = () => {
         // navigate("/user/view")
 
 
-        if(patientState.name=="" || patientState.gender=="" || patientState.duration=="" ){
+        if (patientState.name == "" || patientState.gender == "" || patientState.duration == "") {
             alert("plese fill all fields")
         }
-        else{
-            const headers={'Authorization':`Bearer ${usertoken}`}
+        else {
+            const headers = { 'Authorization': `Bearer ${usertoken}` }
 
             // axios.post(`http://agaram.academy/api/action.php?request=${patientState.request}`, formdata).then((res) => {
-            axios.post("https://sivaharish.pythonanywhere.com/patientenquiry",{headers}, formdata).then((res) => {    
+            axios.post("https://sivaharish.pythonanywhere.com/patientenquiry", { headers }, formdata).then((res) => {
                 console.log(res)
                 dispatch(setPatient(res.data.data))
                 navigate('/user/doctorapp')
@@ -94,18 +150,18 @@ export const Userhome = () => {
                                                             <input class="form-control no-border" type="text" placeholder="KIND OF ILLNESS" onKeyUp={(e) => setdiseases(e.target.value)} />
                                                             <button type="button" className="btn btn-primary" onClick={add}><i className="fa fa-plus " aria-hidden="true" ></i></button>
                                                         </div>
-                                                        {Array.isArray(diseasesarr) && diseasesarr.length > 0 ?diseasesarr.map((e, i) =>
+                                                        {Array.isArray(diseasesarr) && diseasesarr.length > 0 ? diseasesarr.map((e, i) =>
                                                             <div className="row my-2">
-                                                                <div className="col-2"> 
+                                                                <div className="col-2">
                                                                     <button type="button" className="btn btn-danger btn-link " onClick={() => removeItem(i)}>
-                                                                    <i className="fa fa-times"></i>
+                                                                        <i className="fa fa-times"></i>
                                                                     </button>
 
                                                                 </div>
                                                                 <div className="col-5 my-2 remove">{e}</div>
                                                             </div>
-                                                        ):""}
-                                                        
+                                                        ) : ""}
+
 
                                                     </div>
                                                     <div className="form-group my-5 col-4">
@@ -174,7 +230,7 @@ export const Userhome = () => {
                                 <div className="form-group my-5">
                                     <h6 className="mt-5">Date of Birth<span className="icon-danger"></span></h6>
 
-                                    <input className="form-control w-50 border-success" type="date" placeholder="Enter age" onChange={(e) =>dispatch(setage(calculateAge(e.target.value)))}>
+                                    <input className="form-control w-50 border-success" type="date" placeholder="Enter age" onChange={(e) => dispatch(setage(calculateAge(e.target.value)))}>
                                     </input>
                                     {/* dispatch(setPatient({ ...patientState, age: e.target.value }))} */}
 

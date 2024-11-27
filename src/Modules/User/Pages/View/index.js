@@ -8,6 +8,12 @@ import axios from "axios"
 export const Userview = () => {
     const HistoryState = useSelector((state) => state.userhistory).patienthistory
     const patientState = useSelector((state) => state.patientdetails).patientDetails
+
+    const AllopathicState = useSelector((state) => state.ai_tips).ai_details.allopathic
+    const SiddhaState = useSelector((state) => state.ai_tips).ai_details.siddha
+    const FoodState = useSelector((state) => state.ai_tips).ai_details.food
+
+
     const dispatch = useDispatch()
     const save = () => {
         dispatch(setpatientHisory([...HistoryState, patientState]))
@@ -21,7 +27,7 @@ export const Userview = () => {
     return (<>
 
         <Header />
-        <div className="container" style={{marginTop:"100px"}}>
+        <div className="container" style={{ marginTop: "100px" }}>
             <div className="row" >
                 <div className="col-md-11 mx-auto">
                     {/* <div className="card card-blog" style={{ backgroundColor: "#6489b117" }}> */}
@@ -55,9 +61,9 @@ export const Userview = () => {
                                             <h3 className="card-title">
                                                 <a href="javascript:;">SoundCloud says it’s going to survive, but how?</a>
                                             </h3>
-                                            <p className="card-description">
-                                                No matter what happens — funding versus acquisition versus who knows what — Ljung says SoundCloud is not going away “anytime in the foreseeable future.” I hope that’s true, but I can’t help but feel a bit skeptical. — and… <a href="javascript:;"> Read More </a>
-                                            </p>
+                                            <h5 className="card-description">
+                                                {FoodState}
+                                            </h5>
 
                                         </div>
                                     </div>
@@ -73,9 +79,8 @@ export const Userview = () => {
                                             <h3 className="card-title">
                                                 <a href="javascript:;">Uber acqui-hires social app studio Swipe Labs</a>
                                             </h3>
-                                            <p className="card-description">
-                                                These issues might be making it a bit harder for Uber to hire right now in the competitive Silicon Valley job market. Acqui-hiring companies like it’s doing here with Swipe Labs lets it roll up a bunch of good talent — and… <a href="javascript:;"> Read More </a>
-                                            </p>
+                                            <h5 className="card-description">
+                                                {AllopathicState}                                            </h5>
 
                                         </div>
                                     </div>
@@ -105,9 +110,9 @@ export const Userview = () => {
                                             <h3 className="card-title">
                                                 <a href="javascript:;">HBO and Netflix lead this year’s nominations</a>
                                             </h3>
-                                            <p className="card-description">
-                                                Streaming services once again top the list of this year’s Emmy nominations – another indicator of the shift in how today’s consumers are watching TV. HBO, which has been available. <a href="javascript:;"> Read More </a>
-                                            </p>
+                                            <h5 className="card-description">
+                                                {SiddhaState}
+                                            </h5>
 
                                         </div>
                                     </div>
